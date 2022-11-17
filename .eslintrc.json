@@ -34,6 +34,7 @@
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
     "jsx-a11y/media-has-caption": "off",
+	  "import/no-absolute-path": "off",
     "no-restricted-imports": [
       "error",
       {
@@ -83,6 +84,7 @@
 	  ],
     "react/require-default-props": "off",
     "react/button-has-type": "off",
+	  "react/function-component-definition": "off",
     "react/jsx-no-target-blank": "off",
     "react/jsx-props-no-spreading": "off",
     "react/destructuring-assignment": "off",

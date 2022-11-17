@@ -1,16 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useAppDispatch } from '../../hooks/redux'
+import { CustomRoutes } from '../../routes/modules'
+import { fetchModules } from '../../store/app.thinks'
+import { Heading } from '../head/Head'
 import style from './App.module.scss'
-import { IHandleSubmit } from '../../../models'
 
-const handler: IHandleSubmit<any> = (data) => {
-  // eslint-disable-next-line no-console
-  console.log(data)
-}
 function App() {
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(fetchModules())
+  }, [dispatch])
+
   return (
     <div className={style.app}>
-      test
-      <button onClick={handler}>button</button>
+      <Heading />
+      <CustomRoutes />
     </div>
   )
 }
