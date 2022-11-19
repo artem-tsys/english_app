@@ -1,6 +1,6 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit'
-import { fetchModules } from './app.thinks'
-import { IModule } from '../types/modules'
+import { fetchModules } from 'src/redux/modules/modules.thinks'
+import { IModule } from 'src/types/modules'
 
 /* eslint-disable no-param-reassign */
 
@@ -27,8 +27,6 @@ export const modulesSlice = createSlice({
         state.error = null
       })
       .addCase(fetchModules.fulfilled, (state, action) => {
-        // eslint-disable-next-line no-console
-        console.log(action.payload)
         modulesAdapter.setAll(state, action.payload)
         state.loadingStatus = 'idle'
         state.error = null

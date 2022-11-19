@@ -1,10 +1,11 @@
 import cn from 'classnames'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+import { modulesSelectById } from 'src/redux/modules/modules.selectors'
 import { CardButton } from '../../components/buttons/card-button/card.button'
 import styleCard from '../../components/buttons/card-button/card.button.module.scss'
+import { HeaderModules } from '../../components/headers/Header-modules'
 import { PhrasesSlider } from '../../components/slider/Phrases-slider'
 import { useAppSelector } from '../../hooks/redux'
-import { modulesSelectors } from '../../store/app.selectors'
 import style from './modules.module.scss'
 
 const RoutesButtons = [
@@ -45,14 +46,18 @@ const RenderGroupButtons = () => (
   </div>
 )
 
-export function Modules() {
-  const modules = useAppSelector(modulesSelectors.selectAll)
-  const phrases = modules[0]?.phrases
+export function ModulesPage() {
+  const { moduleId } = useParams()
+  const module = useAppSelector(modulesSelectById(moduleId ?? ''))
+  const phrases = module?.phrases ?? []
 
   return (
     <div className={style.module}>
-      <PhrasesSlider data={phrases} />
-      <RenderGroupButtons />
+      <HeaderModules />
+      <div className="wrapper">
+        <PhrasesSlider data={phrases} />
+        <RenderGroupButtons />
+      </div>
     </div>
   )
 }

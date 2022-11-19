@@ -1,8 +1,8 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
+import { NotCreatedPage } from 'src/pages/not-created-page/NotCreatedPage'
 import { Home } from '../pages/home-page/Home'
-import { Modules } from '../pages/modules-page/Modules'
-import { NotCreated } from '../pages/not-created-page/NotCreated'
+import { ModulesPage } from '../pages/modules-page/Modules'
 
 const routesList = [
   {
@@ -10,16 +10,16 @@ const routesList = [
     component: Home,
   },
   {
-    path: '/module',
-    component: Modules,
+    path: '/module/:moduleId',
+    component: ModulesPage,
   },
   {
     path: '/createModule',
-    component: NotCreated,
+    component: NotCreatedPage,
   },
 ]
 
-export const CustomRoutes = (): JSX.Element => (
+export const RoutesPages = (): JSX.Element => (
   <Routes>
     {routesList.map(({ path, component: Component }) => (
       <Route key={path} path={path} element={<Component />} />

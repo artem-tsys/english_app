@@ -1,3 +1,3 @@
-export function NotCreated(): JSX.Element {
+export function NotCreatedPage(): JSX.Element {
   return <div>страница не создана</div>
 }

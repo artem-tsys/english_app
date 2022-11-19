@@ -1,0 +1,46 @@
+.header {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5px 20px;
+  background: rgb(78 78 185 / 34%);
+}
+
+.logo {
+  display: block;
+  margin: 0 auto;
+  height: 50px;
+  width: auto;
+}
+
+.ms_auto {
+  margin-left: auto;
+}
+
+.me_auto {
+  margin-right: auto;
+}
+
+.mt_auto {
+  margin-top: auto;
+}
+
+.mb_auto {
+  margin-bottom: auto;
+}
+
+.ms_sm {
+  margin-left: 10px;
+}
+
+.mt_sm {
+  margin-top: 10px;
+}
+
+.mb_sm {
+  margin-bottom: 10px;
+}
+
+.me_sm {
+  margin-right: 10px;
+}

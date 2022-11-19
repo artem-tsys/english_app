@@ -1,0 +1,15 @@
+.share {
+  background: none;
+  border: none;
+  height: 30px;
+  width: 30px;
+  padding: 0;
+}
+
+.image {
+  display: flex;
+  height: 70%;
+  width: 70%;
+  margin: auto;
+  object-fit: contain;
+}

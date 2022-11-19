@@ -1,11 +1,13 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import style from '../app/App.module.scss'
+import style from 'src/styles/main.module.scss'
 
-export function Heading(): JSX.Element {
+export function HeaderWithLogo(): JSX.Element {
   const navigate = useNavigate()
+  const clickLogoHandler = () => navigate('/')
+
   return (
-    <a href="#" className={style.heading} onClick={() => navigate('/')}>
+    <a href="#" className={style.header} onClick={clickLogoHandler}>
       <img
         src={`${process.env.PUBLIC_URL}/quizlet.png`}
         alt="logo"

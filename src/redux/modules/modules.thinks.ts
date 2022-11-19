@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { axiosInstance } from '../api/axios-instanse'
-import { routes } from '../routes/paths'
+import { axiosInstance } from 'src/api/axios-instanse'
+import { routes } from 'src/routes/paths'
 
 export const fetchModules = createAsyncThunk(
   'modules/fetchModules',

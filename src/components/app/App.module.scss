@@ -1,3 +1,5 @@
+@import "./src/styles/variables.scss";
+
 .app {
   display: flex;
   flex-direction: column;
@@ -9,18 +11,3 @@
   box-shadow: 0 0 20px 0 #666;
   overflow: hidden;
 }
-
-.heading {
-  display: inline-block;
-  width: 100%;
-  background: #4e4eb9;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto;
-  height: 50px;
-  width: auto;
-}
-
-

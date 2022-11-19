@@ -21,6 +21,10 @@ export function CreateSlider<T extends IModule | IPhrase>({
   config = {},
 }: ICreateSliderProps<T>): FC<ISliderProps<T>> {
   return function Slider({ data, ...props }) {
+    if (!data.length) {
+      return null
+    }
+
     return (
       <div className={style.slider}>
         {title && <h2 className={style.title}>{title}</h2>}
