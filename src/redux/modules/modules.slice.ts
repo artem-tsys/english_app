@@ -1,4 +1,5 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit'
+import _ from 'lodash'
 import { fetchModules } from 'src/redux/modules/modules.thinks'
 import { IModule } from 'src/types/modules'
 
@@ -27,7 +28,8 @@ export const modulesSlice = createSlice({
         state.error = null
       })
       .addCase(fetchModules.fulfilled, (state, action) => {
-        modulesAdapter.setAll(state, action.payload)
+        const modules = _.omit(action.payload, 'exercises')
+        modulesAdapter.setAll(state, modules)
         state.loadingStatus = 'idle'
         state.error = null
       })

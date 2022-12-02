@@ -3,11 +3,18 @@
   justify-content: center;
   align-items: center;
   height: 180px;
-  width: available;
   width: fill-available;
-  margin: 0 5px;
-  border: none;
   border-radius: 5px;
   background: #3d3b46;
   color: #fff;
+}
+
+.wrapper {
+  position: relative;
+  height: 180px;
+  width: fill-available;
+  margin: 0 5px;
+  border: none;
+  background: none;
+  padding: 0;
 }

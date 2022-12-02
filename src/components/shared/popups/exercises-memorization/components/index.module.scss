@@ -1,0 +1,20 @@
+.background {
+  &Success {
+    background-color: #29a402;
+  }
+
+  &Wrong {
+    background-color: #fc3030;
+  }
+
+  &Transparent {
+    background-color: transparent;
+  }
+}
+
+.title {
+  font-size: 18px;
+  line-height: 1.3em;
+  color: #fff;
+  text-decoration: none;
+}

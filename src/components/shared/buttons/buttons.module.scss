@@ -1,0 +1,152 @@
+.button {
+  &Close {
+    position: relative;
+    overflow: hidden;
+    height: 30px;
+    width: 30px;
+    border: none;
+    background: none;
+    cursor: pointer;
+
+    &::after,&::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: inline-block;
+      height: 2px;
+      width: 80%;
+      background: #656565;
+    }
+
+    &::after {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    &::before {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+  }
+
+  &Create {
+    margin: 0 auto;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background: #2664a4;
+    color: #fff;
+
+    &:hover {
+      background: #479cf5;
+    }
+  }
+
+  &Back{
+    height: 30px;
+    width: 30px;
+    background: none;
+    border: none;
+    overflow: hidden;
+    padding: 0;
+
+    .image {
+      display: flex;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  &More {
+    height: 30px;
+    width: 30px;
+    background: none;
+    border: none;
+    overflow: hidden;
+    padding: 0;
+
+    .image {
+      height: 80%;
+      width: 80%;
+      margin: auto;
+      object-fit: contain;
+    }
+  }
+
+  &Share {
+    background: none;
+    border: none;
+    height: 30px;
+    width: 30px;
+    padding: 0;
+
+    .image {
+      display: flex;
+      height: 70%;
+      width: 70%;
+      margin: auto;
+      object-fit: contain;
+    }
+  }
+
+  &Card {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas: 'icon title'
+  'icon description';
+    grid-gap: 10px 15px;
+    justify-content: left;
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    background: #2a2b42;
+    border: none;
+    text-decoration: none;
+    border-radius: 5px;
+
+    &:disabled {
+      background: #2a2b42;
+
+      & > .title{
+        color: #a1a1a1;
+      }
+
+      & > .description {
+        color: #a1a1a1;
+      }
+    }
+
+    .title {
+      grid-area: title;
+      font-size: 16px;
+      line-height: 1em;
+      color: #fff;
+      text-decoration: none;
+      text-align: left;
+      margin: 0;
+    }
+
+    .description {
+      grid-area: description;
+      font-size: 13px;
+      line-height: 1em;
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      text-align: left;
+      margin: 0;
+    }
+
+    .link {
+      text-decoration: none;
+    }
+
+    .icon {
+      grid-area: icon;
+      height: 30px;
+      width: 30px;
+      margin: auto;
+      align-items: center;
+    }
+  }
+}

@@ -1,17 +1,32 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Route, Routes } from 'react-router-dom'
+import { HomePage } from 'src/pages/home-page/Home.page'
+import { MemorizationPage } from 'src/pages/memorization-exercise-page/Memorization.page'
+import { ModulesPage } from 'src/pages/modules-page/Modules.page'
 import { NotCreatedPage } from 'src/pages/not-created-page/NotCreatedPage'
-import { Home } from '../pages/home-page/Home'
-import { ModulesPage } from '../pages/modules-page/Modules'
 
-const routesList = [
+interface IRoutes {
+  path: string
+  component: FC
+  nested?: IRoutes[]
+}
+
+const routesList: IRoutes[] = [
   {
     path: '/',
-    component: Home,
+    component: HomePage,
   },
   {
     path: '/module/:moduleId',
     component: ModulesPage,
+  },
+  {
+    path: '/module/:moduleId/cards',
+    component: NotCreatedPage,
+  },
+  {
+    path: '/module/:moduleId/exercises',
+    component: MemorizationPage,
   },
   {
     path: '/createModule',

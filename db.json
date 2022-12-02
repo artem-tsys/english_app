@@ -1,6 +1,7 @@
 {
 	"modules": [
 		{
+			"id": "1",
 			"title": "Прилагательные",
 			"phrases": [
 				{
@@ -29,23 +30,143 @@
 					"en": "what?"
 				}
 			],
-			"id": "1"
+			"exercises": {
+				"memorization": {
+					"round": 0,
+					"learnedIds": []
+				},
+				"cards": {
+					"learned": [],
+					"unlearned": []
+				}
+			}
 		}, {
+			"id": "2",
 			"title": "Существительные",
 			"phrases": [
 				{
-					"id": "3",
+					"id": "1",
 					"ru": "яблоко",
 					"en": "apple"
 				},
 				{
-					"id": "4",
+					"id": "2",
 					"ru": "банан",
 					"en": "banana"
+				},
+				{
+					"id": "3",
+					"ru": "груша",
+					"en": "pear"
+				},
+				{
+					"id": "4",
+					"ru": "персик",
+					"en": "peach"
+				},
+				{
+					"id": "5",
+					"ru": "ананас",
+					"en": "pineapple"
+				},
+				{
+					"id": "6",
+					"ru": "виноград",
+					"en": "grape"
+				},
+				{
+					"id": "7",
+					"ru": "картошка",
+					"en": "potatoes"
+				},
+				{
+					"id": "8",
+					"ru": "горох",
+					"en": "peas"
+				},
+				{
+					"id": "9",
+					"ru": "огурец",
+					"en": "cucumber"
+				},
+				{
+					"id": "10",
+					"ru": "помидор",
+					"en": "tomato"
+				},
+				{
+					"id": "11",
+					"ru": "капуста",
+					"en": "cabbage"
+				},
+				{
+					"id": "12",
+					"ru": "молоко",
+					"en": "milk"
+				},
+				{
+					"id": "13",
+					"ru": "сок",
+					"en": "juice"
+				},
+				{
+					"id": "14",
+					"ru": "красный",
+					"en": "red"
+				},
+				{
+					"id": "15",
+					"ru": "синий",
+					"en": "blue"
+				},
+				{
+					"id": "16",
+					"ru": "белый",
+					"en": "white"
+				},
+				{
+					"id": "17",
+					"ru": "черный",
+					"en": "black"
+				},
+				{
+					"id": "18",
+					"ru": "желтый",
+					"en": "yellow"
+				},
+				{
+					"id": "19",
+					"ru": "зеленый",
+					"en": "green"
+				},
+				{
+					"id": "20",
+					"ru": "коричневый",
+					"en": "brown"
+				},
+				{
+					"id": "21",
+					"ru": "фиолетовый",
+					"en": "purple"
+				},
+				{
+					"id": "22",
+					"ru": "разноцветный",
+					"en": "colorful"
 				}
 			],
-			"id": "2"
+			"exercises": {
+				"memorization": {
+					"round": 0,
+					"learnedIds": []
+				},
+				"cards": {
+					"learned": [],
+					"unlearned": []
+				}
+			}
 		}, {
+			"id": "3",
 			"title": "Существительные - 2",
 			"phrases": [
 				{
@@ -59,7 +180,16 @@
 					"en": "banana"
 				}
 			],
-			"id": "3"
+			"exercises": {
+				"memorization": {
+					"round": 0,
+					"learnedIds": []
+				},
+				"cards": {
+					"learned": [],
+					"unlearned": []
+				}
+			}
 		}
 	]
 }

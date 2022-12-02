@@ -7,13 +7,6 @@
       "esnext"
     ],
 	  "baseUrl": "./",
-	  "paths": {
-		  //none-js-ts files is not supported by intellisense. Use 'path-intellisense.mappings' in .vscode/settings.json instead
-		  //this is should be sync with aliases in webpack
-		  "@/*": ["src/*"],
-		  "images/*": ["src/assets/images/*"],
-		  "fonts/*": ["src/assets/fonts/*"]
-	  },
     "allowJs": true,
 	  "checkJs": true,
     "skipLibCheck": true,
@@ -32,8 +25,9 @@
   },
 	"exclude": [
 		"node_modules",
-		"dist",
-		"build",
-		".idea"
+	],
+	"include": [
+		"**/*.ts",
+		"**/*.tsx"
 	]
 }

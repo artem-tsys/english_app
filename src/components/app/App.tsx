@@ -9,7 +9,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchModules())
-  }, [dispatch])
+  }, [])
 
   return (
     <div className={style.app}>

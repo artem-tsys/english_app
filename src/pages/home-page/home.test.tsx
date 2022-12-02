@@ -1,9 +1,9 @@
-import React from 'react'
 import { render, screen } from '@testing-library/react'
-import { Home } from './Home'
+import React from 'react'
+import { HomePage } from 'src/pages/home-page/Home.page'
 
 test('home page', () => {
-  render(<Home />)
+  render(<HomePage />)
   const btnCreate = screen.getByTestId(/btn-create/i)
   expect(btnCreate).toBeInTheDocument()
 })

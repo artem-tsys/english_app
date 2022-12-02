@@ -1,31 +1,23 @@
-import { FC, useState } from 'react'
+import { useState } from 'react'
+import ReactCardFlip from 'src/utils/react-card-flip/react-card-flip'
 import { CardComponent } from '../../../types/modules'
 import { IPhrase } from '../../../types/phrases'
 import { CardBackface } from './phrase-backface.card'
 import { CardFace } from './phrase-face.card'
 import style from './phrase.module.scss'
 
-type SideCardName = 'face' | 'backface'
-
-interface IPhraseSideProps {
-  data: IPhrase
-}
-
-const mapSideCard: Record<SideCardName, FC<IPhraseSideProps>> = {
-  face: CardFace,
-  backface: CardBackface,
-}
-
 export const PhraseCard: CardComponent<IPhrase> = ({ data }) => {
-  const [typeSide, setTypeSide] = useState<SideCardName>('face')
+  const [isFlipped, setFlipped] = useState(false)
   const handlerSideChange = (): void => {
-    setTypeSide((state: string) => (state === 'face' ? 'backface' : 'face'))
+    setFlipped((state) => !state)
   }
-  const SideOfCard: FC<IPhraseSideProps> = mapSideCard[typeSide]
 
   return (
-    <button className={style.card} onClick={handlerSideChange}>
-      <SideOfCard data={data} />
+    <button className={style.wrapper} onClick={handlerSideChange}>
+      <ReactCardFlip isFlipped={isFlipped}>
+        <CardFace data={data} />
+        <CardBackface data={data} />
+      </ReactCardFlip>
     </button>
   )
 }

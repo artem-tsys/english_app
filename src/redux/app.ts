@@ -1,9 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
+import { exercisesSlice } from 'src/redux/exercises/exercises.slice'
+import { commonSlice } from 'src/redux/general/common'
 import { modulesSlice } from 'src/redux/modules/modules.slice'
 
 export const appStore = configureStore({
   reducer: {
     modules: modulesSlice.reducer,
+    exercises: exercisesSlice.reducer,
+    common: commonSlice.reducer,
   },
 })
 
