@@ -5,7 +5,7 @@ import { HeaderWithBack } from 'src/components/headers/Header-with-back'
 import { CardButton } from 'src/components/shared/buttons/Card.button'
 import { MoreButton } from 'src/components/shared/buttons/More.button'
 import { ShareButton } from 'src/components/shared/buttons/Share.button'
-import { actionSetModuleId } from 'src/redux/general/common'
+import { UPDATE_MODULE_ID } from 'src/redux/general/common'
 import { modulesSelectById } from 'src/redux/modules/modules.selectors'
 import styleMain from 'src/styles/main.module.scss'
 import styleCard from '../../components/shared/buttons/buttons.module.scss'
@@ -59,7 +59,7 @@ export function ModulesPage() {
   const phrases = module?.phrases ?? []
 
   useEffect(() => {
-    dispatch(actionSetModuleId(moduleId))
+    dispatch(UPDATE_MODULE_ID(moduleId))
   }, [moduleId])
 
   if (!moduleId) {

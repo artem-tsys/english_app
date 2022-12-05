@@ -7,7 +7,7 @@ export const Answers: IAnswers = ({ answers, onAnswerSelected }) => (
   <ul className={style.container}>
     {answers.map((answer) => (
       <li key={answer.id} className={style.element}>
-        <button onClick={onAnswerSelected(answer.id)} className={style.button}>
+        <button onClick={onAnswerSelected(answer.id)} className={style.button} data-value={answer.ru}>
           {answer.ru}
         </button>
       </li>
