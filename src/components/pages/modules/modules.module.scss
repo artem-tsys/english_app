@@ -1,0 +1,11 @@
+@import "../../../styles/variables";
+
+.buttonsGroup {
+  display: flex;
+  flex-direction: column;
+  margin: 0 $offset-width;
+}
+
+.mb_sm {
+  margin-bottom: 10px;
+}

@@ -18,9 +18,7 @@ export const modulesSlice = createSlice({
     loadingStatus: 'idle',
     error: null,
   }),
-  reducers: {
-    modules: () => {},
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchModules.pending, (state) => {

@@ -1,9 +1,9 @@
 import React, { FC } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { HomePage } from 'src/pages/home-page/Home.page'
-import { MemorizationPage } from 'src/pages/memorization-exercise-page/Memorization.page'
-import { ModulesPage } from 'src/pages/modules-page/Modules.page'
-import { NotCreatedPage } from 'src/pages/not-created-page/NotCreatedPage'
+import { HomePage } from 'src/pages/home'
+import { MemorizationPage } from 'src/pages/memorization'
+import { ModulesPage } from 'src/pages/modules'
+import { NotCreatedPage } from 'src/pages/notCreated'
 
 interface IRoutes {
   path: string
@@ -25,7 +25,7 @@ const routesList: IRoutes[] = [
     component: NotCreatedPage,
   },
   {
-    path: '/module/:moduleId/exercises',
+    path: '/module/:moduleId/memorization',
     component: MemorizationPage,
   },
   {

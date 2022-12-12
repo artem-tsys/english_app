@@ -1,30 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { UPDATE_ACTIVE_PHRASE_INDEX, UPDATE_MEMORIZATION } from 'src/redux/exercises/exercises.constans'
+import { INCREMENT_ACTIVE_PHRASE_INDEX, UPDATE_MEMORIZATION } from 'src/redux/exercises/exercises.constans'
 import { UPDATE_MODULE_ID } from 'src/redux/general/common'
+import { IMemorizationIds } from 'src/types/terms' /* eslint-disable no-param-reassign */
 
 /* eslint-disable no-param-reassign */
 
 interface InitialState {
   memorization: {
-    round: number
-    activePhraseIndex: number
-    learnedIds: string[]
-  }
-  cards: {
-    learned: []
-    unlearned: []
+    roundNumber: number
+    activeTermIndex: number
+    learnedIds: IMemorizationIds
   }
 }
 
 const initialState: InitialState = {
   memorization: {
-    round: 0,
-    activePhraseIndex: 0,
-    learnedIds: [],
-  },
-  cards: {
-    learned: [],
-    unlearned: [],
+    roundNumber: 0,
+    activeTermIndex: 0,
+    learnedIds: {},
   },
 }
 
@@ -32,17 +25,24 @@ export const exercisesSlice = createSlice({
   name: 'exercises',
   initialState,
   reducers: {
-    [UPDATE_ACTIVE_PHRASE_INDEX]: (state, { payload }) => {
-      state.memorization.activePhraseIndex = payload
+    [INCREMENT_ACTIVE_PHRASE_INDEX]: (state) => {
+      state.memorization.activeTermIndex += 1
     },
-    [UPDATE_MEMORIZATION]: (state, action) => {
-      state.memorization = { ...state.memorization, ...action.payload }
+    [UPDATE_MEMORIZATION]: (state, { payload: { roundNumber, learnedIds } }) => {
+      state.memorization = {
+        ...state.memorization,
+        activeTermIndex: 0,
+        roundNumber,
+        learnedIds: { ...state.memorization.learnedIds, ...learnedIds },
+      }
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(UPDATE_MODULE_ID, (state, action) => action.payload?.exercises ?? initialState)
+    builder.addCase(UPDATE_MODULE_ID, (state, action) => {
+      state = action.payload?.exercises ?? initialState
+    })
   },
 })
 
-export const { UPDATE_MEMORIZATION: updateMemorization, UPDATE_ACTIVE_PHRASE_INDEX: updateActivePhraseIndex } =
+export const { UPDATE_MEMORIZATION: updateMemorization, INCREMENT_ACTIVE_PHRASE_INDEX: IncrementActiveTermIndex } =
   exercisesSlice.actions

@@ -11,39 +11,40 @@ function hasIgnoreId(ignore: string | string[] | undefined, id: string) {
   return isEqual(ignore, id)
 }
 
-export class ObjectsFromArrayById {
-  private isRandom: boolean
-
-  private index = 0
-
-  result: unknown[] | undefined
-
-  constructor(type?: string) {
-    this.isRandom = type === 'random'
+function getNextIndex(index, indexLastElement: number, count: number, isRandom: boolean) {
+  if (indexLastElement >= count * 2) {
+    return index > indexLastElement ? 0 : index + 1
   }
+  return isRandom ? randomIntFromInterval(0, indexLastElement) : ++this.index
+}
 
-  getNextIndex<T>(collection: T[], count: number) {
+interface IGetObjectsFromArrayByIdProps<T> {
+  collection: T[]
+  amount: number
+  ignoredIds?: string | string[]
+  isRandomOrder: boolean
+}
+
+export const getObjectsFromArrayById = <T extends { id: string }>({
+  collection,
+  amount,
+  ignoredIds = [],
+  isRandomOrder = false,
+}: IGetObjectsFromArrayByIdProps<T>) => {
+  const result: T[] = []
+  let index = 0
+
+  if (!Array.isArray(collection)) return result
+  if (collection.length < amount) return collection
+
+  while (result.length < amount) {
     const indexLastElement = collection.length - 1
-    if (collection.length > count * 2) {
-      return this.index > indexLastElement ? 0 : ++this.index
+    index = getNextIndex(index, indexLastElement, amount, isRandomOrder)
+    const element = collection[index]
+
+    if (!hasIgnoreId(ignoredIds, element.id) && !result.includes(element)) {
+      result.push(element)
     }
-    return this.isRandom ? randomIntFromInterval(0, indexLastElement) : ++this.index
   }
-
-  create<T extends { id: string }>(collection: T[], countElements: number, ignoreElementId?: string | string[]) {
-    this.result = []
-    if (collection.length < countElements) {
-      return collection
-    }
-
-    while (this.result.length < countElements) {
-      this.index = this.getNextIndex<T>(collection, countElements)
-      const element = collection[this.index]
-
-      if (!hasIgnoreId(ignoreElementId, element.id) && !this.result.includes(element)) {
-        this.result.push(element)
-      }
-    }
-    return this.result as T[]
-  }
+  return result
 }

@@ -1,9 +1,10 @@
-import { IPhrase } from './phrases'
+import { ITerm, Languages } from './terms'
 
 export interface IModule {
   title: string
-  phrases: IPhrase[]
+  terms: ITerm[]
   id: string
+  languages: [Languages, Languages]
 }
 
-export type CardComponent<T> = ({ data }: { data: T }) => JSX.Element
+export type CardComponent<T> = ({ card }: { card: T }) => JSX.Element
