@@ -19,12 +19,16 @@
   border-radius: 5px;
 }
 
+.exercises {
+  display: inline-block;
+}
+
 .question {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-grow: 1;
-  height: min(30vh, 400px);
+  height: min(30vh, 300px);
   margin: 20px 30px 0;
   background: #fff;
   border: 1px solid #666;
@@ -34,4 +38,10 @@
     line-height: 1.5em;
     color: #262626;
   }
+}
+
+.answers {
+  @extend .container;
+
+  margin-top: 20px;
 }

@@ -1,11 +1,23 @@
 @import "../../../styles/variables";
 
+.container {
+  padding: 30px 0;
+}
+
 .buttonsGroup {
   display: flex;
   flex-direction: column;
   margin: 0 $offset-width;
 }
 
-.mb_sm {
+.headerButtonsGroup {
+  margin-left: auto;
+}
+
+.buttonOffset {
+  margin-right: 10px;
+}
+
+.linkExercise {
   margin-bottom: 10px;
 }

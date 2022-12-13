@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { exercisesSlice } from 'src/redux/exercises/exercises.slice'
-import { commonSlice } from 'src/redux/general/common'
+import { commonSlice } from 'src/redux/general/common.slice'
 import { modulesSlice } from 'src/redux/modules/modules.slice'
 
 export const appStore = configureStore({

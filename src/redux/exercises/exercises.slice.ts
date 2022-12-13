@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { INCREMENT_ACTIVE_PHRASE_INDEX, UPDATE_MEMORIZATION } from 'src/redux/exercises/exercises.constans'
-import { UPDATE_MODULE_ID } from 'src/redux/general/common'
+import { UPDATE_MODULE_ID } from 'src/redux/general/common.slice'
 import { IMemorizationIds } from 'src/types/terms' /* eslint-disable no-param-reassign */
 
 /* eslint-disable no-param-reassign */

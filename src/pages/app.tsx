@@ -11,16 +11,15 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchModules())
-  }, [dispatch])
+  }, [])
 
   return (
     <ErrorBoundary>
-      <div className={style.app}>
+      <div className={style.appContainer}>
         <RoutesPages />
         <PopupManager />
       </div>
     </ErrorBoundary>
   )
 }
-
 export default App

@@ -7,14 +7,14 @@ import { IModule } from 'src/types/modules'
 
 export const modulesAdapter = createEntityAdapter<IModule>()
 
-interface IState {
-  loadingStatus: 'idle' | 'pending' | 'succeeded' | 'failed'
+interface IModulesState {
+  loadingStatus: 'idle' | 'pending' | 'completed' | 'failed'
   error: string | null
 }
 
 export const modulesSlice = createSlice({
   name: 'modules',
-  initialState: modulesAdapter.getInitialState<IState>({
+  initialState: modulesAdapter.getInitialState<IModulesState>({
     loadingStatus: 'idle',
     error: null,
   }),
@@ -28,7 +28,7 @@ export const modulesSlice = createSlice({
       .addCase(fetchModules.fulfilled, (state, action) => {
         const modules = _.omit(action.payload, 'exercises')
         modulesAdapter.setAll(state, modules)
-        state.loadingStatus = 'idle'
+        state.loadingStatus = 'completed'
         state.error = null
       })
       .addCase(fetchModules.rejected, (state, action) => {

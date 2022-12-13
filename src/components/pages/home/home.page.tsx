@@ -6,7 +6,7 @@ import { BtnCreate } from 'src/components/shared/buttons/Create.button'
 import { HeaderWithLogo } from 'src/components/shared/headers/Header-with-logo'
 import { ModulesSlider } from 'src/components/shared/slider/Modules-slider'
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux'
-import { UPDATE_MODULE_ID } from 'src/redux/general/common'
+import { UPDATE_MODULE_ID } from 'src/redux/general/common.slice'
 import { modulesSelectors } from 'src/redux/modules/modules.selectors'
 
 type Handle = (id: string) => () => void

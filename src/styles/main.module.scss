@@ -1,6 +1,6 @@
 @import "../styles/variables";
 
-.app {
+.appContainer {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -11,38 +11,6 @@
   border: 1px solid #666;
   box-shadow: 0 0 20px 0 #666;
   overflow: hidden;
-}
-
-.ms_auto {
-  margin-left: auto;
-}
-
-.me_auto {
-  margin-right: auto;
-}
-
-.mt_auto {
-  margin-top: auto;
-}
-
-.mb_auto {
-  margin-bottom: auto;
-}
-
-.ms_sm {
-  margin-left: 10px;
-}
-
-.mt_sm {
-  margin-top: 10px;
-}
-
-.mb_sm {
-  margin-bottom: 10px;
-}
-
-.me_sm {
-  margin-right: 10px;
 }
 
 .centerAbs {

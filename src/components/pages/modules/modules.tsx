@@ -1,16 +1,13 @@
-import cn from 'classnames'
 import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import style from 'src/components/pages/modules/modules.module.scss'
-import styleCard from 'src/components/shared/buttons/buttons.module.scss'
 import { CardButton } from 'src/components/shared/buttons/Card.button'
 import { MoreButton } from 'src/components/shared/buttons/More.button'
 import { ShareButton } from 'src/components/shared/buttons/Share.button'
 import { HeaderWithBack } from 'src/components/shared/headers/Header-with-back'
 import { TermsSlider } from 'src/components/shared/slider/Terms-slider'
 import { useAppDispatch, useTerms } from 'src/hooks/redux'
-import { UPDATE_MODULE_ID } from 'src/redux/general/common'
-import styleMain from 'src/styles/main.module.scss'
+import { UPDATE_MODULE_ID } from 'src/redux/general/common.slice'
 
 const generatePathExercises = (type: string) => (id: string | number) => `/module/${id}/${type}`
 
@@ -23,7 +20,7 @@ const RoutesButtons = [
     disable: false,
   },
   {
-    createPath: generatePathExercises('exercises'),
+    createPath: generatePathExercises('memorization'),
     title: 'Заучивание',
     description: 'Не повторяйте мои ошибки',
     image: `${process.env.PUBLIC_URL}/repeat.png`,
@@ -38,10 +35,10 @@ const RoutesButtons = [
   },
 ]
 
-const GroupLinks = ({ moduleId }: { moduleId: string }) => (
+const LinksExercises = ({ moduleId }: { moduleId: string }) => (
   <div className={style.buttonsGroup}>
     {RoutesButtons.map(({ createPath, ...card }) => (
-      <Link to={createPath(moduleId)} className={cn(styleCard.link, style.mb_sm)} key={card.title}>
+      <Link to={createPath(moduleId)} className={style.linkExercise} key={card.title}>
         <CardButton {...card} />
       </Link>
     ))}
@@ -64,14 +61,14 @@ export const Modules = () => {
   return (
     <div className={style.module}>
       <HeaderWithBack>
-        <div className={styleMain.ms_auto}>
-          <ShareButton styleName={styleMain.me_sm} />
+        <div className={style.headerButtonsGroup}>
+          <ShareButton styleName={style.buttonOffset} />
           <MoreButton />
         </div>
       </HeaderWithBack>
-      <div className="wrapper">
+      <div className={style.container}>
         <TermsSlider data={terms} />
-        <GroupLinks moduleId={moduleId} />
+        <LinksExercises moduleId={moduleId} />
       </div>
     </div>
   )
