@@ -10,7 +10,7 @@ import { isEqual } from 'src/utils/isEqual'
 import { shuffle } from 'src/utils/shuffle'
 import style from './memorization.module.scss'
 
-export const Select = ({ term, questionLanguage, answerLanguage, setMemorizationIds }): JSX.Element => {
+export const SelectAnswers = ({ term, questionLanguage, answerLanguage, setMemorizationIds }): JSX.Element => {
   const terms = useTerms()
   const dispatch = useAppDispatch()
 
