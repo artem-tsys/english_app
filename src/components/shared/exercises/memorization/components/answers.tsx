@@ -1,8 +1,8 @@
 import cn from 'classnames'
 import style from 'src/components/shared/exercises/memorization/memorization.module.scss'
-import { ITerm } from 'src/types/terms'
+import { IAnswer } from 'src/types/terms'
 
-type IAnswers = (props: { answers: ITerm[]; onAnswerSelected: (id: string) => any }) => JSX.Element
+type IAnswers = (props: { answers: IAnswer[]; onAnswerSelected: (id: string) => any }) => JSX.Element
 
 export const Answers: IAnswers = ({ answers, onAnswerSelected }) => (
   <ul className={cn(style.container, style.answers)}>

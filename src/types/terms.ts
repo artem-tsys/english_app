@@ -3,12 +3,17 @@ export enum Languages {
   en = 'en',
 }
 
-export interface ITerm {
+export type ITerm = {
+  [key in Languages]: string
+} & {
   id: string
-  image?: string
-  [key: string]: string
 }
 
 export interface IMemorizationIds {
   [key: string]: Languages[]
+}
+
+export interface IAnswer {
+  id: string
+  value: string
 }

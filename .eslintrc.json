@@ -1,4 +1,5 @@
 {
+	"parser": "@typescript-eslint/parser",
   "env": {
     "browser": true,
 	  "es2021": true,
@@ -19,7 +20,6 @@
       "version": "detect"
     }
   },
-	"parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2021,
     "sourceType": "module",

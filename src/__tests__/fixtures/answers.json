@@ -1,0 +1,59 @@
+{
+	"answersEn":
+		[
+			{
+				"id": "1",
+				"title": "list item 1"
+			},
+			{
+				"id": "2",
+				"title": "list item 2"
+			},
+			{
+				"id": "3",
+				"title": "list item 3"
+			},
+			{
+				"id": "4",
+				"title": "list item 4"
+			}
+		],
+	"answersRu":
+		[
+			{
+				"id": "1",
+				"title": "ответ # 1"
+			},
+			{
+				"id": "2",
+				"title": "ответ # 2"
+			},
+			{
+				"id": "3",
+				"title": "ответ # 3"
+			},
+			{
+				"id": "4",
+				"title": "ответ # 4"
+			}
+		],
+
+	"settings1": {
+		"amount": 3,
+		"rightAnswerId": "4",
+		"language": "ru",
+		"rightAnswer": {
+			"id": "4",
+			"value": "персик"
+		}
+	},
+	"settings2": {
+		"amount": 2,
+		"rightAnswerId": "5",
+		"language": "en",
+		"rightAnswer": {
+			"id": "5",
+			"value": "pineapple"
+		}
+	}
+}

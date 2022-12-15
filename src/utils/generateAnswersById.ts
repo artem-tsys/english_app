@@ -2,16 +2,19 @@ import { Languages } from 'src/types/terms'
 import { getObjById } from 'src/utils/getObjById'
 import { getObjectsFromArrayById } from 'src/utils/getRandomElementsFromArray'
 
-export function generateAnswersById<T extends { id: string }>(
-  list: T[],
-  amount: number,
-  rightAnswerId: string,
-  language: Languages,
-) {
-  const preparedListAnswers = list.map((el) => ({
+const prepareAnswers = (list, language) =>
+  list.map((el) => ({
     id: el.id,
     value: el[language],
   }))
+
+export function generateAnswersById<T extends { id: string }>(
+  list: T[],
+  rightAnswerId: string,
+  language: Languages,
+  amount: number,
+) {
+  const preparedListAnswers = prepareAnswers(list, language)
 
   if (preparedListAnswers.length <= amount) {
     return preparedListAnswers

@@ -4,7 +4,7 @@ import { MEMORIZATION_NUMBER_ANSWERS } from 'src/constants/exercises.constants'
 import { POPUPS } from 'src/constants/popups.constans'
 import { useAppDispatch, useTerms } from 'src/hooks/redux'
 import { SHOW_POPUP } from 'src/redux/general/common.slice'
-import { ITerm, Languages } from 'src/types/terms'
+import { IAnswer, ITerm, Languages } from 'src/types/terms'
 import { generateAnswersById } from 'src/utils/generateAnswersById'
 import { isEqual } from 'src/utils/isEqual'
 import { shuffle } from 'src/utils/shuffle'
@@ -14,8 +14,8 @@ export const SelectAnswers = ({ term, questionLanguage, answerLanguage, setMemor
   const terms = useTerms()
   const dispatch = useAppDispatch()
 
-  const answers = shuffle<ITerm>(
-    generateAnswersById<ITerm>(terms, MEMORIZATION_NUMBER_ANSWERS, term.id, answerLanguage),
+  const answers = shuffle<IAnswer>(
+    generateAnswersById<ITerm>(terms, term.id, answerLanguage, MEMORIZATION_NUMBER_ANSWERS),
   )
 
   const onAnswerSelected = (idAnswer: string) => () => {
