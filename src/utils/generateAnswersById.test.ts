@@ -1,6 +1,6 @@
 import { settings1, settings2 } from 'src/__tests__/fixtures/answers.json'
 import terms from 'src/__tests__/fixtures/terms.json'
-import { ERROR_ID_IS_NOT_FOUND, ERROR_IS_NOT_CORRECT_TYPE, ERROR_UNKNOWN_VALUE } from 'src/constants/errors.constants'
+import { ERROR_ID_IS_NOT_FOUND, ERROR_INCORRECT_VALUE, ERROR_IS_NOT_CORRECT_TYPE } from 'src/constants/errors.constants'
 import { ITerm, Languages } from 'src/types/terms'
 import { generateAnswersById } from 'src/utils/generateAnswersById'
 
@@ -56,8 +56,12 @@ describe('incorrect value args', () => {
     expect(generateAnswersById(terms, settings2.rightAnswerId, Languages[settings2.language], 1)).toEqual([
       settings2.rightAnswer,
     ])
-    expect(generateAnswersById(terms, settings2.rightAnswerId, Languages[settings2.language], -2)).toEqual([])
-    expect(generateAnswersById(terms, settings2.rightAnswerId, Languages[settings2.language], null)).toEqual([])
+    expect(() => generateAnswersById(terms, settings2.rightAnswerId, Languages[settings2.language], -2)).toThrow(
+      ERROR_INCORRECT_VALUE,
+    )
+    expect(() => generateAnswersById(terms, settings2.rightAnswerId, Languages[settings2.language], null)).toThrow(
+      ERROR_INCORRECT_VALUE,
+    )
   })
 
   test('incorrect current id', () => {
@@ -71,7 +75,7 @@ describe('incorrect value args', () => {
 
   test('incorrect language', () => {
     expect(() => generateAnswersById(terms, settings2.rightAnswerId, 'unknown' as Languages, terms.length)).toThrow(
-      ERROR_UNKNOWN_VALUE,
+      ERROR_INCORRECT_VALUE,
     )
   })
 })

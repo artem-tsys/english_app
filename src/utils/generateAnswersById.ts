@@ -1,5 +1,5 @@
 import { reject } from 'lodash'
-import { ERROR_ID_IS_NOT_FOUND, ERROR_IS_NOT_CORRECT_TYPE, ERROR_UNKNOWN_VALUE } from 'src/constants/errors.constants'
+import { ERROR_ID_IS_NOT_FOUND, ERROR_INCORRECT_VALUE, ERROR_IS_NOT_CORRECT_TYPE } from 'src/constants/errors.constants'
 import { Languages } from 'src/types/terms'
 import { getObjById } from 'src/utils/getObjById'
 import { getObjectsFromArrayById } from 'src/utils/getRandomElementsFromArray'
@@ -19,7 +19,7 @@ export function generateAnswersById<T extends { id: string }>(
   if (!Array.isArray(list)) {
     throw new Error(ERROR_IS_NOT_CORRECT_TYPE)
   }
-  if (list.length <= 0) {
+  if (list.length <= 0 || amount === 0) {
     return []
   }
 
@@ -28,10 +28,10 @@ export function generateAnswersById<T extends { id: string }>(
   }
   const hasLanguageField = list[0][language]
   if (!hasLanguageField) {
-    throw new Error(ERROR_UNKNOWN_VALUE)
+    throw new Error(ERROR_INCORRECT_VALUE)
   }
-  if (amount <= 0) {
-    return []
+  if (typeof amount !== 'number' || amount < 0) {
+    throw new Error(ERROR_INCORRECT_VALUE)
   }
 
   const preparedListAnswers = prepareAnswers(list, language)
