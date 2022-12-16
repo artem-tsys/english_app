@@ -19,7 +19,7 @@ export function generateAnswersById<T extends { id: string }>(
   if (!Array.isArray(list)) {
     throw new Error(ERROR_IS_NOT_CORRECT_TYPE)
   }
-  if (list.length <= 0 || amount === 0) {
+  if (list.length === 0 || amount === 0) {
     return []
   }
 
