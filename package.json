@@ -39,6 +39,7 @@
     "start": "concurrently \"react-scripts start\" \"npm run node-server\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test-coverage": "npm run test -- --coverage .",
     "eject": "react-scripts eject",
     "node-server": "node server.js",
     "lint": "npx eslint --ext .js,.jsx,.ts,.tsx ./src"
