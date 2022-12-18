@@ -1,3 +1,4 @@
+import { isEqual } from 'lodash'
 import { ERROR_IS_NOT_CORRECT_TYPE } from 'src/constants/errors.constants'
 
 export const arrayContaining = (array, contain) => {
@@ -5,5 +6,5 @@ export const arrayContaining = (array, contain) => {
     throw new Error(ERROR_IS_NOT_CORRECT_TYPE)
   }
 
-  return contain.every((lang) => array.includes(lang))
+  return contain.every((lang) => array.some((arr) => isEqual(arr, lang)))
 }
