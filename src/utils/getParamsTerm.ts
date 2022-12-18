@@ -1,29 +1,30 @@
 import { findIndex } from 'lodash'
-import { MEMORIZATION_MODULE_LANGUAGES_NUMBER } from 'src/constants/exercises.constants'
-import { Languages } from 'src/types/terms'
+import { IParamsTerm, Languages } from 'src/types/terms'
+import { arrayContaining } from 'src/utils/arrayContaining'
 
-type GetParamsProps = (
-  languages: Languages[],
-  learnedLanguages,
-) => {
-  isLearned: boolean
-  questionLanguage: Languages
-  answerLanguage: Languages
-}
+type GetParamsProps = (languages: Languages[], learnedLanguages: Languages[]) => IParamsTerm
 
 const findIndexQuestionLang = (languages, learnedTermLanguages) => {
   if (!learnedTermLanguages) {
     return Math.round(Math.random())
   }
-  return findIndex(languages, (lang) => !learnedTermLanguages.include(lang))
+
+  return findIndex(languages, (lang) => !learnedTermLanguages.includes(lang))
 }
 
-export const getParamsTerm: GetParamsProps = (languages, learnedLanguages) => {
-  const isLearned: boolean = learnedLanguages && learnedLanguages.length === MEMORIZATION_MODULE_LANGUAGES_NUMBER
+export const getParamsTerm: GetParamsProps = (languages, learnedTermLanguages) => {
+  const isLearned = arrayContaining(learnedTermLanguages, languages)
+  const questionIndex = findIndexQuestionLang(languages, learnedTermLanguages)
+  const questionLanguage: Languages = languages[questionIndex] ?? null
+  const answerLanguage: Languages = languages[questionIndex === 0 ? 1 : 0] ?? null
 
-  const questionIndex = findIndexQuestionLang(languages, learnedLanguages)
-  const questionLanguage: Languages = languages[questionIndex]
-  const answerLanguage: Languages = languages[questionIndex === 0 ? 1 : 0]
+  if (isLearned || !questionLanguage || !answerLanguage) {
+    return {
+      isLearned,
+      questionLanguage: null,
+      answerLanguage: null,
+    }
+  }
 
   return {
     isLearned,

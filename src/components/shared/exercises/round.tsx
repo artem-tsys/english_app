@@ -21,7 +21,7 @@ export const Round: IRound = ({ roundTerms, languages }) => {
   const typesAnswers = getRandomElement(typesExerciseAnswers)
 
   const { isLearned, questionLanguage, answerLanguage } = useMemo(
-    () => getParamsTerm(languages, learnedIds[term.id]),
+    () => getParamsTerm(languages, learnedIds[term.id] ?? []),
     [languages, term, learnedIds],
   )
 
