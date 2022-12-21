@@ -1,4 +1,5 @@
 import cn from 'classnames'
+import { shuffle } from 'lodash'
 import { useEffect, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { CloseButton } from 'src/components/shared/buttons/Close.button'
@@ -12,8 +13,7 @@ import { memorizationSelector } from 'src/redux/exercises/exercises.selectors'
 import { SHOW_POPUP } from 'src/redux/general/common.slice'
 import styleMain from 'src/styles/main.module.scss'
 import { IMemorizationIds, ITerm } from 'src/types/terms'
-import { getObjectsFromArrayById } from 'src/utils/getRandomElementsFromArray'
-import { shuffle } from 'src/utils/shuffle'
+import { getObjectsFromArrayById } from 'src/utils/getObjectsFromArrayById'
 
 const isFinishedModule = (terms: ITerm[], learnedTerms: IMemorizationIds) => {
   if (terms.length === 0) return true

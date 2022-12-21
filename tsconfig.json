@@ -25,7 +25,6 @@
 		"setupTests.js"
 	],
 	"include": [
-		"jest.d.ts",
 		"**/*.ts",
 		"**/*.tsx"
 	]

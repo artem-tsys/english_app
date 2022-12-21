@@ -1,5 +1,5 @@
-import { isEqual } from 'lodash'
 import { ERROR_IS_NOT_CORRECT_TYPE } from 'src/constants/errors.constants'
+import ArrayContain from 'src/matchers/ArrayContain'
 import { IParamsTerm, Languages } from 'src/types/terms'
 import { getParamsTerm } from 'src/utils/getParamsTerm'
 
@@ -10,18 +10,7 @@ const learnedTermEnglishALL = ['ru', 'en'] as Languages[]
 const learnedTermEnglishEmpty = [] as Languages[]
 
 expect.extend({
-  toBeInTheList(received, possibleResults) {
-    const pass = possibleResults.some((result) => isEqual(result, received))
-
-    const message = pass
-      ? () => `expected ${JSON.stringify(received)} not to be in the list ${JSON.stringify(possibleResults)}`
-      : () => `expected ${JSON.stringify(received)} to be in the list ${JSON.stringify(possibleResults)}`
-
-    return {
-      message,
-      pass,
-    }
-  },
+  ArrayContain,
 })
 
 const possibleResults: IParamsTerm[] = [
@@ -63,7 +52,7 @@ describe('valid params', () => {
   })
 
   test('is not learned any languages', () => {
-    expect(getParamsTerm(languages, learnedTermEnglishEmpty)).toBeInTheList(possibleResults)
+    expect(getParamsTerm(languages, learnedTermEnglishEmpty)).ArrayContain(possibleResults)
   })
 
   test('question & answer do not have the same meaning', () => {
@@ -82,7 +71,7 @@ describe('is not valid params', () => {
   test('not valid learned term languages', () => {
     expect(() => getParamsTerm(languages, undefined)).toThrow(ERROR_IS_NOT_CORRECT_TYPE)
 
-    expect(getParamsTerm(languages, anotherLearnedTermLanguage)).toBeInTheList(possibleResults)
+    expect(getParamsTerm(languages, anotherLearnedTermLanguage)).ArrayContain(possibleResults)
 
     expect(() => getParamsTerm(languages, notValidLearnedTermLanguage)).toThrow(ERROR_IS_NOT_CORRECT_TYPE)
   })

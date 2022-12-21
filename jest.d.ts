@@ -3,13 +3,26 @@ type OwnMatcher<Params extends unknown[]> = (
   actual: unknown,
   ...params: Params
 ) => jest.CustomMatcherResult
+
+interface CustomMatchers<R = unknown> {
+  ArrayContain(possibleResults: R[] | undefined): R
+}
+
 declare global {
   namespace jest {
-    interface Matchers<R, T> {
-      toBeInTheList(possibleResults: R[]): T
-    }
-    interface ExpectExtendMap {
-      toBeInTheList: OwnMatcher<[possibleResults: R[]]>
-    }
+    type Expect = CustomMatchers
+    type Matchers<R> = CustomMatchers<R>
+    type InverseAsymmetricMatchers = CustomMatchers
   }
 }
+
+// declare global {
+//   namespace jest {
+//     interface Matchers<R, T> {
+//       ArrayContain(possibleResults: R[]): T
+//     }
+//     interface ExpectExtendMap {
+//       ArrayContain: OwnMatcher<[possibleResults: R[]]>
+//     }
+//   }
+// }

@@ -2,7 +2,7 @@ import { reject } from 'lodash'
 import { ERROR_ID_IS_NOT_FOUND, ERROR_INCORRECT_VALUE, ERROR_IS_NOT_CORRECT_TYPE } from 'src/constants/errors.constants'
 import { Languages } from 'src/types/terms'
 import { getObjById } from 'src/utils/getObjById'
-import { getObjectsFromArrayById } from 'src/utils/getRandomElementsFromArray'
+import { getObjectsFromArrayById } from 'src/utils/getObjectsFromArrayById'
 
 const prepareAnswers = (list, language) =>
   list.map((el) => ({
