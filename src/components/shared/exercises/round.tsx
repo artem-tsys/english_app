@@ -7,9 +7,11 @@ import { updateMemorization } from 'src/redux/exercises/exercises.slice'
 import { IMemorizationIds, ITerm, Languages } from 'src/types/terms'
 import { getParamsTerm } from 'src/utils/getParamsTerm'
 import { getRandomElement } from 'src/utils/getRandomElement'
-import { prepareLearnedIds } from 'src/utils/prepareLearnedIds'
 
 type IRound = (props: { roundTerms: ITerm[]; languages: Languages[] }) => JSX.Element
+
+const prepareLearnedIds = (idsMemorization: IMemorizationIds) =>
+  Object.entries(idsMemorization).filter(([, memo]) => memo.length === 2)
 
 export const Round: IRound = ({ roundTerms, languages }) => {
   const dispatch = useAppDispatch()
