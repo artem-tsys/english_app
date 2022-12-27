@@ -15,14 +15,3 @@ declare global {
     type InverseAsymmetricMatchers = CustomMatchers
   }
 }
-
-// declare global {
-//   namespace jest {
-//     interface Matchers<R, T> {
-//       ArrayContain(possibleResults: R[]): T
-//     }
-//     interface ExpectExtendMap {
-//       ArrayContain: OwnMatcher<[possibleResults: R[]]>
-//     }
-//   }
-// }

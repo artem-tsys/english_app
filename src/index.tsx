@@ -1,24 +1,15 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { Provider } from 'react-redux'
-import { BrowserRouter } from 'react-router-dom'
-import App from 'src/pages/app'
+import { initApp } from 'src/initApp'
 import 'src/styles/index.css'
 import 'src/styles/reset.scss'
-import { appStore } from './redux/app'
 import reportWebVitals from './reportWebVitals'
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
-root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Provider store={appStore}>
-        <App />
-      </Provider>
-    </BrowserRouter>
-  </React.StrictMode>,
-)
-
+function init() {
+  const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
+  const app = initApp()
+  root.render(app)
+}
+init()
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals

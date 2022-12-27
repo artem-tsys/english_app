@@ -6,8 +6,8 @@ window.matchMedia =
   function() {
     return {
       matches: false,
-      addListener: function() {},
-      removeListener: function() {}
+      addListener: function addListener() {},
+      removeListener: function removeListener() {}
     };
   };
 
