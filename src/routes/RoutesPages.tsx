@@ -4,6 +4,7 @@ import { HomePage } from 'src/pages/home'
 import { MemorizationPage } from 'src/pages/memorization'
 import { ModulesPage } from 'src/pages/modules'
 import { NotCreatedPage } from 'src/pages/notCreated'
+import { NotFoundPage } from 'src/pages/notFound'
 
 interface IRoutes {
   path: string
@@ -31,6 +32,14 @@ const routesList: IRoutes[] = [
   {
     path: '/createModule',
     component: NotCreatedPage,
+  },
+  {
+    path: '/notCreated',
+    component: NotCreatedPage,
+  },
+  {
+    path: '*',
+    component: NotFoundPage,
   },
 ]
 

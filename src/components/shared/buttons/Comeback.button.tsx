@@ -9,7 +9,7 @@ export const ComebackButton: Button = ({ styleName }) => {
   const clickHandler = () => navigate(-1)
 
   return (
-    <button onClick={clickHandler} className={cn(style.buttonBack, styleName)}>
+    <button onClick={clickHandler} className={cn(style.buttonBack, styleName)} data-testid="btn-back">
       <img src={`${process.env.PUBLIC_URL}/left-arrow.png`} className={style.image} alt="back" />
     </button>
   )

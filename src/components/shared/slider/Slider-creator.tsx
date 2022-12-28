@@ -27,7 +27,11 @@ export function CreateSlider<T extends IModule | ITerm>({
 
     return (
       <div className={style.slider}>
-        {title && <h2 className={style.title}>{title}</h2>}
+        {title && (
+          <h2 className={style.title} data-testid={`slider-title-${title}`}>
+            {title}
+          </h2>
+        )}
         <Slider {...defaultSetting} {...config}>
           {data.map((el) => (
             <Card card={el} {...props} key={el.id} />

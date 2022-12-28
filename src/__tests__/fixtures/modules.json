@@ -1,0 +1,44 @@
+[
+	{
+		"id": "1",
+		"title": "Прилагательные",
+		"languages": ["ru", "en"],
+		"terms": [
+			{
+				"id": "1",
+				"ru": "эффективный",
+				"en": "efficient"
+			},
+			{
+				"id": "2",
+				"ru": "дорогой",
+				"en": "expensive"
+			},
+			{
+				"id": "3",
+				"ru": "яблоко",
+				"en": "apple"
+			},
+			{
+				"id": "4",
+				"ru": "банан",
+				"en": "banana"
+			},
+			{
+				"id": "5",
+				"ru": "что?",
+				"en": "what?"
+			}
+		],
+		"exercises": {
+			"memorization": {
+				"round": 0,
+				"learnedIds": []
+			},
+			"cards": {
+				"learned": [],
+				"unlearned": []
+			}
+		}
+	}
+]

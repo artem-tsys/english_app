@@ -33,7 +33,7 @@ export const modulesSlice = createSlice({
       })
       .addCase(fetchModules.rejected, (state, action) => {
         state.loadingStatus = 'failed'
-        state.error = action.error.message ?? 'error'
+        state.error = JSON.stringify(action.error) ?? 'error'
       })
   },
 })
