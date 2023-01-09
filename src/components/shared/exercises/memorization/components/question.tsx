@@ -2,6 +2,8 @@ import style from 'src/components/shared/exercises/memorization/memorization.mod
 
 export const Question = ({ title }: { title: string }): JSX.Element => (
   <div className={style.question}>
-    <span className={style.questionTitle}>{title}</span>
+    <span className={style.questionTitle} data-testid="question">
+      {title}
+    </span>
   </div>
 )

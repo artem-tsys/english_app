@@ -50,7 +50,7 @@ export const Memorization = () => {
           isRandomOrder: true,
         }),
       ),
-    [roundNumber, terms],
+    [roundNumber, terms, learnedIds],
   )
 
   const finishRoundHandler = () => {
@@ -63,7 +63,7 @@ export const Memorization = () => {
     <>
       <Header>
         <CloseButton handleClick={finishRoundHandler} />
-        <p className={cn(style.title, styleMain.centerAbs)}>{`round ${roundNumber}`}</p>
+        <p className={cn(style.title, styleMain.centerAbs)} data-testid="titleRound">{`round ${roundNumber}`}</p>
       </Header>
       <Round roundTerms={currentRoundTerms} languages={languages} />
     </>
