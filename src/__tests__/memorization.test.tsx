@@ -7,7 +7,7 @@ import { getAnswer } from 'src/helpers/GetAnswer'
 import { MemoryRouterPages } from 'src/helpers/MemoryRouterPages'
 
 function nockModules(data, code = 200) {
-  nock(apiUrl).get('/modules').reply(code, data, { 'Access-Control-Allow-Origin': '*' })
+  nock(apiUrl).get('/modules').delay(500).reply(code, data, { 'Access-Control-Allow-Origin': '*' })
 }
 
 describe('test view', () => {
@@ -60,6 +60,7 @@ describe('test view', () => {
   test('title round 1', async () => {
     nockModules(modules)
     render(<MemoryRouterPages path={`/module/${moduleId}/memorization`} />)
+
     const title = await screen.findByTestId('titleRound')
     const titleText = title.textContent
 
@@ -88,16 +89,23 @@ describe('test view', () => {
   })
 
   test('error fetch modules', async () => {
-    nockModules(modules, 404)
+    const errorMessage = 'no access to data'
+    nockModules(
+      {
+        message: errorMessage,
+      },
+      403,
+    )
+
     render(<MemoryRouterPages path={`/module/${moduleId}/memorization`} />)
 
-    const question = await screen.queryByTestId('question')
+    const question = screen.queryByTestId('question')
+    const loading = screen.queryByText('Loading')
+
     expect(question).not.toBeInTheDocument()
+    expect(loading).toBeNull()
 
-    const loading = screen.queryByText(/loading/i)
-    expect(loading).not.toBeInTheDocument()
-
-    const error = screen.getByText(/error/i)
+    const error = await screen.findByText(errorMessage)
     expect(error).toBeInTheDocument()
   })
 })
