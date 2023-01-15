@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import { Route, Routes } from 'react-router-dom'
+import { CreateModule } from 'src/components/pages/create-module/create-module'
 import { HomePage } from 'src/pages/home'
 import { MemorizationPage } from 'src/pages/memorization'
 import { ModulesPage } from 'src/pages/modules'
@@ -31,7 +32,7 @@ const routesList: IRoutes[] = [
   },
   {
     path: '/createModule',
-    component: NotCreatedPage,
+    component: CreateModule,
   },
   {
     path: '/notCreated',

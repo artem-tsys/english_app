@@ -2,6 +2,7 @@ import cn from 'classnames'
 import { useEffect } from 'react'
 import { SmilingEmoji } from 'src/components/shared/icons/smilling-emoji'
 import style from 'src/components/shared/popups/exercises-memorization/exercise-memorization.module.scss'
+import { Substrate } from 'src/components/shared/popups/substrate'
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux'
 import { IncrementActiveTermIndex } from 'src/redux/exercises/exercises.slice'
 import { popupDataSelector } from 'src/redux/general/common.selectors'
@@ -18,14 +19,17 @@ export function ExerciseMemorizationSelectedRightAnswer() {
   }, [])
 
   return (
-    <div className={stylePopup.popup}>
-      <div className={cn(stylePopup.popupHeader, style.backgroundSuccess)}>
-        <SmilingEmoji className={style.emoji} />
-        <p className={style.title}>вы ответили правильно!</p>
+    <>
+      <div className={stylePopup.popup}>
+        <div className={cn(stylePopup.popupHeader, style.backgroundSuccess)}>
+          <SmilingEmoji className={style.emoji} />
+          <p className={style.title}>вы ответили правильно!</p>
+        </div>
+        <div className={stylePopup.popupContent}>
+          <p>{answer.value}</p>
+        </div>
       </div>
-      <div className={stylePopup.popupContent}>
-        <p>{answer.value}</p>
-      </div>
-    </div>
+      <Substrate />
+    </>
   )
 }

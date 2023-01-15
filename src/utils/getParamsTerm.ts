@@ -1,8 +1,9 @@
 import { findIndex } from 'lodash'
-import { IParamsTerm, Languages } from 'src/types/terms'
+import { LanguagesKeys } from 'src/constants/languages.constants'
+import { IParamsTerm } from 'src/types/terms'
 import { arrayContaining } from 'src/utils/arrayContaining'
 
-type GetParamsProps = (languages: Languages[], learnedLanguages: Languages[]) => IParamsTerm
+type GetParamsProps = (languages: LanguagesKeys[], learnedLanguages: LanguagesKeys[]) => IParamsTerm
 
 const findIndexQuestionLang = (languages, learnedTermLanguages) => {
   if (!learnedTermLanguages) {
@@ -15,8 +16,8 @@ const findIndexQuestionLang = (languages, learnedTermLanguages) => {
 export const getParamsTerm: GetParamsProps = (languages, learnedTermLanguages) => {
   const isLearned = arrayContaining(learnedTermLanguages, languages)
   const questionIndex = findIndexQuestionLang(languages, learnedTermLanguages)
-  const questionLanguage: Languages = languages[questionIndex] ?? null
-  const answerLanguage: Languages = languages[questionIndex === 0 ? 1 : 0] ?? null
+  const questionLanguage = languages[questionIndex] ?? null
+  const answerLanguage = languages[questionIndex === 0 ? 1 : 0] ?? null
 
   if (isLearned || !questionLanguage || !answerLanguage) {
     return {

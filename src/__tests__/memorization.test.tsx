@@ -4,7 +4,8 @@ import nock from 'nock'
 import { apiUrl } from 'src/config'
 import { MEMORIZATION_NUMBER_ANSWERS } from 'src/constants/exercises.constants'
 import { getAnswer } from 'src/helpers/GetAnswer'
-import { MemoryRouterPages } from 'src/helpers/MemoryRouterPages'
+import { RenderTestApp } from 'src/helpers/RenderTestApp'
+import { ITerm } from 'src/types/terms'
 
 function nockModules(data, code = 200) {
   nock(apiUrl).get('/modules').delay(500).reply(code, data, { 'Access-Control-Allow-Origin': '*' })
@@ -15,31 +16,31 @@ describe('test view', () => {
     {
       id: '1',
       title: 'Прилагательные',
-      languages: ['ru', 'en'],
+      languages: ['ua', 'en'],
       terms: [
         {
           id: '1',
-          ru: 'эффективный',
+          ua: 'эффективный',
           en: 'efficient',
         },
         {
           id: '2',
-          ru: 'дорогой',
+          ua: 'дорогой',
           en: 'expensive',
         },
         {
           id: '3',
-          ru: 'яблоко',
+          ua: 'яблоко',
           en: 'apple',
         },
         {
           id: '4',
-          ru: 'банан',
+          ua: 'банан',
           en: 'banana',
         },
         {
           id: '5',
-          ru: 'что?',
+          ua: 'что?',
           en: 'what?',
         },
       ],
@@ -59,7 +60,7 @@ describe('test view', () => {
 
   test('title round 1', async () => {
     nockModules(modules)
-    render(<MemoryRouterPages path={`/module/${moduleId}/memorization`} />)
+    render(<RenderTestApp path={`/module/${moduleId}/memorization`} />)
 
     const title = await screen.findByTestId('titleRound')
     const titleText = title.textContent
@@ -70,7 +71,7 @@ describe('test view', () => {
 
   test('question display test', async () => {
     nockModules(modules)
-    render(<MemoryRouterPages path={`/module/${moduleId}/memorization`} />)
+    render(<RenderTestApp path={`/module/${moduleId}/memorization`} />)
 
     const question = await screen.findByTestId('question')
     expect(question).toBeInTheDocument()
@@ -78,11 +79,11 @@ describe('test view', () => {
 
   test('correct answer', async () => {
     nockModules(modules)
-    render(<MemoryRouterPages path={`/module/${moduleId}/memorization`} />)
+    render(<RenderTestApp path={`/module/${moduleId}/memorization`} />)
 
     const question = await screen.findByTestId('question')
     const questionText = question.textContent
-    const answerText = getAnswer(modules[0].terms, questionText)
+    const answerText = getAnswer(modules[0].terms as ITerm[], questionText)
     const answer = screen.getByText(answerText)
 
     expect(answer).toBeInTheDocument()
@@ -97,7 +98,7 @@ describe('test view', () => {
       403,
     )
 
-    render(<MemoryRouterPages path={`/module/${moduleId}/memorization`} />)
+    render(<RenderTestApp path={`/module/${moduleId}/memorization`} />)
 
     const question = screen.queryByTestId('question')
     const loading = screen.queryByText('Loading')
@@ -115,31 +116,31 @@ describe('select answers', () => {
     {
       id: '1',
       title: 'Прилагательные',
-      languages: ['ru', 'en'],
+      languages: ['ua', 'en'],
       terms: [
         {
           id: '1',
-          ru: 'эффективный',
+          ua: 'эффективный',
           en: 'efficient',
         },
         {
           id: '2',
-          ru: 'дорогой',
+          ua: 'дорогой',
           en: 'expensive',
         },
         {
           id: '3',
-          ru: 'яблоко',
+          ua: 'яблоко',
           en: 'apple',
         },
         {
           id: '4',
-          ru: 'банан',
+          ua: 'банан',
           en: 'banana',
         },
         {
           id: '5',
-          ru: 'что?',
+          ua: 'что?',
           en: 'what?',
         },
       ],
@@ -159,7 +160,7 @@ describe('select answers', () => {
 
   test('round three', async () => {
     nockModules(modules)
-    render(<MemoryRouterPages path={`/module/${moduleId}/memorization`} />)
+    render(<RenderTestApp path={`/module/${moduleId}/memorization`} />)
     const title = await screen.findByTestId('titleRound')
     const titleText = title.textContent
 
@@ -169,14 +170,14 @@ describe('select answers', () => {
 
   test('last term success answer', async () => {
     nockModules(modules)
-    render(<MemoryRouterPages path={`/module/${moduleId}/memorization`} />)
+    render(<RenderTestApp path={`/module/${moduleId}/memorization`} />)
 
     const answers = await screen.findAllByTestId('answer')
     expect(answers).toHaveLength(MEMORIZATION_NUMBER_ANSWERS)
 
     const question = await screen.findByTestId('question')
     const questionText = question.textContent
-    const answerText = getAnswer(modules[0].terms, questionText)
+    const answerText = getAnswer(modules[0].terms as ITerm[], questionText)
     const questionNode = screen.getByText(answerText)
 
     const beforeClickPopup = screen.queryByText('вы ответили правильно!')
@@ -189,11 +190,11 @@ describe('select answers', () => {
 
   test('last term wrong answer', async () => {
     nockModules(modules)
-    render(<MemoryRouterPages path={`/module/${moduleId}/memorization`} />)
+    render(<RenderTestApp path={`/module/${moduleId}/memorization`} />)
 
     const question = await screen.findByTestId('question')
     const questionText = question.textContent
-    const answerText = getAnswer(modules[0].terms, questionText)
+    const answerText = getAnswer(modules[0].terms as ITerm[], questionText)
     const answers = screen.getAllByTestId('answer')
     const wrongAnswer = answers.find((answer) => answer.textContent !== answerText).textContent
 

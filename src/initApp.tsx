@@ -5,11 +5,9 @@ import App from 'src/pages/app'
 import { appStore } from 'src/redux/app'
 
 export const initApp = () => (
-  <React.StrictMode>
-    <BrowserRouter>
-      <Provider store={appStore}>
-        <App />
-      </Provider>
-    </BrowserRouter>
-  </React.StrictMode>
+  <BrowserRouter>
+    <Provider store={appStore}>
+      <App />
+    </Provider>
+  </BrowserRouter>
 )
