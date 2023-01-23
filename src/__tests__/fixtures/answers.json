@@ -41,7 +41,7 @@
 	"settings1": {
 		"amount": 3,
 		"rightAnswerId": "4",
-		"language": "ru",
+		"language": "ua",
 		"rightAnswer": {
 			"id": "4",
 			"value": "персик"

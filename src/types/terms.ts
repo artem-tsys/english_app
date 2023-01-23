@@ -1,22 +1,30 @@
-export enum Languages {
-  ru = 'ru',
-  en = 'en',
+import { LanguagesKeys, LanguagesTypes } from 'src/constants/languages.constants'
+
+export enum LanguagesInitialTerm {
+  term = 'term',
+  translation = 'translation',
 }
 
-export type ITerm = {
-  [key in Languages]: string
+export type LanguagesInitial = LanguagesKeys | LanguagesInitialTerm
+
+export type ITerm = LanguagesTypes & {
+  id: string
+}
+
+export type ITermInitial = {
+  [key in LanguagesInitial]: string
 } & {
   id: string
 }
 
 export interface IParamsTerm {
   isLearned: boolean
-  questionLanguage: Languages
-  answerLanguage: Languages
+  questionLanguage: LanguagesKeys
+  answerLanguage: LanguagesKeys
 }
 
 export interface IMemorizationIds {
-  [key: string]: Languages[]
+  [key: string]: LanguagesKeys[]
 }
 
 export interface IAnswer {

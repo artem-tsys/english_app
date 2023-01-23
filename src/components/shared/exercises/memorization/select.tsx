@@ -1,13 +1,12 @@
+import { isEqual, shuffle } from 'lodash'
 import { Answers } from 'src/components/shared/exercises/memorization/components/answers'
 import { Question } from 'src/components/shared/exercises/memorization/components/question'
 import { MEMORIZATION_NUMBER_ANSWERS } from 'src/constants/exercises.constants'
 import { POPUPS } from 'src/constants/popups.constans'
 import { useAppDispatch, useTerms } from 'src/hooks/redux'
 import { SHOW_POPUP } from 'src/redux/general/common.slice'
-import { IAnswer, ITerm, Languages } from 'src/types/terms'
+import { IAnswer, ITerm } from 'src/types/terms'
 import { generateAnswersById } from 'src/utils/generateAnswersById'
-import { isEqual } from 'src/utils/isEqual'
-import { shuffle } from 'src/utils/shuffle'
 import style from './memorization.module.scss'
 
 export const SelectAnswers = ({ term, questionLanguage, answerLanguage, setMemorizationIds }): JSX.Element => {
@@ -20,7 +19,6 @@ export const SelectAnswers = ({ term, questionLanguage, answerLanguage, setMemor
 
   const onAnswerSelected = (idAnswer: string) => () => {
     const answer = answers.find((el) => el.id === idAnswer)
-
     if (isEqual(term.id, idAnswer)) {
       dispatch(
         SHOW_POPUP({
@@ -31,7 +29,7 @@ export const SelectAnswers = ({ term, questionLanguage, answerLanguage, setMemor
 
       setMemorizationIds((state) => ({
         ...state,
-        [term.id]: [...(state[term.id] ?? []), Languages[answerLanguage]],
+        [term.id]: [...(state[term.id] ?? []), answerLanguage],
       }))
     } else {
       dispatch(

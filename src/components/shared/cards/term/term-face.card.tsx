@@ -3,6 +3,6 @@ import { ITerm } from 'src/types/terms'
 
 export const CardFace = ({ data }: { data: ITerm }) => (
   <div className={style.card}>
-    <span>{data.ru}</span>
+    <span>{data.ua}</span>
   </div>
 )

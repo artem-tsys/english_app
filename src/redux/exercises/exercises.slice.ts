@@ -15,7 +15,7 @@ interface InitialState {
 
 const initialState: InitialState = {
   memorization: {
-    roundNumber: 0,
+    roundNumber: 1,
     activeTermIndex: 0,
     learnedIds: {},
   },

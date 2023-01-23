@@ -9,7 +9,7 @@ export function HeaderWithLogo(): JSX.Element {
 
   return (
     <Header>
-      <a href="src/components/shared/headers/Header-with-logo#" className={style.logo} onClick={clickLogoHandler}>
+      <a href="#" className={style.logo} onClick={clickLogoHandler}>
         <img src={`${process.env.PUBLIC_URL}/quizlet.png`} alt="logo" className={style.image} />
       </a>
     </Header>

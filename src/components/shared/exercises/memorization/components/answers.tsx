@@ -5,9 +5,9 @@ import { IAnswer } from 'src/types/terms'
 type IAnswers = (props: { answers: IAnswer[]; onAnswerSelected: (id: string) => any }) => JSX.Element
 
 export const Answers: IAnswers = ({ answers, onAnswerSelected }) => (
-  <ul className={cn(style.container, style.answers)}>
+  <ul className={cn(style.container, style.answers)} data-testid="answers">
     {answers.map((answer) => (
-      <li key={answer.id} className={style.element}>
+      <li key={answer.id} className={style.element} data-testid="answer">
         <button onClick={onAnswerSelected(answer.id)} className={style.button} data-value={answer.value}>
           {answer.value}
         </button>

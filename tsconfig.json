@@ -22,11 +22,11 @@
   },
 	"exclude": [
 		"node_modules",
-		"setupTests.js"
 	],
 	"include": [
-		"jest.d.ts",
-		"**/*.ts",
-		"**/*.tsx"
+		"/**/*.ts",
+		"/**/*.tsx",
+		"/**/*.js",
+		"/**/*.jsx",
 	]
 }
