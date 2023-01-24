@@ -1,198 +1,229 @@
 {
-	"modules": [
-		{
-			"id": "1",
-			"title": "Прилагательные",
-			"languages": ["ua", "en"],
-			"terms": [
-				{
-					"id": "1",
-					"ua": "эффективный",
-					"en": "efficient"
-				},
-				{
-					"id": "2",
-					"ua": "дорогой",
-					"en": "expensive"
-				},
-				{
-					"id": "3",
-					"ua": "яблоко",
-					"en": "apple"
-				},
-				{
-					"id": "4",
-					"ua": "банан",
-					"en": "banana"
-				},
-				{
-					"id": "5",
-					"ua": "что?",
-					"en": "what?"
-				}
-			],
-			"exercises": {
-				"memorization": {
-					"round": 0,
-					"learnedIds": []
-				},
-				"cards": {
-					"learned": [],
-					"unlearned": []
-				}
-			}
-		}, {
-			"id": "2",
-			"title": "Существительные",
-			"languages": ["ua", "en"],
-			"terms": [
-				{
-					"id": "1",
-					"ua": "яблоко",
-					"en": "apple"
-				},
-				{
-					"id": "2",
-					"ua": "банан",
-					"en": "banana"
-				},
-				{
-					"id": "3",
-					"ua": "груша",
-					"en": "pear"
-				},
-				{
-					"id": "4",
-					"ua": "персик",
-					"en": "peach"
-				},
-				{
-					"id": "5",
-					"ua": "ананас",
-					"en": "pineapple"
-				},
-				{
-					"id": "6",
-					"ua": "виноград",
-					"en": "grape"
-				},
-				{
-					"id": "7",
-					"ua": "картошка",
-					"en": "potatoes"
-				},
-				{
-					"id": "8",
-					"ua": "горох",
-					"en": "peas"
-				},
-				{
-					"id": "9",
-					"ua": "огурец",
-					"en": "cucumber"
-				},
-				{
-					"id": "10",
-					"ua": "помидор",
-					"en": "tomato"
-				},
-				{
-					"id": "11",
-					"ua": "капуста",
-					"en": "cabbage"
-				},
-				{
-					"id": "12",
-					"ua": "молоко",
-					"en": "milk"
-				},
-				{
-					"id": "13",
-					"ua": "сок",
-					"en": "juice"
-				},
-				{
-					"id": "14",
-					"ua": "красный",
-					"en": "red"
-				},
-				{
-					"id": "15",
-					"ua": "синий",
-					"en": "blue"
-				},
-				{
-					"id": "16",
-					"ua": "белый",
-					"en": "white"
-				},
-				{
-					"id": "17",
-					"ua": "черный",
-					"en": "black"
-				},
-				{
-					"id": "18",
-					"ua": "желтый",
-					"en": "yellow"
-				},
-				{
-					"id": "19",
-					"ua": "зеленый",
-					"en": "green"
-				},
-				{
-					"id": "20",
-					"ua": "коричневый",
-					"en": "brown"
-				},
-				{
-					"id": "21",
-					"ua": "фиолетовый",
-					"en": "purple"
-				},
-				{
-					"id": "22",
-					"ua": "разноцветный",
-					"en": "colorful"
-				}
-			],
-			"exercises": {
-				"memorization": {
-					"round": 0,
-					"learnedIds": []
-				},
-				"cards": {
-					"learned": [],
-					"unlearned": []
-				}
-			}
-		}, {
-			"id": "3",
-			"title": "Существительные - 2",
-			"languages": ["ua", "en"],
-			"terms": [
-				{
-					"id": "5",
-					"ua": "яблоко",
-					"en": "apple"
-				},
-				{
-					"id": "6",
-					"ua": "банан",
-					"en": "banana"
-				}
-			],
-			"exercises": {
-				"memorization": {
-					"round": 0,
-					"learnedIds": []
-				},
-				"cards": {
-					"learned": [],
-					"unlearned": []
-				}
-			}
-		}
-	]
+  "modules": [
+    {
+      "id": "1",
+      "title": "Прилагательные",
+      "languages": [
+        "ua",
+        "en"
+      ],
+      "terms": [
+        {
+          "id": "1",
+          "ua": "эффективный",
+          "en": "efficient"
+        },
+        {
+          "id": "2",
+          "ua": "дорогой",
+          "en": "expensive"
+        },
+        {
+          "id": "3",
+          "ua": "яблоко",
+          "en": "apple"
+        },
+        {
+          "id": "4",
+          "ua": "банан",
+          "en": "banana"
+        },
+        {
+          "id": "5",
+          "ua": "что?",
+          "en": "what?"
+        }
+      ],
+      "exercises": {
+        "memorization": {
+          "round": 0,
+          "learnedIds": []
+        },
+        "cards": {
+          "learned": [],
+          "unlearned": []
+        }
+      }
+    },
+    {
+      "id": "2",
+      "title": "Существительные",
+      "languages": [
+        "ua",
+        "en"
+      ],
+      "terms": [
+        {
+          "id": "1",
+          "ua": "яблоко",
+          "en": "apple"
+        },
+        {
+          "id": "2",
+          "ua": "банан",
+          "en": "banana"
+        },
+        {
+          "id": "3",
+          "ua": "груша",
+          "en": "pear"
+        },
+        {
+          "id": "4",
+          "ua": "персик",
+          "en": "peach"
+        },
+        {
+          "id": "5",
+          "ua": "ананас",
+          "en": "pineapple"
+        },
+        {
+          "id": "6",
+          "ua": "виноград",
+          "en": "grape"
+        },
+        {
+          "id": "7",
+          "ua": "картошка",
+          "en": "potatoes"
+        },
+        {
+          "id": "8",
+          "ua": "горох",
+          "en": "peas"
+        },
+        {
+          "id": "9",
+          "ua": "огурец",
+          "en": "cucumber"
+        },
+        {
+          "id": "10",
+          "ua": "помидор",
+          "en": "tomato"
+        },
+        {
+          "id": "11",
+          "ua": "капуста",
+          "en": "cabbage"
+        },
+        {
+          "id": "12",
+          "ua": "молоко",
+          "en": "milk"
+        },
+        {
+          "id": "13",
+          "ua": "сок",
+          "en": "juice"
+        },
+        {
+          "id": "14",
+          "ua": "красный",
+          "en": "red"
+        },
+        {
+          "id": "15",
+          "ua": "синий",
+          "en": "blue"
+        },
+        {
+          "id": "16",
+          "ua": "белый",
+          "en": "white"
+        },
+        {
+          "id": "17",
+          "ua": "черный",
+          "en": "black"
+        },
+        {
+          "id": "18",
+          "ua": "желтый",
+          "en": "yellow"
+        },
+        {
+          "id": "19",
+          "ua": "зеленый",
+          "en": "green"
+        },
+        {
+          "id": "20",
+          "ua": "коричневый",
+          "en": "brown"
+        },
+        {
+          "id": "21",
+          "ua": "фиолетовый",
+          "en": "purple"
+        },
+        {
+          "id": "22",
+          "ua": "разноцветный",
+          "en": "colorful"
+        }
+      ],
+      "exercises": {
+        "memorization": {
+          "round": 0,
+          "learnedIds": []
+        },
+        "cards": {
+          "learned": [],
+          "unlearned": []
+        }
+      }
+    },
+    {
+      "id": "3",
+      "title": "Существительные - 2",
+      "languages": [
+        "ua",
+        "en"
+      ],
+      "terms": [
+        {
+          "id": "5",
+          "ua": "яблоко",
+          "en": "apple"
+        },
+        {
+          "id": "6",
+          "ua": "банан",
+          "en": "banana"
+        }
+      ],
+      "exercises": {
+        "memorization": {
+          "round": 0,
+          "learnedIds": []
+        },
+        "cards": {
+          "learned": [],
+          "unlearned": []
+        }
+      }
+    },
+    {
+      "title": "",
+      "terms": [
+        {
+          "id": "a1bc4213-69a3-46bd-b360-285d45f3b270",
+          "ua": "",
+          "fr": ""
+        },
+        {
+          "id": "2ae7a282-9a64-4caf-b925-2caa1e5eb022",
+          "ua": "",
+          "fr": ""
+        }
+      ],
+      "languages": [
+        "term",
+        "translation"
+      ],
+      "id": "20d45339-36d8-463a-9175-017d551a5893"
+    }
+  ]
 }
