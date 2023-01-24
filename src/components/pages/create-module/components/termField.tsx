@@ -1,6 +1,7 @@
-import { Field, useFormikContext } from 'formik'
+import { ErrorMessage, Field, useFormikContext } from 'formik'
 import React from 'react'
 import style from 'src/components/pages/create-module/create-module.module.scss'
+import { ErrorMessageWrapper } from 'src/components/shared/ErrorMessageWrapper'
 
 interface ITermProps {
   title: string
@@ -22,6 +23,9 @@ export const Term: React.FC<ITermProps> = ({ title, nameField, children }) => {
           data-testid="term-name-field"
           value={formik.values[nameField]}
         />
+        <ErrorMessageWrapper>
+          <ErrorMessage name={nameField} />
+        </ErrorMessageWrapper>
       </label>
       <div className={style.termName}>{title}</div>
       {children}

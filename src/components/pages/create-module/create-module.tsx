@@ -1,11 +1,13 @@
-import { Field, Form } from 'formik'
+import { ErrorMessage, Field, Form } from 'formik'
 import React, { useCallback, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { addModule } from 'src/api/modules.api'
 import { ButtonAddTerm } from 'src/components/pages/create-module/components/buttonAddTerm'
 import { CreateModuleHeader } from 'src/components/pages/create-module/components/header'
 import { CreateModulesForm } from 'src/components/pages/create-module/create-module-form'
 import style from 'src/components/pages/create-module/create-module.module.scss'
 import { CreateModulesTerms } from 'src/components/pages/create-module/create-modules-terms'
+import { ErrorMessageWrapper } from 'src/components/shared/ErrorMessageWrapper'
 import { INITIAL_LANGUAGES } from 'src/constants/exercises.constants'
 import { POPUPS } from 'src/constants/popups.constans'
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux'
@@ -35,7 +37,7 @@ export const CreateModule = () => {
   const languages = useAppSelector(createModuleLanguage)
 
   const handleSubmit = useCallback(
-    (values: IModuleInitial, { setSubmitting }) => {
+    async (values: IModuleInitial, { setSubmitting }) => {
       if (languages[0] === INITIAL_LANGUAGES[0] || languages[1] === INITIAL_LANGUAGES[1]) {
         setSubmitting(false)
         dispatch(
@@ -52,13 +54,17 @@ export const CreateModule = () => {
         languages[1],
       )
       const result: IModuleInitial = Object.assign(values, { terms: preparedTerms })
-      // eslint-disable-next-line no-console
-      console.log(result)
-      // fetchTerms(preparedData).then((response) => {
-      //   setSubmitting(false);
-      // })
-      dispatch(resetLanguage)
-      navigate('/')
+
+      addModule(result)
+        .then(() => {
+          setSubmitting(false)
+          dispatch(resetLanguage)
+          navigate('/')
+        })
+        .catch((error) => {
+          setSubmitting(false)
+          console.error(error.message)
+        })
     },
     [languages],
   )
@@ -81,7 +87,7 @@ export const CreateModule = () => {
 
   return (
     <div className={style.container}>
-      <CreateModulesForm initialState={initialState} handleSubmit={handleSubmit}>
+      <CreateModulesForm initialValues={initialState} onSubmit={handleSubmit}>
         <>
           <CreateModuleHeader />
           <Form className={style.form}>
@@ -94,6 +100,9 @@ export const CreateModule = () => {
                   placeholder="Предмет, глава, раздел"
                   data-testid="module-title"
                 />
+                <ErrorMessageWrapper>
+                  <ErrorMessage name="title" />
+                </ErrorMessageWrapper>
               </label>
               <div className={style.termName}>название</div>
             </div>
