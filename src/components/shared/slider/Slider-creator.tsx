@@ -1,6 +1,7 @@
 import { FC } from 'react'
-import Slider, { Settings } from 'react-slick'
+import { Settings } from 'react-slick'
 import style from 'src/components/shared/slider/slider.module.scss'
+import { SliderSlickProvider } from 'src/providers/sliderSlick/sliderSlickProvider'
 import { IModule } from 'src/types/modules'
 import { ICreateSliderProps, ISliderProps } from 'src/types/slider'
 import { ITerm } from 'src/types/terms'
@@ -32,11 +33,11 @@ export function CreateSlider<T extends IModule | ITerm>({
             {title}
           </h2>
         )}
-        <Slider {...defaultSetting} {...config}>
+        <SliderSlickProvider defaultSetting={defaultSetting} config={config}>
           {data.map((el) => (
             <Card card={el} {...props} key={el.id} />
           ))}
-        </Slider>
+        </SliderSlickProvider>
       </div>
     )
   }

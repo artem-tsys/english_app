@@ -3,7 +3,7 @@ import { CardComponent } from './modules'
 
 export interface ISliderProps<C> {
   data: C[]
-  handleClick?: (id: string) => () => void
+  onClick?: (id: string) => unknown
 }
 
 export interface ICreateSliderProps<T> {
