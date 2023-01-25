@@ -14,4 +14,4 @@ export interface IModuleInitial {
   languages: [LanguagesInitial, LanguagesInitial]
 }
 
-export type CardComponent<T> = ({ card }: { card: T }) => JSX.Element
+export type CardComponent<T> = ({ card, onClick }: { card: T; onClick?: (id: string) => void }) => JSX.Element

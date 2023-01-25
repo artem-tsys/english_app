@@ -9,8 +9,6 @@ import { useAppDispatch, useAppSelector } from 'src/hooks/redux'
 import { UPDATE_MODULE_ID } from 'src/redux/general/common.slice'
 import { modulesSelectors } from 'src/redux/modules/modules.selectors'
 
-type Handle = (id: string) => () => void
-
 export function Home(): JSX.Element {
   const modules = useAppSelector(modulesSelectors.selectAll)
   const navigate = useNavigate()
@@ -20,8 +18,8 @@ export function Home(): JSX.Element {
     navigate('createModule')
   }, [navigate])
 
-  const handleClick = useCallback<Handle>(
-    (id) => () => {
+  const handleClick = useCallback(
+    (id: string) => {
       dispatch(UPDATE_MODULE_ID(id))
       navigate(`/module/${id}`)
     },
@@ -32,7 +30,7 @@ export function Home(): JSX.Element {
     <>
       <HeaderWithLogo />
       <div className="wrapper">
-        <ModulesSlider data={modules} handleClick={handleClick} />
+        <ModulesSlider data={modules} onClick={handleClick} />
         <div className={cn(style.buttonCreate)}>
           <BtnCreate handler={handlerCreate} text="Create Module" />
         </div>
