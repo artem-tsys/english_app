@@ -6,6 +6,7 @@ const initialState = {
   moduleId: null,
   popup: null,
   popupData: null,
+  popupAnimateDestroy: false,
 }
 
 export const commonSlice = createSlice({
@@ -19,6 +20,10 @@ export const commonSlice = createSlice({
     HIDE_POPUP: (state) => {
       state.popup = null
       state.popupData = null
+      state.popupAnimateDestroy = false
+    },
+    HIDE_POPUP_ANIMATE: (state) => {
+      state.popupAnimateDestroy = true
     },
     UPDATE_MODULE_ID: (state, action) => {
       state.moduleId = action.payload
@@ -35,4 +40,5 @@ export const commonSlice = createSlice({
   },
 })
 
-export const { UPDATE_MODULE_ID, REMOVE_CURRENT_MODULE, SHOW_POPUP, HIDE_POPUP } = commonSlice.actions
+export const { UPDATE_MODULE_ID, HIDE_POPUP_ANIMATE, REMOVE_CURRENT_MODULE, SHOW_POPUP, HIDE_POPUP } =
+  commonSlice.actions

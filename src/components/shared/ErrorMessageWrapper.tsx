@@ -1,11 +1,13 @@
 import styled from 'styled-components'
 
-export const ErrorMessageWrapper = ({ color = '#d2000f', size = '14px', children }): JSX.Element => {
+export const ErrorMessageWrapper = (props): JSX.Element => {
   const Wrapper = styled.div`
     position: relative;
-    color: ${color};
-    font-size: ${size};
+    height: 1.4em;
+    color: ${(prop) => prop.color ?? '#d2000f'};
+    font-size: ${(prop) => prop.size ?? '14px'};
     line-height: 1.4em;
   `
-  return <Wrapper>{children}</Wrapper>
+
+  return <Wrapper {...props} />
 }

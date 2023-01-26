@@ -1,5 +1,4 @@
-import cn from 'classnames'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { HeaderLanguagePopup } from 'src/components/shared/languages/components/HeaderLanguagePopup'
 import { Languages } from 'src/components/shared/languages/languages'
@@ -8,12 +7,11 @@ import { LANGUAGES } from 'src/constants/languages.constants'
 import { useAppDispatch } from 'src/hooks/redux'
 import { updateLanguage } from 'src/redux/createModule/createModule.slice'
 import { popupDataSelector } from 'src/redux/general/common.selectors'
-import { HIDE_POPUP } from 'src/redux/general/common.slice'
+import { HIDE_POPUP_ANIMATE } from 'src/redux/general/common.slice'
 
 export const SelectingLanguage = (): JSX.Element => {
   const dispatch = useAppDispatch()
-  const [isOpen, setOpen] = useState<boolean>(null)
-  const { animation, languageKey } = useSelector(popupDataSelector)
+  const { languageKey } = useSelector(popupDataSelector)
 
   const handleSelectLanguage = useCallback(
     (event: React.SyntheticEvent<EventTarget>) => {
@@ -28,27 +26,13 @@ export const SelectingLanguage = (): JSX.Element => {
           value: language,
         }),
       )
-      setOpen(false)
-      setTimeout(() => {
-        dispatch(HIDE_POPUP())
-      }, animation.animationSpeed)
+      dispatch(HIDE_POPUP_ANIMATE())
     },
-    [animation.animationSpeed, languageKey, dispatch],
+    [languageKey, dispatch],
   )
 
-  const animations = {
-    open: {
-      transform: `translate(${isOpen ? '0' : '100%'})`,
-      transition: `${animation.animationSpeed ?? 600}ms`,
-    },
-  }
-
-  useEffect(() => {
-    setOpen(true)
-  }, [])
-
   return (
-    <div className={cn(style.container, style.animation)} style={animations.open}>
+    <div className={style.container}>
       <HeaderLanguagePopup>Язык определения</HeaderLanguagePopup>
       <Languages title="основные языки" languages={LANGUAGES} onClick={handleSelectLanguage} />
     </div>
