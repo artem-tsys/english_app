@@ -23,12 +23,10 @@ export const Term: React.FC<ITermProps> = ({ title, nameField, children }) => {
           data-testid="term-name-field"
           value={formik.values[nameField]}
         />
-        <ErrorMessageWrapper>
-          <ErrorMessage name={nameField} />
-        </ErrorMessageWrapper>
+        {children}
       </label>
+      <ErrorMessage name={nameField}>{(msg) => <ErrorMessageWrapper>{msg}</ErrorMessageWrapper>}</ErrorMessage>
       <div className={style.termName}>{title}</div>
-      {children}
     </div>
   )
 }

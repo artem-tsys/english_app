@@ -20,9 +20,6 @@ export const CreateModulesTerms: ICreateModulesTerms = ({ terms }) => {
         popup: POPUPS.SELECTING_LANGUAGE,
         popupData: {
           languageKey: node.target.dataset.langkey,
-          animation: {
-            animationSpeed: 800,
-          },
         },
       }),
     )
