@@ -1,8 +1,8 @@
 import { reject } from 'lodash'
 import { ERROR_ID_IS_NOT_FOUND, ERROR_INCORRECT_VALUE, ERROR_IS_NOT_CORRECT_TYPE } from 'src/constants/errors.constants'
 import { LanguagesKeys } from 'src/constants/languages.constants'
-import { getObjById } from 'src/utils/getObjById'
-import { getObjectsFromArrayById } from 'src/utils/getObjectsFromArrayById'
+import { getElById } from 'src/utils/getElById'
+import { getObjectsById } from 'src/utils/getObjectsById'
 
 const prepareAnswers = (list, language) =>
   list.map((el) => ({
@@ -35,7 +35,7 @@ export function generateAnswersById<T extends { id: string }>(
   }
 
   const preparedListAnswers = prepareAnswers(list, language)
-  const rightAnswer = getObjById(preparedListAnswers, rightAnswerId)
+  const rightAnswer = getElById(preparedListAnswers, rightAnswerId)
 
   if (rightAnswer === undefined) {
     throw new Error(ERROR_ID_IS_NOT_FOUND)
@@ -48,7 +48,7 @@ export function generateAnswersById<T extends { id: string }>(
 
   const answersWithoutCurrent = reject(preparedListAnswers, { id: rightAnswer.id })
   const quantityWrongAnswers = amount - 1
-  const wrongAnswers = getObjectsFromArrayById({
+  const wrongAnswers = getObjectsById({
     collection: answersWithoutCurrent,
     amount: quantityWrongAnswers,
     isRandomOrder: true,

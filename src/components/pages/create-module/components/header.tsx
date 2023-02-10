@@ -6,6 +6,7 @@ import { CloseButton } from 'src/components/shared/buttons/Close.button'
 
 export const CreateModuleHeader = (): JSX.Element => {
   const navigate = useNavigate()
+
   const handleClose = () => {
     navigate(-1)
   }

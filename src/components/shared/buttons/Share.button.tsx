@@ -5,7 +5,6 @@ type Button = (props: { styleName?: string }) => JSX.Element
 
 export const ShareButton: Button = ({ styleName }) => {
   const clickHandle = () => {
-    // eslint-disable-next-line no-alert
     alert('share')
   }
 

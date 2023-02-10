@@ -3,8 +3,8 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import nock from 'nock'
 import { apiUrl } from 'src/config'
 import { MEMORIZATION_NUMBER_ANSWERS } from 'src/constants/exercises.constants'
-import { getAnswer } from 'src/helpers/GetAnswer'
-import { RenderTestApp } from 'src/helpers/RenderTestApp'
+import { getAnswer } from 'src/helpers/get-answer'
+import { RenderTestApp } from 'src/helpers/render-test-app'
 import { ITerm } from 'src/types/terms'
 
 function nockModules(data, code = 200) {

@@ -1,7 +1,7 @@
-import React, { FC, useRef } from 'react'
+import React, { FC, useCallback, useRef } from 'react'
 import { Transition } from 'react-transition-group'
-import { ExerciseMemorizationSelectedRightAnswer } from 'src/components/shared/popups/exercises-memorization/exercise-memorization-selected-right-answer'
-import { ExerciseMemorizationWrongAnswer } from 'src/components/shared/popups/exercises-memorization/exercise-memorization-wrong-answer'
+import { SelectedRightAnswer } from 'src/components/shared/popups/exercises-memorization/exercise-memorization-selected-right-answer'
+import { SelectedWrongAnswer } from 'src/components/shared/popups/exercises-memorization/exercise-memorization-wrong-answer'
 import { ReminderSelectLanguage } from 'src/components/shared/popups/reminder-select-language/reminder-select-language'
 import { SelectingLanguage } from 'src/components/shared/popups/selecting-language/selecting-language'
 import { PopupName } from 'src/constants/popups.constans'
@@ -11,11 +11,24 @@ import { HIDE_POPUP } from 'src/redux/general/common.slice'
 import style from 'src/styles/popups.module.scss'
 
 const popupsConfig: Record<PopupName, FC> = {
-  EXERCISE_MEMORIZATION_SELECTED_SUCCESS: ExerciseMemorizationSelectedRightAnswer,
-  EXERCISE_MEMORIZATION_SELECTED_FAILED: ExerciseMemorizationWrongAnswer,
-  EXERCISE_MEMORIZATION_FINISH_ROUND: ExerciseMemorizationWrongAnswer,
+  EXERCISE_MEMORIZATION_SELECTED_SUCCESS: SelectedRightAnswer,
+  EXERCISE_MEMORIZATION_SELECTED_FAILED: SelectedWrongAnswer,
+  EXERCISE_MEMORIZATION_FINISH_ROUND: SelectedWrongAnswer,
   REMINDER_SELECT_LANGUAGE: ReminderSelectLanguage,
   SELECTING_LANGUAGE: SelectingLanguage,
+}
+
+const direction = 700
+const defaultStyle = {
+  transition: `transform ${direction}ms ease-out`,
+  transform: 'translateX(100%)',
+}
+
+const transitionStyles = {
+  entering: { transform: 'translateX(0)' },
+  entered: { transform: 'translateX(0)' },
+  exiting: { transform: 'translateX(100%)' },
+  exited: { transform: 'translateX(100%)' },
 }
 
 export const PopupManager = React.memo(() => {
@@ -27,24 +40,11 @@ export const PopupManager = React.memo(() => {
   const hasPopupToShow = shownPopupName && PopupToShow && !popupAnimateDestroy
   const ref = useRef()
 
-  const direction = 700
-  const defaultStyle = {
-    transition: `transform ${direction}ms ease-out`,
-    transform: 'translateX(100%)',
-  }
-
-  const transitionStyles = {
-    entering: { transform: 'translateX(0)' },
-    entered: { transform: 'translateX(0)' },
-    exiting: { transform: 'translateX(100%)' },
-    exited: { transform: 'translateX(100%)' },
-  }
-
-  const onExited = () => {
+  const onExited = useCallback(() => {
     if (popupAnimateDestroy) {
       dispatch(HIDE_POPUP())
     }
-  }
+  }, [dispatch, popupAnimateDestroy])
 
   return (
     <Transition nodeRef={ref} in={hasPopupToShow} timeout={direction} onExited={onExited} unmountOnExit>

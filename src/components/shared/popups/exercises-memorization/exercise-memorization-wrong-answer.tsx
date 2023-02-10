@@ -3,16 +3,16 @@ import { SadEmoji } from 'src/components/shared/icons/sad.emoji'
 import style from 'src/components/shared/popups/exercises-memorization/exercise-memorization.module.scss'
 import { Substrate } from 'src/components/shared/popups/substrate'
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux'
-import { IncrementActiveTermIndex } from 'src/redux/exercises/exercises.slice'
+import { activeTermForward } from 'src/redux/exercises/exercises.slice'
 import { popupDataSelector } from 'src/redux/general/common.selectors'
 import stylePopup from 'src/styles/popups.module.scss'
 
-export const ExerciseMemorizationWrongAnswer = () => {
+export const SelectedWrongAnswer = () => {
   const dispatch = useAppDispatch()
   const { item, answer, questionLanguage, answerLanguage } = useAppSelector(popupDataSelector)
 
   const nextStep = () => {
-    dispatch(IncrementActiveTermIndex())
+    dispatch(activeTermForward())
   }
 
   return (

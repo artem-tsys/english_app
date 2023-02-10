@@ -1,5 +1,5 @@
 import { ERROR_IS_NOT_CORRECT_TYPE } from 'src/constants/errors.constants'
-import { getAnswer } from 'src/helpers/GetAnswer'
+import { getAnswer } from 'src/helpers/get-answer'
 import { ITerm } from 'src/types/terms'
 
 describe('test getAnswer fn', () => {

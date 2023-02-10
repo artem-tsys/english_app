@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { useSelector } from 'react-redux'
-import { HeaderLanguagePopup } from 'src/components/shared/languages/components/HeaderLanguagePopup'
+import { HeaderLanguagePopup } from 'src/components/shared/languages/components/header-language-popup'
 import { Languages } from 'src/components/shared/languages/languages'
 import style from 'src/components/shared/popups/selecting-language/selecting-language.module.scss'
 import { LANGUAGES } from 'src/constants/languages.constants'
