@@ -1,38 +1,41 @@
 import cn from 'classnames'
-import { shuffle } from 'lodash'
-import { useEffect, useMemo } from 'react'
+import { flatten, shuffle, times } from 'lodash'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { CloseButton } from 'src/components/shared/buttons/Close.button'
 import { Round } from 'src/components/shared/exercises/round'
 import { Header } from 'src/components/shared/headers/Header'
 import style from 'src/components/shared/headers/headers.module.scss'
-import { MEMORIZATION_ROUND_NUMBER } from 'src/constants/exercises.constants'
 import { POPUPS } from 'src/constants/popups.constans'
-import { useAppDispatch, useAppSelector, useModule } from 'src/hooks/redux'
-import { memorizationSelector } from 'src/redux/exercises/exercises.selectors'
+import { filterElements } from 'src/helpers/filter-elements'
+import { getIds } from 'src/helpers/get-ids'
+import { useAppDispatch, useAppSelector } from 'src/hooks/redux'
+import { useModule } from 'src/hooks/useModule'
+import {
+  exercisesLearnedSelector,
+  roundNumberSelector,
+  roundTermsSelector,
+} from 'src/redux/exercises/exercises.selectors'
+import { updateTermsRound } from 'src/redux/exercises/exercises.slice'
 import { SHOW_POPUP } from 'src/redux/general/common.slice'
 import styleMain from 'src/styles/main.module.scss'
-import { IMemorizationIds, ITerm } from 'src/types/terms'
-import { getObjectsFromArrayById } from 'src/utils/getObjectsFromArrayById'
+import { ITerm } from 'src/types/terms'
+import { getObjectsById } from 'src/utils/getObjectsById'
 
-const isFinishedModule = (terms: ITerm[], learnedTerms: IMemorizationIds) => {
+const isFinishedModule = (terms: ITerm[], learnedTerms: string[]) => {
   if (terms.length === 0) return true
-
-  const learned = Object.values(learnedTerms)
-  const isAllTermLearned = learned.every((learn) => learn.length === 2)
-
-  if (learned.length < terms.length || !isAllTermLearned) {
-    return false
-  }
-
-  return true
+  return learnedTerms.length >= terms.length
 }
+
+const termsNumberCopies = 2
 
 export const Memorization = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const { languages, terms } = useModule()
-  const { roundNumber, learnedIds } = useAppSelector(memorizationSelector)
+  const { terms } = useModule()
+  const roundNumber = useAppSelector(roundNumberSelector)
+  const learnedIds = useAppSelector(exercisesLearnedSelector)
+  const roundTerms = useAppSelector(roundTermsSelector)
 
   useEffect(() => {
     if (isFinishedModule(terms, learnedIds)) {
@@ -40,32 +43,27 @@ export const Memorization = () => {
     }
   }, [terms, learnedIds])
 
-  const currentRoundTerms = useMemo(
-    () =>
-      shuffle(
-        getObjectsFromArrayById<ITerm>({
-          collection: terms,
-          amount: MEMORIZATION_ROUND_NUMBER,
-          ignoredIds: Object.keys(learnedIds),
-          isRandomOrder: true,
-        }),
-      ),
-    [roundNumber, terms, learnedIds],
-  )
+  useEffect(() => {
+    const learnTerms = filterElements(terms, learnedIds)
+    const roundIds = getIds<ITerm>(getObjectsById<ITerm>({ collection: learnTerms }))
+
+    const nextRoundTerms = shuffle(flatten(shuffle(times(termsNumberCopies, () => roundIds))))
+
+    dispatch(updateTermsRound(nextRoundTerms))
+  }, [roundNumber])
 
   const finishRoundHandler = () => {
     navigate(-1)
   }
 
-  if (currentRoundTerms.length === 0) return null
-
+  if (roundTerms.length === 0) return null
   return (
     <>
       <Header>
         <CloseButton handleClick={finishRoundHandler} />
         <p className={cn(style.title, styleMain.centerAbs)} data-testid="titleRound">{`round ${roundNumber}`}</p>
       </Header>
-      <Round roundTerms={currentRoundTerms} languages={languages} />
+      <Round />
     </>
   )
 }

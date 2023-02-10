@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { IncrementActiveTermIndex } from 'src/redux/exercises/exercises.slice'
 
 /* eslint-disable no-param-reassign */
 const initialState = {
@@ -31,12 +30,6 @@ export const commonSlice = createSlice({
     REMOVE_CURRENT_MODULE(state) {
       state.moduleId = null
     },
-  },
-  extraReducers: (builder) => {
-    builder.addCase(IncrementActiveTermIndex, (state) => {
-      state.popup = null
-      state.popupData = null
-    })
   },
 })
 

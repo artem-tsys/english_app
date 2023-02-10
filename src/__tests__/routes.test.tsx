@@ -2,7 +2,7 @@ import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 import nock from 'nock'
 import { apiUrl } from 'src/config'
-import { RenderTestApp } from 'src/helpers/RenderTestApp'
+import { RenderTestApp } from 'src/helpers/render-test-app'
 import modules from './fixtures/modules.json'
 
 beforeEach(() => {

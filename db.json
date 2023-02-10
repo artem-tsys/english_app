@@ -38,10 +38,6 @@
         "memorization": {
           "round": 0,
           "learnedIds": []
-        },
-        "cards": {
-          "learned": [],
-          "unlearned": []
         }
       }
     },

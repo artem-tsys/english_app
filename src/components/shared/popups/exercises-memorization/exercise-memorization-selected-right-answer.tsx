@@ -4,17 +4,19 @@ import { SmilingEmoji } from 'src/components/shared/icons/smilling-emoji'
 import style from 'src/components/shared/popups/exercises-memorization/exercise-memorization.module.scss'
 import { Substrate } from 'src/components/shared/popups/substrate'
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux'
-import { IncrementActiveTermIndex } from 'src/redux/exercises/exercises.slice'
+import { activeTermForward } from 'src/redux/exercises/exercises.slice'
 import { popupDataSelector } from 'src/redux/general/common.selectors'
 import stylePopup from 'src/styles/popups.module.scss'
 
-export function ExerciseMemorizationSelectedRightAnswer() {
+export function SelectedRightAnswer() {
   const dispatch = useAppDispatch()
-  const { answer } = useAppSelector(popupDataSelector)
+  const { answer, questionLanguage, termId } = useAppSelector(popupDataSelector)
 
   useEffect(() => {
     setTimeout(() => {
-      dispatch(IncrementActiveTermIndex())
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      dispatch(activeTermForward({ id: termId, value: questionLanguage }))
     }, 1300)
   }, [])
 

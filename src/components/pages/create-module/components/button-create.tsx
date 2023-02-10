@@ -1,7 +1,7 @@
 import { useFormikContext } from 'formik'
 import style from 'src/components/pages/create-module/create-module.module.scss'
 
-export const ButtonAddTerm = ({ handleAddTerm }) => {
+export const ButtonCreate = ({ handleAddTerm }) => {
   const formik = useFormikContext()
 
   return (

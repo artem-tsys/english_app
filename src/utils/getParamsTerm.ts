@@ -6,7 +6,7 @@ import { arrayContaining } from 'src/utils/arrayContaining'
 type GetParamsProps = (languages: LanguagesKeys[], learnedLanguages: LanguagesKeys[]) => IParamsTerm
 
 const findIndexQuestionLang = (languages, learnedTermLanguages) => {
-  if (!learnedTermLanguages) {
+  if (!learnedTermLanguages || !learnedTermLanguages.length) {
     return Math.round(Math.random())
   }
 

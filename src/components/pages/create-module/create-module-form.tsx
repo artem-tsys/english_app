@@ -1,24 +1,28 @@
-import { Formik } from 'formik'
-import { ERROR_VALIDATION } from 'src/constants/errors.constants'
-import { INITIAL_LANGUAGES } from 'src/constants/exercises.constants'
-import * as yup from 'yup'
+import { ErrorMessage, Field, Form } from 'formik'
+import React from 'react'
+import style from 'src/components/pages/create-module/create-module.module.scss'
+import { CreateModulesTerms } from 'src/components/pages/create-module/create-modules-terms'
+import { ErrorMessageWrapper } from 'src/components/shared/error-message-wrapper'
 
-const validateSchema = yup.object({
-  title: yup.string().required(ERROR_VALIDATION.required),
-  terms: yup.array().of(
-    yup.object({
-      [INITIAL_LANGUAGES[0]]: yup.string().required(ERROR_VALIDATION.required),
-      [INITIAL_LANGUAGES[1]]: yup.string().required(ERROR_VALIDATION.required),
-    }),
-  ),
-})
-
-export const CreateModulesForm = (props): JSX.Element => (
-  <Formik
-    enableReinitialize
-    validationSchema={validateSchema}
-    validateOnMount={false}
-    validateOnChange={false}
-    {...props}
-  />
+export const CreateModulesForm = ({ terms }): JSX.Element => (
+  <Form className={style.form}>
+    <div className={style.term}>
+      <label className={style.label}>
+        <Field
+          type="text"
+          name="title"
+          className={style.field}
+          placeholder="Предмет, глава, раздел"
+          data-testid="module-title"
+        />
+        <ErrorMessage name="title" component={ErrorMessageWrapper} />
+      </label>
+      <div className={style.termName}>название</div>
+    </div>
+    <div className={style.cards}>
+      {terms.map((term, index) => (
+        <CreateModulesTerms key={index} term={term} fieldName={`terms[${index}]`} />
+      ))}
+    </div>
+  </Form>
 )

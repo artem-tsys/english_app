@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom'
 import { fireEvent, render, screen, within } from '@testing-library/react'
 import { CreateModule } from 'src/components/pages/create-module/create-module'
-import { RenderTestApp } from 'src/helpers/RenderTestApp'
+import { RenderTestApp } from 'src/helpers/render-test-app'
 
 describe('create module integration tests', () => {
   test('add new fields', async () => {

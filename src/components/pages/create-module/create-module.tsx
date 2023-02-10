@@ -1,13 +1,12 @@
-import { ErrorMessage, Field, Form } from 'formik'
+import { Formik } from 'formik'
 import React, { useCallback, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { addModule } from 'src/api/modules.api'
-import { ButtonAddTerm } from 'src/components/pages/create-module/components/buttonAddTerm'
+import { ButtonCreate } from 'src/components/pages/create-module/components/button-create'
 import { CreateModuleHeader } from 'src/components/pages/create-module/components/header'
 import { CreateModulesForm } from 'src/components/pages/create-module/create-module-form'
 import style from 'src/components/pages/create-module/create-module.module.scss'
-import { CreateModulesTerms } from 'src/components/pages/create-module/create-modules-terms'
-import { ErrorMessageWrapper } from 'src/components/shared/ErrorMessageWrapper'
+import { ERROR_VALIDATION } from 'src/constants/errors.constants'
 import { INITIAL_LANGUAGES } from 'src/constants/exercises.constants'
 import { POPUPS } from 'src/constants/popups.constans'
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux'
@@ -18,6 +17,17 @@ import { IModuleInitial } from 'src/types/modules'
 import { ITerm, ITermInitial } from 'src/types/terms'
 import { updateKeyInObjects } from 'src/utils/changeNameKeyInObjects'
 import { v4 as uuidv4 } from 'uuid'
+import * as yup from 'yup'
+
+const validateSchema = yup.object({
+  title: yup.string().required(ERROR_VALIDATION.required),
+  terms: yup.array().of(
+    yup.object({
+      [INITIAL_LANGUAGES[0]]: yup.string().required(ERROR_VALIDATION.required),
+      [INITIAL_LANGUAGES[1]]: yup.string().required(ERROR_VALIDATION.required),
+    }),
+  ),
+})
 
 export const createTerm = (langFirst, langSecond): ITermInitial =>
   ({
@@ -30,44 +40,56 @@ const createTermWithInitialLanguages = () => createTerm(INITIAL_LANGUAGES[0], IN
 
 const initialTerm = [createTermWithInitialLanguages(), createTermWithInitialLanguages()]
 
+const defaultParams = {
+  exercises: {
+    memorization: {
+      round: 0,
+      learnedIds: [],
+    },
+  },
+}
+
+const createNewModule = (values, languages) => {
+  const preparedTerms: ITerm[] = updateKeyInObjects(
+    updateKeyInObjects(values.terms, INITIAL_LANGUAGES[0], languages[0]),
+    INITIAL_LANGUAGES[1],
+    languages[1],
+  )
+
+  return Object.assign(values, { terms: preparedTerms }, defaultParams)
+}
+
+const handleSubmit =
+  (dispatch, languages, callback) =>
+  async (values: IModuleInitial, { setSubmitting }) => {
+    if (languages[0] === INITIAL_LANGUAGES[0] || languages[1] === INITIAL_LANGUAGES[1]) {
+      setSubmitting(false)
+      dispatch(
+        SHOW_POPUP({
+          popup: POPUPS.REMINDER_SELECT_LANGUAGE,
+        }),
+      )
+      return false
+    }
+
+    const newModule = createNewModule(values, languages)
+    addModule(newModule)
+      .then(() => {
+        setSubmitting(false)
+        dispatch(resetLanguage)
+        callback()
+      })
+      .catch((error) => {
+        setSubmitting(false)
+        console.error(error.message)
+      })
+  }
+
 export const CreateModule = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const [terms, setTerms] = useState<ITermInitial[]>(initialTerm)
   const languages = useAppSelector(createModuleLanguage)
-
-  const handleSubmit = useCallback(
-    async (values: IModuleInitial, { setSubmitting }) => {
-      if (languages[0] === INITIAL_LANGUAGES[0] || languages[1] === INITIAL_LANGUAGES[1]) {
-        setSubmitting(false)
-        dispatch(
-          SHOW_POPUP({
-            popup: POPUPS.REMINDER_SELECT_LANGUAGE,
-          }),
-        )
-        return false
-      }
-
-      const preparedTerms: ITerm[] = updateKeyInObjects(
-        updateKeyInObjects(values.terms, INITIAL_LANGUAGES[0], languages[0]),
-        INITIAL_LANGUAGES[1],
-        languages[1],
-      )
-      const result: IModuleInitial = Object.assign(values, { terms: preparedTerms })
-
-      addModule(result)
-        .then(() => {
-          setSubmitting(false)
-          dispatch(resetLanguage)
-          navigate('/')
-        })
-        .catch((error) => {
-          setSubmitting(false)
-          console.error(error.message)
-        })
-    },
-    [languages],
-  )
 
   const handleAddTerm = useCallback(
     (values) => {
@@ -76,43 +98,33 @@ export const CreateModule = () => {
     [setTerms],
   )
 
-  const initialState = useMemo<IModuleInitial>(
+  const formikConfig = useMemo(
     () => ({
-      title: '',
-      terms,
-      languages,
+      enableReinitialize: true,
+      validationSchema: validateSchema,
+      validateOnMount: false,
+      validateOnChange: false,
+      initialValues: {
+        title: '',
+        terms,
+        languages,
+      },
+      onSubmit: handleSubmit(dispatch, languages, () => navigate('/')),
     }),
-    [terms],
+    [terms, languages],
   )
 
   return (
     <div className={style.container}>
-      <CreateModulesForm initialValues={initialState} onSubmit={handleSubmit}>
+      <Formik {...formikConfig}>
         <>
           <CreateModuleHeader />
-          <Form className={style.form}>
-            <div className={style.term}>
-              <label className={style.label}>
-                <Field
-                  type="text"
-                  name="title"
-                  className={style.field}
-                  placeholder="Предмет, глава, раздел"
-                  data-testid="module-title"
-                />
-                <ErrorMessageWrapper>
-                  <ErrorMessage name="title" />
-                </ErrorMessageWrapper>
-              </label>
-              <div className={style.termName}>название</div>
-            </div>
-            <CreateModulesTerms terms={terms} />
-          </Form>
+          <CreateModulesForm terms={terms} />
           <div className={style.footer}>
-            <ButtonAddTerm handleAddTerm={handleAddTerm} />
+            <ButtonCreate handleAddTerm={handleAddTerm} />
           </div>
         </>
-      </CreateModulesForm>
+      </Formik>
     </div>
   )
 }
