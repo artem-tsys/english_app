@@ -7,19 +7,19 @@ import {
   END_MEMORIZATION_MODE,
   ROUND_FORWARD,
   SUBMIT_LEARNED,
+  UPDATE_MEMORIZATION,
   UPDATE_TERMS_ROUND,
 } from 'src/redux/exercises/exercises.constans'
-import { UPDATE_MODULE_ID } from 'src/redux/general/common.slice'
 import { IMemorizationIds } from 'src/types/terms'
 
 /* eslint-disable no-param-reassign */
-interface InitialState {
-  learnedIds: string[]
+export interface InitialState {
   memorization: {
     isLearned: boolean
     roundNumber: number
     activeTermIndex: number
     termsRound: string[]
+    learnedIds: string[]
     learnedTermsRound: IMemorizationIds
   }
 }
@@ -31,10 +31,10 @@ const initialRound = {
 }
 
 const initialState: InitialState = {
-  learnedIds: [],
   memorization: {
     isLearned: false,
     roundNumber: 1,
+    learnedIds: [],
     ...initialRound,
   },
 }
@@ -47,7 +47,7 @@ export const exercisesSlice = createSlice({
       const { learnedTermsRound } = state.memorization
       Object.entries(learnedTermsRound).forEach(([id, value]) => {
         if (value.length === INITIAL_LANGUAGES.length) {
-          state.learnedIds.push(id)
+          state.memorization.learnedIds.push(id)
         }
       })
     },
@@ -55,6 +55,9 @@ export const exercisesSlice = createSlice({
       const prevValue = state.memorization.learnedTermsRound[payload.id] ?? []
       const learnedId = { [payload.id]: [...prevValue, payload.value] }
       state.memorization.learnedTermsRound = { ...state.memorization.learnedTermsRound, ...learnedId }
+    },
+    [UPDATE_MEMORIZATION]: (state, { payload }) => {
+      state.memorization = { ...state.memorization, ...payload }
     },
     [ROUND_FORWARD]: (state) => {
       state.memorization.roundNumber += 1
@@ -65,7 +68,7 @@ export const exercisesSlice = createSlice({
       state.memorization.activeTermIndex += 1
     },
     [SUBMIT_LEARNED]: (state, { payload }) => {
-      state.learnedIds = { ...state.learnedIds, ...payload }
+      state.memorization.learnedIds = { ...state.memorization.learnedIds, ...payload }
     },
     [UPDATE_TERMS_ROUND]: (state, { payload }) => {
       state.memorization.termsRound = payload
@@ -75,7 +78,6 @@ export const exercisesSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(UPDATE_MODULE_ID, (state, action) => action.payload?.exercises ?? initialState)
     builder.addCase(END_MEMORIZATION_MODE, (state) => {
       state.memorization = {
         ...state.memorization,
@@ -92,4 +94,5 @@ export const {
   ADD_LEANED_TERM_ROUND: addLearnedTermRound,
   UPDATE_TERMS_ROUND: updateTermsRound,
   END_MEMORIZATION_MODE: endMemorizationMode,
+  UPDATE_MEMORIZATION: updateMemorization,
 } = exercisesSlice.actions

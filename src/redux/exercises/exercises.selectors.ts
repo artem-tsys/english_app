@@ -6,5 +6,4 @@ export const roundTermsSelector = (state: RootState) => state.exercises.memoriza
 export const learnedTermsSelector = (state: RootState) => state.exercises.memorization.learnedTermsRound
 export const memorizationLastRoundSelector = (state: RootState) => state.exercises.memorization.termsRound.length
 export const isLearnedMemorizationSelector = (state: RootState) => state.exercises.memorization.isLearned
-
-export const exercisesLearnedSelector = (state: RootState) => state.exercises.learnedIds
+export const memorizationLearnedSelector = (state: RootState) => state.exercises.memorization.learnedIds

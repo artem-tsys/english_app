@@ -1,8 +1,12 @@
+import { updateModule } from 'src/api/modules.api'
 import { submitLearned } from 'src/redux/exercises/exercises.actions'
+import { SUBMIT_LEARNED } from 'src/redux/exercises/exercises.constans'
 import {
   activeTermIndexSelector,
   isLearnedMemorizationSelector,
   memorizationLastRoundSelector,
+  memorizationLearnedSelector,
+  roundNumberSelector,
   roundTermsSelector,
 } from 'src/redux/exercises/exercises.selectors'
 import {
@@ -12,33 +16,46 @@ import {
   exercisesSlice,
   roundForward,
 } from 'src/redux/exercises/exercises.slice'
+import { moduleIdSelector } from 'src/redux/general/common.selectors'
 import { HIDE_POPUP_ANIMATE } from 'src/redux/general/common.slice'
 
-const { ROUND_FORWARD, SUBMIT_LEARNED, ACTIVE_TERM_FORWARD } = exercisesSlice.actions
+const { ROUND_FORWARD, ACTIVE_TERM_FORWARD } = exercisesSlice.actions
 
-export const exercisesMiddleware = (store) => (next) => (action) => {
+export const exercisesMiddleware = (store) => (next) => async (action) => {
   const { dispatch, getState } = store
 
   next(action)
   switch (action.type) {
-    case SUBMIT_LEARNED.type: {
-      // eslint-disable-next-line no-console
-      console.log('submit learned terms')
+    case SUBMIT_LEARNED: {
+      const state = getState()
+      const moduleId = moduleIdSelector(state)
+      const moduleUpdate = {
+        exercises: {
+          memorization: {
+            round: roundNumberSelector(state),
+            isLearned: isLearnedMemorizationSelector(state),
+            learnedIds: memorizationLearnedSelector(state),
+          },
+        },
+      }
+
+      try {
+        await updateModule(moduleId, moduleUpdate)
+      } catch (err) {
+        console.error(err.message)
+      }
       break
     }
     case ROUND_FORWARD.type: {
       const state = getState()
-      const roundNumber = activeTermIndexSelector(state)
       const lastRound = memorizationLastRoundSelector(state)
-      const isLearned = isLearnedMemorizationSelector(state)
+      const roundNumber = roundNumberSelector(state)
 
-      if (roundNumber === lastRound) {
-        dispatch(submitLearned())
-      }
-
-      if (isLearned) {
+      if (lastRound === roundNumber) {
         dispatch(endMemorizationMode())
       }
+
+      dispatch(submitLearned())
       break
     }
     case ACTIVE_TERM_FORWARD.type: {

@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import { flatten, shuffle, times } from 'lodash'
 import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { CloseButton } from 'src/components/shared/buttons/Close.button'
 import { Round } from 'src/components/shared/exercises/round'
 import { Header } from 'src/components/shared/headers/Header'
@@ -12,12 +12,13 @@ import { getIds } from 'src/helpers/get-ids'
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux'
 import { useModule } from 'src/hooks/useModule'
 import {
-  exercisesLearnedSelector,
+  memorizationLearnedSelector,
   roundNumberSelector,
   roundTermsSelector,
 } from 'src/redux/exercises/exercises.selectors'
 import { updateTermsRound } from 'src/redux/exercises/exercises.slice'
-import { SHOW_POPUP } from 'src/redux/general/common.slice'
+import { moduleIdSelector } from 'src/redux/general/common.selectors'
+import { SHOW_POPUP, UPDATE_MODULE_ID } from 'src/redux/general/common.slice'
 import styleMain from 'src/styles/main.module.scss'
 import { ITerm } from 'src/types/terms'
 import { getObjectsById } from 'src/utils/getObjectsById'
@@ -30,12 +31,20 @@ const isFinishedModule = (terms: ITerm[], learnedTerms: string[]) => {
 const termsNumberCopies = 2
 
 export const Memorization = () => {
+  const query = useParams()
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const { terms } = useModule()
   const roundNumber = useAppSelector(roundNumberSelector)
-  const learnedIds = useAppSelector(exercisesLearnedSelector)
+  const learnedIds = useAppSelector(memorizationLearnedSelector)
   const roundTerms = useAppSelector(roundTermsSelector)
+  const moduleId = useAppSelector(moduleIdSelector)
+
+  useEffect(() => {
+    if (!moduleId) {
+      dispatch(UPDATE_MODULE_ID(query.moduleId))
+    }
+  }, [])
 
   useEffect(() => {
     if (isFinishedModule(terms, learnedIds)) {

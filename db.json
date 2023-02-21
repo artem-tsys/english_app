@@ -36,8 +36,14 @@
       ],
       "exercises": {
         "memorization": {
-          "round": 0,
-          "learnedIds": []
+          "round": 3,
+          "is_learned": false,
+          "learned_ids": [
+            "2",
+            "3",
+            "1",
+            "5"
+          ]
         }
       }
     },

@@ -29,8 +29,8 @@ const RoutesButtons = [
 
 export const LinksExercises = ({ moduleId }: { moduleId: string }) => (
   <div className={style.buttonsGroup}>
-    {RoutesButtons.map(({ createPath, ...card }) => (
-      <ExerciseLink card={card} createPath={createPath} moduleId={moduleId} />
+    {RoutesButtons.map(({ createPath, ...card }, index) => (
+      <ExerciseLink card={card} createPath={createPath} moduleId={moduleId} key={index} />
     ))}
   </div>
 )

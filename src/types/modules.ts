@@ -1,5 +1,5 @@
 import { LanguagesKeys } from 'src/constants/languages.constants'
-import { IMemorizationIds, ITerm, ITermInitial, LanguagesInitial } from './terms'
+import { ITerm, ITermInitial, LanguagesInitial } from './terms'
 
 export interface IModule {
   title: string
@@ -8,9 +8,9 @@ export interface IModule {
   languages: [LanguagesKeys, LanguagesKeys]
   exercises: {
     memorization: {
-      isLearned: boolean
       round: number
-      learnedIds: IMemorizationIds
+      isLearned: boolean
+      learnedIds: string[]
     }
   }
 }

@@ -18,7 +18,7 @@ export const Languages = ({ title, languages, onClick }: LanguagesProps): JSX.El
       </div>
       <ul className={style.list}>
         {list.map(([key, value]) => (
-          <Language text={value} value={key} onClick={onClick} />
+          <Language text={value} value={key} onClick={onClick} key={key} />
         ))}
       </ul>
     </div>
