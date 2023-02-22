@@ -36,8 +36,15 @@
       ],
       "exercises": {
         "memorization": {
-          "round": 0,
-          "learnedIds": []
+          "round": 4,
+          "is_learned": false,
+          "learned_ids": [
+            "2",
+            "3",
+            "1",
+            "5",
+            "4"
+          ]
         }
       }
     },
@@ -162,84 +169,531 @@
       ],
       "exercises": {
         "memorization": {
-          "round": 0,
-          "learnedIds": []
-        },
-        "cards": {
-          "learned": [],
-          "unlearned": []
+          "round": 11,
+          "is_learned": true,
+          "learned_ids": [
+            "1",
+            "15",
+            "7",
+            "14",
+            "3",
+            "16",
+            "5",
+            "22",
+            "6",
+            "8",
+            "11",
+            "19",
+            "13",
+            "17",
+            "12",
+            "20",
+            "2",
+            "9",
+            "10",
+            "21"
+          ]
         }
       }
     },
     {
       "id": "3",
-      "title": "Существительные - 2",
+      "title": "Programmer",
       "languages": [
         "ua",
         "en"
       ],
       "terms": [
         {
+          "id": "1",
+          "en": "variable",
+          "ru": "переменная"
+        },
+        {
+          "id": "2",
+          "en": "function",
+          "ru": "функция"
+        },
+        {
+          "id": "3",
+          "en": "object",
+          "ru": "объект"
+        },
+        {
+          "id": "4",
+          "en": "class",
+          "ru": "класс"
+        },
+        {
           "id": "5",
-          "ua": "яблоко",
-          "en": "apple"
+          "en": "array",
+          "ru": "массив"
         },
         {
           "id": "6",
-          "ua": "банан",
-          "en": "banana"
+          "en": "string",
+          "ru": "строка"
+        },
+        {
+          "id": "7",
+          "en": "boolean",
+          "ru": "булев тип"
+        },
+        {
+          "id": "8",
+          "en": "integer",
+          "ru": "целое число"
+        },
+        {
+          "id": "9",
+          "en": "floating point",
+          "ru": "число с плавающей точкой"
+        },
+        {
+          "id": "10",
+          "en": "method",
+          "ru": "метод"
+        },
+        {
+          "id": "11",
+          "en": "argument",
+          "ru": "аргумент"
+        },
+        {
+          "id": "12",
+          "en": "parameter",
+          "ru": "параметр"
+        },
+        {
+          "id": "13",
+          "en": "interface",
+          "ru": "интерфейс"
+        },
+        {
+          "id": "14",
+          "en": "library",
+          "ru": "библиотека"
+        },
+        {
+          "id": "15",
+          "en": "package",
+          "ru": "пакет"
+        },
+        {
+          "id": "16",
+          "en": "module",
+          "ru": "модуль"
+        },
+        {
+          "id": "17",
+          "en": "syntax",
+          "ru": "синтаксис"
+        },
+        {
+          "id": "18",
+          "en": "algorithm",
+          "ru": "алгоритм"
+        },
+        {
+          "id": "19",
+          "en": "debugging",
+          "ru": "отладка"
+        },
+        {
+          "id": "20",
+          "en": "code",
+          "ru": "код"
+        },
+        {
+          "id": "21",
+          "en": "bug",
+          "ru": "ошибка"
+        },
+        {
+          "id": "22",
+          "en": "compile",
+          "ru": "компилировать"
+        },
+        {
+          "id": "23",
+          "en": "source code",
+          "ru": "исходный код"
+        },
+        {
+          "id": "24",
+          "en": "comment",
+          "ru": "комментарий"
+        },
+        {
+          "id": "25",
+          "en": "syntax error",
+          "ru": "синтаксическая ошибка"
+        },
+        {
+          "id": "26",
+          "en": "logic error",
+          "ru": "логическая ошибка"
+        },
+        {
+          "id": "27",
+          "en": "breakpoint",
+          "ru": "точка останова"
+        },
+        {
+          "id": "28",
+          "en": "iteration",
+          "ru": "итерация"
+        },
+        {
+          "id": "29",
+          "en": "recursion",
+          "ru": "рекурсия"
+        },
+        {
+          "id": "30",
+          "en": "inheritance",
+          "ru": "наследование"
+        },
+        {
+          "id": "31",
+          "en": "polymorphism",
+          "ru": "полиморфизм"
+        },
+        {
+          "id": "32",
+          "en": "encapsulation",
+          "ru": "инкапсуляция"
+        },
+        {
+          "id": "33",
+          "en": "abstraction",
+          "ru": "абстракция"
         }
       ],
       "exercises": {
         "memorization": {
-          "round": 0,
-          "learnedIds": []
-        },
-        "cards": {
-          "learned": [],
-          "unlearned": []
+          "round": 1,
+          "is_learned": false,
+          "learned_ids": []
         }
       }
     },
     {
-      "title": "",
+      "id": "4",
+      "title": "GitHub",
+      "languages": [
+        "ua",
+        "en"
+      ],
       "terms": [
         {
-          "id": "a1bc4213-69a3-46bd-b360-285d45f3b270",
-          "ua": "",
-          "fr": ""
+          "id": "1",
+          "en": "repository",
+          "ru": "репозиторий"
         },
         {
-          "id": "2ae7a282-9a64-4caf-b925-2caa1e5eb022",
-          "ua": "",
-          "fr": ""
-        }
-      ],
-      "languages": [
-        "term",
-        "translation"
-      ],
-      "id": "20d45339-36d8-463a-9175-017d551a5893"
-    },
-    {
-      "title": "test",
-      "terms": [
-        {
-          "id": "cb40e707-71db-4605-b8fc-90e81550e9a4",
-          "ua": "порося",
-          "en": "pork"
+          "id": "2",
+          "en": "branch",
+          "ru": "ветка"
         },
         {
-          "id": "5773abe2-b0d5-4387-89a2-4414fdc67745",
-          "ua": "куриця",
-          "en": "chicken"
+          "id": "3",
+          "en": "commit",
+          "ru": "коммит"
+        },
+        {
+          "id": "4",
+          "en": "pull request",
+          "ru": "запрос на слияние"
+        },
+        {
+          "id": "5",
+          "en": "merge",
+          "ru": "слияние"
+        },
+        {
+          "id": "6",
+          "en": "fork",
+          "ru": "форк"
+        },
+        {
+          "id": "7",
+          "en": "clone",
+          "ru": "клонирование"
+        },
+        {
+          "id": "8",
+          "en": "push",
+          "ru": "отправка изменений"
+        },
+        {
+          "id": "9",
+          "en": "pull",
+          "ru": "получение изменений"
+        },
+        {
+          "id": "10",
+          "en": "conflict",
+          "ru": "конфликт"
+        },
+        {
+          "id": "11",
+          "en": "remote",
+          "ru": "удаленный репозиторий"
+        },
+        {
+          "id": "12",
+          "en": "origin",
+          "ru": "оригинальный репозиторий"
+        },
+        {
+          "id": "13",
+          "en": "upstream",
+          "ru": "восходящий поток"
+        },
+        {
+          "id": "14",
+          "en": "downstream",
+          "ru": "нисходящий поток"
+        },
+        {
+          "id": "15",
+          "en": "tag",
+          "ru": "тег"
+        },
+        {
+          "id": "16",
+          "en": "release",
+          "ru": "релиз"
+        },
+        {
+          "id": "17",
+          "en": "master",
+          "ru": "мастер"
+        },
+        {
+          "id": "18",
+          "en": "issue",
+          "ru": "задача"
+        },
+        {
+          "id": "19",
+          "en": "label",
+          "ru": "метка"
+        },
+        {
+          "id": "20",
+          "en": "milestone",
+          "ru": "веха"
+        },
+        {
+          "id": "21",
+          "en": "review",
+          "ru": "рецензирование"
+        },
+        {
+          "id": "22",
+          "en": "comment",
+          "ru": "комментарий"
+        },
+        {
+          "id": "23",
+          "en": "status",
+          "ru": "статус"
+        },
+        {
+          "id": "24",
+          "en": "merge conflict",
+          "ru": "конфликт при слиянии"
+        },
+        {
+          "id": "25",
+          "en": "resolve",
+          "ru": "разрешение"
+        },
+        {
+          "id": "26",
+          "en": "blame",
+          "ru": "виновность"
+        },
+        {
+          "id": "27",
+          "en": "diff",
+          "ru": "различия"
+        },
+        {
+          "id": "28",
+          "en": "history",
+          "ru": "история"
+        },
+        {
+          "id": "29",
+          "en": "contributors",
+          "ru": "участники"
+        },
+        {
+          "id": "30",
+          "en": "license",
+          "ru": "лицензия"
+        },
+        {
+          "id": "31",
+          "en": "README",
+          "ru": "описание"
+        },
+        {
+          "id": "32",
+          "en": "wiki",
+          "ru": "вики"
+        },
+        {
+          "id": "33",
+          "en": "project board",
+          "ru": "доска задач"
+        },
+        {
+          "id": "34",
+          "en": "release notes",
+          "ru": "заметки о выпуске"
+        },
+        {
+          "id": "35",
+          "en": "dependency",
+          "ru": "зависимость"
+        },
+        {
+          "id": "36",
+          "en": "package manager",
+          "ru": "менеджер пакетов"
+        },
+        {
+          "id": "37",
+          "en": "repository owner",
+          "ru": "владелец репозитория"
+        },
+        {
+          "id": "38",
+          "en": "README.md",
+          "ru": "описание в формате Markdown"
+        },
+        {
+          "id": "39",
+          "en": "pull request review",
+          "ru": "рецензирование запроса на слияние"
+        },
+        {
+          "id": "40",
+          "en": "pull request merge",
+          "ru": "слияние запроса на слияние"
+        },
+        {
+          "id": "41",
+          "en": "continuous integration",
+          "ru": "непрерывная интеграция"
+        },
+        {
+          "id": "42",
+          "en": "build",
+          "ru": "сборка"
+        },
+        {
+          "id": "43",
+          "en": "artifact",
+          "ru": "артефакт"
+        },
+        {
+          "id": "44",
+          "en": "workflow",
+          "ru": "рабочий процесс"
+        },
+        {
+          "id": "45",
+          "en": "action",
+          "ru": "действие"
+        },
+        {
+          "id": "46",
+          "en": "event",
+          "ru": "событие"
+        },
+        {
+          "id": "47",
+          "en": "secret",
+          "ru": "секрет"
+        },
+        {
+          "id": "48",
+          "en": "deploy",
+          "ru": "развертывание"
+        },
+        {
+          "id": "49",
+          "en": "pull request template",
+          "ru": "шаблон запроса на слияние"
+        },
+        {
+          "id": "50",
+          "en": "issue template",
+          "ru": "шаблон задачи"
+        },
+        {
+          "id": "51",
+          "en": "project",
+          "ru": "проект"
+        },
+        {
+          "id": "52",
+          "en": "issue tracker",
+          "ru": "трекер задач"
+        },
+        {
+          "id": "53",
+          "en": "bug",
+          "ru": "ошибка"
+        },
+        {
+          "id": "54",
+          "en": "feature",
+          "ru": "функциональность"
+        },
+        {
+          "id": "55",
+          "en": "enhancement",
+          "ru": "улучшение"
+        },
+        {
+          "id": "56",
+          "en": "documentation",
+          "ru": "документация"
+        },
+        {
+          "id": "57",
+          "en": "test",
+          "ru": "тест"
+        },
+        {
+          "id": "58",
+          "en": "lint",
+          "ru": "линтинг"
+        },
+        {
+          "id": "59",
+          "en": "coverage",
+          "ru": "покрытие тестами"
+        },
+        {
+          "id": "60",
+          "en": "version control",
+          "ru": "контроль версий"
         }
       ],
-      "languages": [
-        "term",
-        "translation"
-      ],
-      "id": "3f158d9e-7cf5-4179-b5be-e00215c7eb6a"
+      "exercises": {
+        "memorization": {
+          "round": 1,
+          "is_learned": false,
+          "learned_ids": []
+        }
+      }
     }
   ]
 }

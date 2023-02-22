@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { createModuleSlice } from 'src/redux/createModule/createModule.slice'
 import { exercisesMiddleware } from 'src/redux/exercises/exercises.middlewars'
 import { exercisesSlice } from 'src/redux/exercises/exercises.slice'
+import { commonMiddleware } from 'src/redux/general/common.middleware'
 import { commonSlice } from 'src/redux/general/common.slice'
 import { modulesSlice } from 'src/redux/modules/modules.slice'
 
@@ -14,7 +15,7 @@ export const createConfigureStore = (initState = {}) =>
       createModule: createModuleSlice.reducer,
     },
     preloadedState: initState,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([exercisesMiddleware]),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([exercisesMiddleware, commonMiddleware]),
   })
 
 export const appStore = createConfigureStore()

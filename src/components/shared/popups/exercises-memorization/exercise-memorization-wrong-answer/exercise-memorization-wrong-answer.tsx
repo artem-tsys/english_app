@@ -1,6 +1,6 @@
 import cn from 'classnames'
 import { SadEmoji } from 'src/components/shared/icons/sad.emoji'
-import style from 'src/components/shared/popups/exercises-memorization/exercise-memorization.module.scss'
+import style from 'src/components/shared/popups/exercises-memorization/exercise-memorization-wrong-answer/exercise-memorization-wrong-answer.module.scss'
 import { Substrate } from 'src/components/shared/popups/substrate'
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux'
 import { activeTermForward } from 'src/redux/exercises/exercises.slice'
@@ -18,7 +18,7 @@ export const SelectedWrongAnswer = () => {
   return (
     <>
       <div className={stylePopup.popup}>
-        <div className={cn(stylePopup.popupHeader, style.backgroundFailed)}>
+        <div className={cn(stylePopup.popupHeader, style.header)}>
           <SadEmoji className={style.emoji} />
           <p className={style.title}>выучите этот термин!</p>
         </div>

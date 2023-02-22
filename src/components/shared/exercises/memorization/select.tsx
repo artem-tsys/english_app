@@ -62,7 +62,7 @@ export const SelectAnswers = ({ term, questionLanguage, answerLanguage }: Select
       </div>
       <ul className={cn(style.container, style.answers)} data-testid="answers">
         {answers.map((answer) => (
-          <Answer answer={answer} onSelected={onSelected} />
+          <Answer answer={answer} onSelected={onSelected} key={answer.id} />
         ))}
       </ul>
     </div>
