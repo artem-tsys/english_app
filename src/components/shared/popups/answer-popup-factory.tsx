@@ -1,7 +1,8 @@
 import React, { FC, useCallback, useRef } from 'react'
 import { Transition } from 'react-transition-group'
-import { SelectedRightAnswer } from 'src/components/shared/popups/exercises-memorization/exercise-memorization-selected-right-answer'
-import { SelectedWrongAnswer } from 'src/components/shared/popups/exercises-memorization/exercise-memorization-wrong-answer'
+import { ExerciseMemorizationFinishRound } from 'src/components/shared/popups/exercises-memorization/exercise-memorization-finish-round/exercise-memorization-finish-round'
+import { SelectedRightAnswer } from 'src/components/shared/popups/exercises-memorization/exercise-memorization-selected-right-answer/exercise-memorization-selected-right-answer'
+import { SelectedWrongAnswer } from 'src/components/shared/popups/exercises-memorization/exercise-memorization-wrong-answer/exercise-memorization-wrong-answer'
 import { ReminderSelectLanguage } from 'src/components/shared/popups/reminder-select-language/reminder-select-language'
 import { SelectingLanguage } from 'src/components/shared/popups/selecting-language/selecting-language'
 import { PopupName } from 'src/constants/popups.constans'
@@ -13,7 +14,8 @@ import style from 'src/styles/popups.module.scss'
 const popupsConfig: Record<PopupName, FC> = {
   EXERCISE_MEMORIZATION_SELECTED_SUCCESS: SelectedRightAnswer,
   EXERCISE_MEMORIZATION_SELECTED_FAILED: SelectedWrongAnswer,
-  EXERCISE_MEMORIZATION_FINISH_ROUND: SelectedWrongAnswer,
+  EXERCISE_MEMORIZATION_FINISH_ROUND: ExerciseMemorizationFinishRound,
+  EXERCISE_MEMORIZATION_FINISH_MODULE: ExerciseMemorizationFinishRound,
   REMINDER_SELECT_LANGUAGE: ReminderSelectLanguage,
   SELECTING_LANGUAGE: SelectingLanguage,
 }

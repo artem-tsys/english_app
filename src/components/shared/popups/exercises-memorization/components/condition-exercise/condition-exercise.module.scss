@@ -1,0 +1,26 @@
+@import "src/styles/variables";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
+
+.title {
+  font-size: 16px;
+  color: $exercise-text-titles;
+}
+
+.condition {
+  width: 100%;
+  margin-top: 15px;
+
+  &__title {
+    color: #262B38;
+    font-weight: 600;
+  }
+
+  &__meter {
+    width: 100%;
+  }
+}

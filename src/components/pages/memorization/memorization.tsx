@@ -14,7 +14,7 @@ import { useModule } from 'src/hooks/useModule'
 import {
   memorizationLearnedSelector,
   roundNumberSelector,
-  roundTermsSelector,
+  roundTermsIdsSelector,
 } from 'src/redux/exercises/exercises.selectors'
 import { updateTermsRound } from 'src/redux/exercises/exercises.slice'
 import { moduleIdSelector } from 'src/redux/general/common.selectors'
@@ -37,7 +37,7 @@ export const Memorization = () => {
   const { terms } = useModule()
   const roundNumber = useAppSelector(roundNumberSelector)
   const learnedIds = useAppSelector(memorizationLearnedSelector)
-  const roundTerms = useAppSelector(roundTermsSelector)
+  const roundTerms = useAppSelector(roundTermsIdsSelector)
   const moduleId = useAppSelector(moduleIdSelector)
 
   useEffect(() => {
@@ -48,7 +48,7 @@ export const Memorization = () => {
 
   useEffect(() => {
     if (isFinishedModule(terms, learnedIds)) {
-      dispatch(SHOW_POPUP(POPUPS.EXERCISE_MEMORIZATION_FINISH_ROUND))
+      dispatch(SHOW_POPUP({ popup: POPUPS.EXERCISE_MEMORIZATION_FINISH_MODULE }))
     }
   }, [terms, learnedIds])
 
@@ -68,7 +68,7 @@ export const Memorization = () => {
   if (roundTerms.length === 0) return null
   return (
     <>
-      <Header>
+      <Header className={styleMain.headerBackground}>
         <CloseButton handleClick={finishRoundHandler} />
         <p className={cn(style.title, styleMain.centerAbs)} data-testid="titleRound">{`round ${roundNumber}`}</p>
       </Header>

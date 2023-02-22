@@ -8,6 +8,7 @@ import { HeaderWithBack } from 'src/components/shared/headers/Header-with-back'
 import TermsSlider from 'src/components/shared/slider/Terms-slider'
 import { useAppDispatch } from 'src/hooks/redux'
 import { UPDATE_MODULE_ID } from 'src/redux/general/common.slice'
+import styleMain from 'src/styles/main.module.scss'
 
 export const Modules = () => {
   const dispatch = useAppDispatch()
@@ -19,7 +20,7 @@ export const Modules = () => {
 
   return (
     <div className={style.module}>
-      <HeaderWithBack>
+      <HeaderWithBack className={styleMain.headerBackground}>
         <div className={style.headerButtonsGroup}>
           <ShareButton styleName={style.buttonOffset} />
           <MoreButton />

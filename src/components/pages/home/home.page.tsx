@@ -7,6 +7,7 @@ import { HeaderWithLogo } from 'src/components/shared/headers/Header-with-logo'
 import { ModulesSlider } from 'src/components/shared/slider/Modules-slider'
 import { useAppDispatch } from 'src/hooks/redux'
 import { UPDATE_MODULE_ID } from 'src/redux/general/common.slice'
+import styleMain from 'src/styles/main.module.scss'
 
 export function Home(): JSX.Element {
   const navigate = useNavigate()
@@ -26,7 +27,7 @@ export function Home(): JSX.Element {
 
   return (
     <>
-      <HeaderWithLogo />
+      <HeaderWithLogo className={styleMain.headerBackground} />
       <div className="wrapper">
         <ModulesSlider onClick={handleClick} />
         <div className={cn(style.buttonCreate)}>

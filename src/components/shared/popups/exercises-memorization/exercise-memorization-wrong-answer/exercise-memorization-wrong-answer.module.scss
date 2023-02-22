@@ -1,0 +1,77 @@
+@import "./src/styles/variables.scss";
+
+.section {
+  display: inline-block;
+  width: 100%;
+}
+
+.content {
+  background: #303753;
+}
+
+.title {
+  font-size: 18px;
+  line-height: 1.3em;
+  color: #fff;
+  margin: 0;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.desc {
+  font-size: 14px;
+  line-height: 1.4em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+}
+
+.emoji {
+  display: inline-block;
+  height: 32px;
+  width: 32px;
+  margin-right: 10px;
+}
+
+.button {
+  &Next {
+    background: none;
+    border: none;
+    color: #A9B1F9;
+    font-size: 16px;
+    line-height: 1.5em;
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+
+  &Center {
+    margin: 0 auto;
+  }
+}
+
+.header {
+  background-color: $color-failed;
+}
+
+.helper {
+  &Title {
+    font-size: 12px;
+    line-height: 2em;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  &Color {
+    &Success {
+      color: $color-success
+    }
+
+    &Failed {
+      color: $color-failed
+    }
+  }
+}
+
+.offsetBottom {
+  margin-bottom: 10px;
+}

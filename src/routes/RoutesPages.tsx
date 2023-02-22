@@ -44,10 +44,10 @@ const routesList: IRoutes[] = [
   },
 ]
 
-export const RoutesPages = (): JSX.Element => (
-  <Routes>
-    {routesList.map(({ path, component: Component }) => (
-      <Route key={path} path={path} element={<Component />} />
-    ))}
-  </Routes>
+const renderRoute = ({ path, component: Component, nested }) => (
+  <Route key={path} path={path} element={<Component />}>
+    {nested && nested.map(renderRoute)}
+  </Route>
 )
+
+export const RoutesPages = (): JSX.Element => <Routes>{routesList.map(renderRoute)}</Routes>

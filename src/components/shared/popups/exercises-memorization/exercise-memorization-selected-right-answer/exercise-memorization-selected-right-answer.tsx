@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import { useEffect } from 'react'
 import { SmilingEmoji } from 'src/components/shared/icons/smilling-emoji'
-import style from 'src/components/shared/popups/exercises-memorization/exercise-memorization.module.scss'
+import style from 'src/components/shared/popups/exercises-memorization/exercise-memorization-selected-right-answer/exercise-memorization-selected-right-answer.module.scss'
 import { Substrate } from 'src/components/shared/popups/substrate'
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux'
 import { activeTermForward } from 'src/redux/exercises/exercises.slice'
