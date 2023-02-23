@@ -12,7 +12,7 @@ import { POPUPS } from 'src/constants/popups.constans'
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux'
 import { createModuleLanguage } from 'src/redux/createModule/createModule.selectors'
 import { resetLanguage } from 'src/redux/createModule/createModule.slice'
-import { SHOW_POPUP } from 'src/redux/general/common.slice'
+import { SHOW_MODAL } from 'src/redux/general/common.slice'
 import { IModuleInitial } from 'src/types/modules'
 import { ITerm, ITermInitial } from 'src/types/terms'
 import { updateKeyInObjects } from 'src/utils/changeNameKeyInObjects'
@@ -65,8 +65,8 @@ const handleSubmit =
     if (languages[0] === INITIAL_LANGUAGES[0] || languages[1] === INITIAL_LANGUAGES[1]) {
       setSubmitting(false)
       dispatch(
-        SHOW_POPUP({
-          popup: POPUPS.REMINDER_SELECT_LANGUAGE,
+        SHOW_MODAL({
+          name: POPUPS.REMINDER_SELECT_LANGUAGE,
         }),
       )
       return false

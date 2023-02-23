@@ -5,12 +5,12 @@ import style from 'src/components/shared/popups/exercises-memorization/exercise-
 import { Substrate } from 'src/components/shared/popups/substrate'
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux'
 import { activeTermForward } from 'src/redux/exercises/exercises.slice'
-import { popupDataSelector } from 'src/redux/general/common.selectors'
+import { modalDataSelector } from 'src/redux/general/common.selectors'
 import stylePopup from 'src/styles/popups.module.scss'
 
 export function SelectedRightAnswer() {
   const dispatch = useAppDispatch()
-  const { answer, questionLanguage, termId } = useAppSelector(popupDataSelector)
+  const { answer, questionLanguage, termId } = useAppSelector(modalDataSelector)
 
   useEffect(() => {
     setTimeout(() => {

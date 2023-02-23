@@ -18,7 +18,7 @@ import {
   roundForward,
 } from 'src/redux/exercises/exercises.slice'
 import { moduleIdSelector } from 'src/redux/general/common.selectors'
-import { HIDE_POPUP_ANIMATE, SHOW_POPUP } from 'src/redux/general/common.slice'
+import { HIDE_MODAL, SHOW_MODAL } from 'src/redux/general/common.slice'
 
 const { ROUND_FORWARD, ACTIVE_TERM_FORWARD } = exercisesSlice.actions
 
@@ -57,7 +57,7 @@ export const exercisesMiddleware = (store) => (next) => async (action) => {
       }
       await dispatch(submitLearned())
       setTimeout(() => {
-        dispatch(SHOW_POPUP({ popup: POPUPS.EXERCISE_MEMORIZATION_FINISH_ROUND }))
+        dispatch(SHOW_MODAL({ name: POPUPS.EXERCISE_MEMORIZATION_FINISH_ROUND }))
       }, 1000)
       break
     }
@@ -66,7 +66,7 @@ export const exercisesMiddleware = (store) => (next) => async (action) => {
       const activeTerm = activeTermIndexSelector(state)
       const termsRound = roundTermsIdsSelector(state)
 
-      dispatch(HIDE_POPUP_ANIMATE())
+      dispatch(HIDE_MODAL())
 
       if (action.payload) {
         dispatch(addLearnedTermRound(action.payload))

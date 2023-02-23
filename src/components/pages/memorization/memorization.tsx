@@ -18,7 +18,7 @@ import {
 } from 'src/redux/exercises/exercises.selectors'
 import { updateTermsRound } from 'src/redux/exercises/exercises.slice'
 import { moduleIdSelector } from 'src/redux/general/common.selectors'
-import { SHOW_POPUP, UPDATE_MODULE_ID } from 'src/redux/general/common.slice'
+import { SHOW_MODAL, UPDATE_MODULE_ID } from 'src/redux/general/common.slice'
 import styleMain from 'src/styles/main.module.scss'
 import { ITerm } from 'src/types/terms'
 import { getObjectsById } from 'src/utils/getObjectsById'
@@ -48,7 +48,7 @@ export const Memorization = () => {
 
   useEffect(() => {
     if (isFinishedModule(terms, learnedIds)) {
-      dispatch(SHOW_POPUP({ popup: POPUPS.EXERCISE_MEMORIZATION_FINISH_MODULE }))
+      dispatch(SHOW_MODAL({ name: POPUPS.EXERCISE_MEMORIZATION_FINISH_MODULE }))
     }
   }, [terms, learnedIds])
 
