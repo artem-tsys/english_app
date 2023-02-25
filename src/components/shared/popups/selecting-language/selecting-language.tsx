@@ -6,12 +6,12 @@ import style from 'src/components/shared/popups/selecting-language/selecting-lan
 import { LANGUAGES } from 'src/constants/languages.constants'
 import { useAppDispatch } from 'src/hooks/redux'
 import { updateLanguage } from 'src/redux/createModule/createModule.slice'
-import { popupDataSelector } from 'src/redux/general/common.selectors'
-import { HIDE_POPUP_ANIMATE } from 'src/redux/general/common.slice'
+import { modalDataSelector } from 'src/redux/general/common.selectors'
+import { HIDE_MODAL } from 'src/redux/general/common.slice'
 
 export const SelectingLanguage = (): JSX.Element => {
   const dispatch = useAppDispatch()
-  const { languageKey } = useSelector(popupDataSelector)
+  const data = useSelector(modalDataSelector)
 
   const handleSelectLanguage = useCallback(
     (event: React.SyntheticEvent<EventTarget>) => {
@@ -22,13 +22,13 @@ export const SelectingLanguage = (): JSX.Element => {
       const language = event.target.dataset.value
       dispatch(
         updateLanguage({
-          languageKey,
+          languageKey: data.languageKey,
           value: language,
         }),
       )
-      dispatch(HIDE_POPUP_ANIMATE())
+      dispatch(HIDE_MODAL())
     },
-    [languageKey, dispatch],
+    [data, dispatch],
   )
 
   return (

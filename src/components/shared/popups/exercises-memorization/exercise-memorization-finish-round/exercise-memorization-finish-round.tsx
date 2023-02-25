@@ -6,7 +6,7 @@ import style from 'src/components/shared/popups/exercises-memorization/exercise-
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux'
 import { roundNumberSelector } from 'src/redux/exercises/exercises.selectors'
 import { roundForward } from 'src/redux/exercises/exercises.slice'
-import { HIDE_POPUP } from 'src/redux/general/common.slice'
+import { HIDE_MODAL } from 'src/redux/general/common.slice'
 
 export const ExerciseMemorizationFinishRound = (): JSX.Element => {
   const round = useAppSelector(roundNumberSelector)
@@ -17,7 +17,7 @@ export const ExerciseMemorizationFinishRound = (): JSX.Element => {
   }
 
   const hidePopup = () => {
-    dispatch(HIDE_POPUP())
+    dispatch(HIDE_MODAL())
   }
 
   return (

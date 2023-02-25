@@ -5,7 +5,7 @@ import { INITIAL_LANGUAGES } from 'src/constants/exercises.constants'
 import { POPUPS } from 'src/constants/popups.constans'
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux'
 import { createModuleLanguage } from 'src/redux/createModule/createModule.selectors'
-import { SHOW_POPUP } from 'src/redux/general/common.slice'
+import { SHOW_MODAL } from 'src/redux/general/common.slice'
 import { ITerm } from 'src/types/terms'
 import style from './create-module.module.scss'
 
@@ -16,11 +16,12 @@ export const CreateModulesTerms: ICreateModulesTerms = ({ term, fieldName }) => 
   const languages = useAppSelector(createModuleLanguage)
   const handleSelectLang = (node) => {
     dispatch(
-      SHOW_POPUP({
-        popup: POPUPS.SELECTING_LANGUAGE,
-        popupData: {
+      SHOW_MODAL({
+        name: POPUPS.SELECTING_LANGUAGE,
+        data: {
           languageKey: node.target.dataset.langkey,
         },
+        animate: true,
       }),
     )
   }

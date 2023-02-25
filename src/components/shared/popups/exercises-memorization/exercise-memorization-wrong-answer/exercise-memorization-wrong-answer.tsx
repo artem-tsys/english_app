@@ -4,12 +4,12 @@ import style from 'src/components/shared/popups/exercises-memorization/exercise-
 import { Substrate } from 'src/components/shared/popups/substrate'
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux'
 import { activeTermForward } from 'src/redux/exercises/exercises.slice'
-import { popupDataSelector } from 'src/redux/general/common.selectors'
+import { modalDataSelector } from 'src/redux/general/common.selectors'
 import stylePopup from 'src/styles/popups.module.scss'
 
 export const SelectedWrongAnswer = () => {
   const dispatch = useAppDispatch()
-  const { item, answer, questionLanguage, answerLanguage } = useAppSelector(popupDataSelector)
+  const { item, answer, questionLanguage, answerLanguage } = useAppSelector(modalDataSelector)
 
   const nextStep = () => {
     dispatch(activeTermForward())

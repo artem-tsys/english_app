@@ -7,7 +7,7 @@ import { LanguagesKeys } from 'src/constants/languages.constants'
 import { POPUPS } from 'src/constants/popups.constans'
 import { useAppDispatch } from 'src/hooks/redux'
 import { useTerms } from 'src/hooks/useTerms'
-import { SHOW_POPUP } from 'src/redux/general/common.slice'
+import { SHOW_MODAL } from 'src/redux/general/common.slice'
 import { IAnswer, ITerm } from 'src/types/terms'
 import { generateAnswersById } from 'src/utils/generateAnswersById'
 import { getElById } from 'src/utils/getElById'
@@ -33,16 +33,16 @@ export const SelectAnswers = ({ term, questionLanguage, answerLanguage }: Select
     const config =
       term.id === idAnswer
         ? {
-            popup: POPUPS.EXERCISE_MEMORIZATION_SELECTED_SUCCESS,
-            popupData: {
+            name: POPUPS.EXERCISE_MEMORIZATION_SELECTED_SUCCESS,
+            data: {
               answer,
               questionLanguage,
               termId: term.id,
             },
           }
         : {
-            popup: POPUPS.EXERCISE_MEMORIZATION_SELECTED_FAILED,
-            popupData: {
+            name: POPUPS.EXERCISE_MEMORIZATION_SELECTED_FAILED,
+            data: {
               item: term,
               questionLanguage,
               answerLanguage,
@@ -50,7 +50,7 @@ export const SelectAnswers = ({ term, questionLanguage, answerLanguage }: Select
             },
           }
 
-    dispatch(SHOW_POPUP(config))
+    dispatch(SHOW_MODAL(config))
   }
 
   return (

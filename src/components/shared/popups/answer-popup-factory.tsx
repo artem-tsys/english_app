@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useRef } from 'react'
+import React, { FC, useMemo, useRef } from 'react'
 import { Transition } from 'react-transition-group'
 import { ExerciseMemorizationFinishRound } from 'src/components/shared/popups/exercises-memorization/exercise-memorization-finish-round/exercise-memorization-finish-round'
 import { SelectedRightAnswer } from 'src/components/shared/popups/exercises-memorization/exercise-memorization-selected-right-answer/exercise-memorization-selected-right-answer'
@@ -7,8 +7,12 @@ import { ReminderSelectLanguage } from 'src/components/shared/popups/reminder-se
 import { SelectingLanguage } from 'src/components/shared/popups/selecting-language/selecting-language'
 import { PopupName } from 'src/constants/popups.constans'
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux'
-import { popupAnimationSelector, popupNameSelector } from 'src/redux/general/common.selectors'
-import { HIDE_POPUP } from 'src/redux/general/common.slice'
+import {
+  modalAnimationSelector,
+  modalNameSelector,
+  modalStateAnimateSelector,
+} from 'src/redux/general/common.selectors'
+import { HIDE_MODAL } from 'src/redux/general/common.slice'
 import style from 'src/styles/popups.module.scss'
 
 const popupsConfig: Record<PopupName, FC> = {
@@ -21,11 +25,6 @@ const popupsConfig: Record<PopupName, FC> = {
 }
 
 const direction = 700
-const defaultStyle = {
-  transition: `transform ${direction}ms ease-out`,
-  transform: 'translateX(100%)',
-}
-
 const transitionStyles = {
   entering: { transform: 'translateX(0)' },
   entered: { transform: 'translateX(0)' },
@@ -33,23 +32,32 @@ const transitionStyles = {
   exited: { transform: 'translateX(100%)' },
 }
 
-export const PopupManager = React.memo(() => {
-  const shownPopupName = useAppSelector(popupNameSelector)
-  const popupAnimateDestroy = useAppSelector(popupAnimationSelector)
-  const PopupToShow = popupsConfig[shownPopupName]
+export const ModalManager = () => {
+  const modalName = useAppSelector(modalNameSelector)
+  const modalAnimate = useAppSelector(modalStateAnimateSelector)
+  const isAnimation = useAppSelector(modalAnimationSelector)
+
+  const ModalToShow = popupsConfig[modalName]
+  const hasModalToShow = modalName && ModalToShow && !isAnimation
+  const ref = useRef()
   const dispatch = useAppDispatch()
 
-  const hasPopupToShow = shownPopupName && PopupToShow && !popupAnimateDestroy
-  const ref = useRef()
+  const timeout = useMemo(() => (modalAnimate ? direction : 0), [modalAnimate])
+  const defaultStyle = {
+    transitionProperty: 'transform',
+    transitionDuration: `${timeout}ms`,
+    transitionTimingFunction: 'ease-out',
+    transform: 'translateX(100%)',
+  }
 
-  const onExited = useCallback(() => {
-    if (popupAnimateDestroy) {
-      dispatch(HIDE_POPUP())
+  const onExited = () => {
+    if (isAnimation) {
+      dispatch(HIDE_MODAL())
     }
-  }, [dispatch, popupAnimateDestroy])
+  }
 
   return (
-    <Transition nodeRef={ref} in={hasPopupToShow} timeout={direction} onExited={onExited} unmountOnExit>
+    <Transition nodeRef={ref} in={hasModalToShow} timeout={timeout} onExited={onExited}>
       {(state) => (
         <div
           className={style.backdrop}
@@ -59,9 +67,9 @@ export const PopupManager = React.memo(() => {
             ...transitionStyles[state],
           }}
         >
-          {shownPopupName ? <PopupToShow /> : null}
+          {ModalToShow && <ModalToShow />}
         </div>
       )}
     </Transition>
   )
-})
+}

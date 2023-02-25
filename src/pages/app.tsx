@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { ErrorBoundary } from 'src/components/Generic/error-boundary/errorBoundary'
-import { PopupManager } from 'src/components/shared/popups/answer-popup-factory'
+import { ModalManager } from 'src/components/shared/popups/answer-popup-factory'
 import { useAppDispatch } from 'src/hooks/redux'
 import { fetchModules } from 'src/redux/modules/modules.thinks'
 import { RoutesPages } from 'src/routes/RoutesPages'
@@ -17,7 +17,7 @@ function App() {
     <ErrorBoundary>
       <div className={style.appContainer}>
         <RoutesPages />
-        <PopupManager />
+        <ModalManager />
       </div>
     </ErrorBoundary>
   )

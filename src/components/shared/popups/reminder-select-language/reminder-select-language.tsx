@@ -2,13 +2,13 @@ import { useEffect } from 'react'
 import style from 'src/components/shared/popups/reminder-select-language/reminder-select-language.module.scss'
 import { Substrate } from 'src/components/shared/popups/substrate'
 import { useAppDispatch } from 'src/hooks/redux'
-import { HIDE_POPUP } from 'src/redux/general/common.slice'
+import { HIDE_MODAL } from 'src/redux/general/common.slice'
 
 export const ReminderSelectLanguage = (): JSX.Element => {
   const dispatch = useAppDispatch()
   useEffect(() => {
     setTimeout(() => {
-      dispatch(HIDE_POPUP())
+      dispatch(HIDE_MODAL())
     }, 1200)
   }, [dispatch])
 
