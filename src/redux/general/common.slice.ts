@@ -8,6 +8,7 @@ const initialState = {
     data: null,
     animate: false,
   },
+  animationModal: false,
   reserveModal: [],
 }
 
@@ -21,12 +22,17 @@ export const commonSlice = createSlice({
         state.reserveModal.push(state.modal)
       }
       state.modal = { name, data, animate }
+      state.animationModal = false
     },
     HIDE_MODAL: (state) => {
-      if (state.reserveModal.length > 0) {
+      if (state.modal.animate && !state.animationModal) {
+        state.animationModal = true
+      } else if (state.reserveModal.length > 0) {
         state.modal = state.reserveModal.shift()
+        state.animationModal = false
       } else {
         state.modal = { name: null, data: null, animate: false }
+        state.animationModal = false
       }
     },
     UPDATE_MODULE_ID: (state, action) => {

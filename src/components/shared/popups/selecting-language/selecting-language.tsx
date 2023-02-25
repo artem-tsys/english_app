@@ -11,7 +11,7 @@ import { HIDE_MODAL } from 'src/redux/general/common.slice'
 
 export const SelectingLanguage = (): JSX.Element => {
   const dispatch = useAppDispatch()
-  const { languageKey } = useSelector(modalDataSelector)
+  const data = useSelector(modalDataSelector)
 
   const handleSelectLanguage = useCallback(
     (event: React.SyntheticEvent<EventTarget>) => {
@@ -22,13 +22,13 @@ export const SelectingLanguage = (): JSX.Element => {
       const language = event.target.dataset.value
       dispatch(
         updateLanguage({
-          languageKey,
+          languageKey: data.languageKey,
           value: language,
         }),
       )
       dispatch(HIDE_MODAL())
     },
-    [languageKey, dispatch],
+    [data, dispatch],
   )
 
   return (
