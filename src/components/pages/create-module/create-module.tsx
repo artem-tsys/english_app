@@ -1,5 +1,5 @@
-import { Formik } from 'formik'
-import React, { useCallback, useMemo, useState } from 'react'
+import { Formik, FormikHelpers } from 'formik'
+import React, { FC, useCallback, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { addModule } from 'src/api/modules.api'
 import { ButtonCreate } from 'src/components/pages/create-module/components/button-create'
@@ -10,11 +10,14 @@ import { ERROR_VALIDATION } from 'src/constants/errors.constants'
 import { INITIAL_LANGUAGES } from 'src/constants/exercises.constants'
 import { POPUPS } from 'src/constants/popups.constans'
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux'
+import { AppDispatch } from 'src/redux/app'
 import { createModuleLanguage } from 'src/redux/createModule/createModule.selectors'
 import { resetLanguage } from 'src/redux/createModule/createModule.slice'
 import { SHOW_MODAL } from 'src/redux/general/common.slice'
+import { InitialType, LanguagesInitial } from 'src/types/languages'
 import { IModuleInitial } from 'src/types/modules'
-import { ITerm, ITermInitial } from 'src/types/terms'
+import { ITermInitial } from 'src/types/terms'
+import { arrayContaining } from 'src/utils/arrayContaining'
 import { updateKeyInObjects } from 'src/utils/changeNameKeyInObjects'
 import { v4 as uuidv4 } from 'uuid'
 import * as yup from 'yup'
@@ -27,18 +30,18 @@ const validateSchema = yup.object({
       [INITIAL_LANGUAGES[1]]: yup.string().required(ERROR_VALIDATION.required),
     }),
   ),
+  languages: yup.array().length(2).of(yup.string().required()),
 })
 
-export const createTerm = (langFirst, langSecond): ITermInitial =>
+type CreateTerm = (langFirst: InitialType, langSecond: InitialType) => ITermInitial
+export const createTerm: CreateTerm = (langFirst, langSecond) =>
   ({
     id: uuidv4(),
     [langFirst]: '',
     [langSecond]: '',
   } as ITermInitial)
 
-const createTermWithInitialLanguages = () => createTerm(INITIAL_LANGUAGES[0], INITIAL_LANGUAGES[1])
-
-const initialTerm = [createTermWithInitialLanguages(), createTermWithInitialLanguages()]
+const initialTerm: ITermInitial[] = [createTerm(...INITIAL_LANGUAGES), createTerm(...INITIAL_LANGUAGES)]
 
 const defaultParams = {
   exercises: {
@@ -49,9 +52,10 @@ const defaultParams = {
   },
 }
 
-const createNewModule = (values, languages) => {
-  const preparedTerms: ITerm[] = updateKeyInObjects(
-    updateKeyInObjects(values.terms, INITIAL_LANGUAGES[0], languages[0]),
+type CreateNewModule = (values: IModuleInitial, languages: LanguagesInitial) => IModuleInitial
+const createNewModule: CreateNewModule = (values, languages) => {
+  const preparedTerms: ITermInitial[] = updateKeyInObjects<ITermInitial>(
+    updateKeyInObjects<ITermInitial>(values.terms, INITIAL_LANGUAGES[0], languages[0]),
     INITIAL_LANGUAGES[1],
     languages[1],
   )
@@ -59,33 +63,38 @@ const createNewModule = (values, languages) => {
   return Object.assign(values, { terms: preparedTerms }, defaultParams)
 }
 
-const handleSubmit =
+type HandleSubmit = (
+  dispatch: AppDispatch,
+  languages: LanguagesInitial,
+  callback: () => void,
+) => (values: IModuleInitial, { setSubmitting }: FormikHelpers<IModuleInitial>) => void
+
+const handleSubmit: HandleSubmit =
   (dispatch, languages, callback) =>
   async (values: IModuleInitial, { setSubmitting }) => {
-    if (languages[0] === INITIAL_LANGUAGES[0] || languages[1] === INITIAL_LANGUAGES[1]) {
+    if (arrayContaining(Object.keys(languages), INITIAL_LANGUAGES)) {
       setSubmitting(false)
       dispatch(
         SHOW_MODAL({
           name: POPUPS.REMINDER_SELECT_LANGUAGE,
         }),
       )
-      return false
+    } else {
+      const newModule = createNewModule(values, languages)
+      addModule(newModule)
+        .then(() => {
+          setSubmitting(false)
+          dispatch(resetLanguage)
+          callback()
+        })
+        .catch((error) => {
+          setSubmitting(false)
+          console.error(error.message)
+        })
     }
-
-    const newModule = createNewModule(values, languages)
-    addModule(newModule)
-      .then(() => {
-        setSubmitting(false)
-        dispatch(resetLanguage)
-        callback()
-      })
-      .catch((error) => {
-        setSubmitting(false)
-        console.error(error.message)
-      })
   }
 
-export const CreateModule = () => {
+export const CreateModule: FC = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const [terms, setTerms] = useState<ITermInitial[]>(initialTerm)
@@ -93,25 +102,25 @@ export const CreateModule = () => {
 
   const handleAddTerm = useCallback(
     (values) => {
-      setTerms([...values.terms, createTermWithInitialLanguages()])
+      setTerms([...values.terms, createTerm(...INITIAL_LANGUAGES)])
     },
     [setTerms],
   )
-
+  const initialValues: IModuleInitial = {
+    title: '',
+    terms,
+    languages,
+  }
   const formikConfig = useMemo(
     () => ({
       enableReinitialize: true,
       validationSchema: validateSchema,
       validateOnMount: false,
       validateOnChange: false,
-      initialValues: {
-        title: '',
-        terms,
-        languages,
-      },
+      initialValues,
       onSubmit: handleSubmit(dispatch, languages, () => navigate('/')),
     }),
-    [terms, languages],
+    [dispatch, terms, languages],
   )
 
   return (

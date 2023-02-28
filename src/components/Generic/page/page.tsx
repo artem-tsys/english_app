@@ -1,6 +1,11 @@
+import { FC, ReactNode } from 'react'
 import { useAppSelector } from 'src/hooks/redux'
 
-export const Page = ({ children }): JSX.Element => {
+type PageProps = {
+  children: ReactNode
+}
+
+export const Page: FC<PageProps> = ({ children }) => {
   const { error, loadingStatus } = useAppSelector((state) => state.modules)
 
   if (loadingStatus === 'pending' || loadingStatus === 'idle') {
@@ -9,5 +14,5 @@ export const Page = ({ children }): JSX.Element => {
   if (loadingStatus === 'failed') {
     return <div>{error ?? 'unknown error'}</div>
   }
-  return children
+  return <>{children}</>
 }

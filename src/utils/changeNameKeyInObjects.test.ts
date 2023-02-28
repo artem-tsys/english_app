@@ -1,15 +1,16 @@
 import { ERROR_IS_NOT_CORRECT_TYPE, ERROR_THE_KEY_EXISTS } from 'src/constants/errors.constants'
 import { updateKeyInObjects } from 'src/utils/changeNameKeyInObjects'
 
+type CorrectArray = Record<string, string>[]
 describe('test changeNameKeyInObject', () => {
-  const list = [
+  const list: CorrectArray = [
     { id: '1', name: 'obj-1' },
     { id: '2', name: 'obj-2' },
     { id: '3', name: 'obj-3' },
   ]
 
   test('valid values', () => {
-    const result = [
+    const result: CorrectArray = [
       { id: '1', age: 'obj-1' },
       { id: '2', age: 'obj-2' },
       { id: '3', age: 'obj-3' },
@@ -27,9 +28,12 @@ describe('test changeNameKeyInObject', () => {
   })
 
   test('incorrect list, like object', () => {
-    expect(() => updateKeyInObjects({ name: 'pasha', age: 31 }, 'age', 'id')).toThrowError(ERROR_IS_NOT_CORRECT_TYPE)
+    const value = { name: 'pasha', age: 31 } as unknown as CorrectArray
+    expect(() => updateKeyInObjects(value, 'age', 'id')).toThrowError(ERROR_IS_NOT_CORRECT_TYPE)
   })
+
   test('incorrect list, like string', () => {
-    expect(() => updateKeyInObjects('string', 'age', 'id')).toThrowError(ERROR_IS_NOT_CORRECT_TYPE)
+    const value = 'string' as unknown as string[]
+    expect(() => updateKeyInObjects(value, 'age', 'id')).toThrowError(ERROR_IS_NOT_CORRECT_TYPE)
   })
 })

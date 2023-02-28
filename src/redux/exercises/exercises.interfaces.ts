@@ -1,4 +1,4 @@
-import { LanguagesKeys } from 'src/constants/languages.constants'
+import { LanguagesKeys } from 'src/types/languages'
 
 export interface AddLearnedTermPayload {
   id: string

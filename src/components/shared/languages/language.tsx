@@ -1,3 +1,4 @@
+import { FC } from 'react'
 import style from 'src/components/shared/languages/languages.module.scss'
 
 type LanguagesListProps = {
@@ -6,7 +7,7 @@ type LanguagesListProps = {
   onClick?
 }
 
-export const Language = ({ text, value, onClick }: LanguagesListProps): JSX.Element => (
+export const Language: FC<LanguagesListProps> = ({ text, value, onClick }: LanguagesListProps) => (
   <li className={style.element}>
     <button onClick={onClick} data-value={value} className={style.button}>
       {text}

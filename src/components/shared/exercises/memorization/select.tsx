@@ -1,13 +1,13 @@
 import cn from 'classnames'
 import { shuffle } from 'lodash'
-import { useMemo } from 'react'
+import { FC, useMemo } from 'react'
 import { Answer } from 'src/components/shared/exercises/memorization/components/answer'
 import { MEMORIZATION_NUMBER_ANSWERS } from 'src/constants/exercises.constants'
-import { LanguagesKeys } from 'src/constants/languages.constants'
 import { POPUPS } from 'src/constants/popups.constans'
 import { useAppDispatch } from 'src/hooks/redux'
 import { useTerms } from 'src/hooks/useTerms'
 import { SHOW_MODAL } from 'src/redux/general/common.slice'
+import { LanguagesKeys } from 'src/types/languages'
 import { IAnswer, ITerm } from 'src/types/terms'
 import { generateAnswersById } from 'src/utils/generateAnswersById'
 import { getElById } from 'src/utils/getElById'
@@ -19,7 +19,7 @@ type SelectAnswersProps = {
   answerLanguage: LanguagesKeys
 }
 
-export const SelectAnswers = ({ term, questionLanguage, answerLanguage }: SelectAnswersProps): JSX.Element => {
+export const SelectAnswers: FC<SelectAnswersProps> = ({ term, questionLanguage, answerLanguage }) => {
   const terms = useTerms()
   const dispatch = useAppDispatch()
 

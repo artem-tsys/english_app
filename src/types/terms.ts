@@ -1,18 +1,11 @@
-import { LanguagesKeys, LanguagesTypes } from 'src/constants/languages.constants'
-
-export enum LanguagesInitialTerm {
-  term = 'term',
-  translation = 'translation',
-}
-
-export type LanguagesInitial = LanguagesKeys | LanguagesInitialTerm
+import { LanguagesInitial, LanguagesKeys, LanguagesTypes } from 'src/types/languages'
 
 export type ITerm = LanguagesTypes & {
   id: string
 }
 
 export type ITermInitial = {
-  [key in LanguagesInitial]: string
+  [key in keyof LanguagesInitial]: string
 } & {
   id: string
 }

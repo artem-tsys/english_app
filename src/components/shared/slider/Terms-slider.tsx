@@ -1,3 +1,4 @@
+import { FC } from 'react'
 import { TermCard } from 'src/components/shared/cards/term/term.card'
 import { CreateSlider } from 'src/components/shared/slider/Slider-creator'
 import { useTerms } from 'src/hooks/useTerms'
@@ -12,7 +13,7 @@ const Slider = CreateSlider<ITerm>({
   },
 })
 
-const TermsSlider = () => {
+const TermsSlider: FC = () => {
   const terms = useTerms()
 
   if (!terms) return null

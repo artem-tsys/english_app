@@ -1,12 +1,13 @@
 import cn from 'classnames'
 import { uniq } from 'lodash'
+import { FC } from 'react'
 import { useAppSelector } from 'src/hooks/redux'
 import { useModule } from 'src/hooks/useModule'
 import { useTerm } from 'src/hooks/useTerm'
 import { roundTermsIdsSelector } from 'src/redux/exercises/exercises.selectors'
 import style from './list-round-terms.module.scss'
 
-const RoundTerm = ({ id }) => {
+const RoundTerm: FC<{ id: string }> = ({ id }) => {
   const term = useTerm(id)
   const { languages } = useModule()
 
@@ -20,7 +21,7 @@ const RoundTerm = ({ id }) => {
   )
 }
 
-export const ListRoundTerms = (): JSX.Element => {
+export const ListRoundTerms: FC = () => {
   const termsIds = useAppSelector(roundTermsIdsSelector)
   const uniqTerms = uniq(termsIds)
 

@@ -1,6 +1,6 @@
 import cn from 'classnames'
 import { flatten, shuffle, times } from 'lodash'
-import { useEffect } from 'react'
+import { FC, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { CloseButton } from 'src/components/shared/buttons/Close.button'
 import { Round } from 'src/components/shared/exercises/round'
@@ -23,14 +23,14 @@ import styleMain from 'src/styles/main.module.scss'
 import { ITerm } from 'src/types/terms'
 import { getObjectsById } from 'src/utils/getObjectsById'
 
-const isFinishedModule = (terms: ITerm[], learnedTerms: string[]) => {
+const isFinishedModule = (terms: ITerm[], learnedTerms: string[]): boolean => {
   if (terms.length === 0) return true
   return learnedTerms.length >= terms.length
 }
 
 const termsNumberCopies = 2
 
-export const Memorization = () => {
+export const Memorization: FC = () => {
   const query = useParams()
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -66,6 +66,7 @@ export const Memorization = () => {
   }
 
   if (roundTerms.length === 0) return null
+
   return (
     <>
       <Header className={styleMain.headerBackground}>

@@ -8,11 +8,13 @@ export interface IGetObjectsByIdProps<T> {
   isRandomOrder?: boolean
 }
 
-export const getObjectsById = <T extends { id: string }>({
+type GetObjectsById = <T extends { id: string }>(IGetObjectsByIdProps) => T[]
+
+export const getObjectsById: GetObjectsById = ({
   collection,
   amount = NUMBER_TERMS_IN_ROUND,
   isRandomOrder = true,
-}: IGetObjectsByIdProps<T>): T[] => {
+}) => {
   if (!Array.isArray(collection) || typeof amount !== 'number') {
     throw new Error(ERROR_IS_NOT_CORRECT_TYPE)
   }

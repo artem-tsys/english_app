@@ -1,10 +1,15 @@
 import { ErrorMessage, Field, Form } from 'formik'
-import React from 'react'
+import React, { FC } from 'react'
 import style from 'src/components/pages/create-module/create-module.module.scss'
 import { CreateModulesTerms } from 'src/components/pages/create-module/create-modules-terms'
 import { ErrorMessageWrapper } from 'src/components/shared/error-message-wrapper'
+import { ITerm, ITermInitial } from 'src/types/terms'
 
-export const CreateModulesForm = ({ terms }): JSX.Element => (
+type CreateModulesFormProps = {
+  terms: ITerm[] | ITermInitial[]
+}
+
+export const CreateModulesForm: FC<CreateModulesFormProps> = ({ terms }) => (
   <Form className={style.form}>
     <div className={style.term}>
       <label className={style.label}>

@@ -1,6 +1,8 @@
 import { ERROR_IS_NOT_CORRECT_TYPE, ERROR_THE_KEY_EXISTS } from 'src/constants/errors.constants'
 
-export const updateKeyInObjects = (list, prevKey, nextKey) => {
+type UpdateKeyInObjects = <T>(list: T[], prevKey: string, nextKey: string) => T[]
+
+export const updateKeyInObjects: UpdateKeyInObjects = (list, prevKey, nextKey) => {
   if (!Array.isArray(list)) {
     throw new Error(ERROR_IS_NOT_CORRECT_TYPE)
   }
@@ -10,6 +12,7 @@ export const updateKeyInObjects = (list, prevKey, nextKey) => {
   if (list[0][nextKey]) {
     throw new Error(ERROR_THE_KEY_EXISTS)
   }
+
   return list.map((el) => {
     const newEl = {
       ...el,

@@ -1,7 +1,7 @@
 import { settings1, settings2 } from 'src/__tests__/fixtures/answers.json'
 import terms from 'src/__tests__/fixtures/terms.json'
 import { ERROR_ID_IS_NOT_FOUND, ERROR_INCORRECT_VALUE, ERROR_IS_NOT_CORRECT_TYPE } from 'src/constants/errors.constants'
-import { LanguagesKeys } from 'src/constants/languages.constants'
+import { LanguagesKeys } from 'src/types/languages'
 import { ITerm } from 'src/types/terms'
 import { generateAnswersById } from 'src/utils/generateAnswersById'
 

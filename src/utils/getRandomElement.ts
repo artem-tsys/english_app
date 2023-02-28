@@ -1,7 +1,9 @@
 import { random } from 'lodash'
 import { ERROR_IS_NOT_CORRECT_TYPE } from 'src/constants/errors.constants'
 
-export const getRandomElement = (types) => {
+type GetRandomElement = <T>(types: T[]) => T
+
+export const getRandomElement: GetRandomElement = (types) => {
   if (!Array.isArray(types)) {
     throw new Error(ERROR_IS_NOT_CORRECT_TYPE)
   }

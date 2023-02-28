@@ -1,6 +1,6 @@
 import { reject } from 'lodash'
 import { ERROR_ID_IS_NOT_FOUND, ERROR_INCORRECT_VALUE, ERROR_IS_NOT_CORRECT_TYPE } from 'src/constants/errors.constants'
-import { LanguagesKeys } from 'src/constants/languages.constants'
+import { LanguagesKeys } from 'src/types/languages'
 import { getElById } from 'src/utils/getElById'
 import { getObjectsById } from 'src/utils/getObjectsById'
 

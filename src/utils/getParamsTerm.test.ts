@@ -1,6 +1,6 @@
 import { ERROR_IS_NOT_CORRECT_TYPE } from 'src/constants/errors.constants'
-import { LanguagesKeys } from 'src/constants/languages.constants'
 import ArrayContain from 'src/matchers/ArrayContain'
+import { LanguagesKeys } from 'src/types/languages'
 import { IParamsTerm } from 'src/types/terms'
 import { getParamsTerm } from 'src/utils/getParamsTerm'
 

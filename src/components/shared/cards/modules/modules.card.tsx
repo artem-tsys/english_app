@@ -1,11 +1,16 @@
-import { useContext } from 'react'
+import { FC, useContext } from 'react'
 import 'slick-carousel/slick/slick-theme.css'
 import 'slick-carousel/slick/slick.css'
 import style from 'src/components/shared/cards/modules/modules.card.module.scss'
 import { sliderSlickContext } from 'src/context'
-import { CardComponent, IModule } from 'src/types/modules'
+import { IModule } from 'src/types/modules'
 
-export const ModulesCard: CardComponent<IModule> = ({ card, onClick }) => {
+export type ModulesCardProps = {
+  card: IModule
+  onClick: (id: string) => void
+}
+
+export const ModulesCard: FC<ModulesCardProps> = ({ card, onClick }) => {
   const { checkSwiping } = useContext(sliderSlickContext)
   const handleClick = () => {
     if (checkSwiping()) return
