@@ -1,9 +1,10 @@
 import cn from 'classnames'
+import { FC } from 'react'
 import style from 'src/components/shared/buttons/buttons.module.scss'
 
-type Button = (props: { styleName?: string }) => JSX.Element
+type ButtonProp = { styleName?: string }
 
-export const MoreButton: Button = ({ styleName }): JSX.Element => {
+export const MoreButton: FC<ButtonProp> = ({ styleName }) => {
   const clickHandle = () => {
     alert('more')
   }

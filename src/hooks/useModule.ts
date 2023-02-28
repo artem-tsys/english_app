@@ -7,5 +7,6 @@ export const useModule = (): IModule => {
   const routeParams = useParams()
   const { moduleId } = useAppSelector((state) => state.common)
   const module = useAppSelector(modulesSelectById(moduleId ?? routeParams.moduleId))
+
   return module ?? null
 }

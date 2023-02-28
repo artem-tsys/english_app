@@ -1,5 +1,5 @@
-import { LanguagesKeys } from 'src/constants/languages.constants'
-import { ITerm, ITermInitial, LanguagesInitial } from './terms'
+import { LanguagesInitial, LanguagesKeys } from 'src/types/languages'
+import { ITerm, ITermInitial } from './terms'
 
 export interface IModule {
   title: string
@@ -18,7 +18,5 @@ export interface IModule {
 export interface IModuleInitial {
   title: string
   terms: ITermInitial[]
-  languages: [LanguagesInitial, LanguagesInitial]
+  languages: LanguagesInitial
 }
-
-export type CardComponent<T> = ({ card, onClick }: { card: T; onClick?: (id: string) => void }) => JSX.Element

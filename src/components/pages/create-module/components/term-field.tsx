@@ -1,15 +1,15 @@
 import { ErrorMessage, Field, useFormikContext } from 'formik'
-import React from 'react'
+import React, { FC, ReactNode } from 'react'
 import style from 'src/components/pages/create-module/create-module.module.scss'
 import { ErrorMessageWrapper } from 'src/components/shared/error-message-wrapper'
 
 interface ITermProps {
   title: string
   nameField: string
-  children?: React.ReactNode
+  children?: ReactNode
 }
 
-export const Term: React.FC<ITermProps> = ({ title, nameField, children }) => {
+export const Term: FC<ITermProps> = ({ title, nameField, children }) => {
   const formik = useFormikContext()
 
   return (

@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { FC, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { LinksExercises } from 'src/components/pages/modules/exercisesLinks'
 import style from 'src/components/pages/modules/modules.module.scss'
@@ -10,7 +10,7 @@ import { useAppDispatch } from 'src/hooks/redux'
 import { UPDATE_MODULE_ID } from 'src/redux/general/common.slice'
 import styleMain from 'src/styles/main.module.scss'
 
-export const Modules = () => {
+export const Modules: FC = () => {
   const dispatch = useAppDispatch()
   const { moduleId } = useParams()
 

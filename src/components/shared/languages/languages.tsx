@@ -1,6 +1,7 @@
+import { FC } from 'react'
 import { Language } from 'src/components/shared/languages/language'
 import style from 'src/components/shared/languages/languages.module.scss'
-import { LanguagesTypes } from 'src/constants/languages.constants'
+import { LanguagesTypes } from 'src/types/languages'
 
 type LanguagesProps = {
   title: string
@@ -8,7 +9,7 @@ type LanguagesProps = {
   onClick?
 }
 
-export const Languages = ({ title, languages, onClick }: LanguagesProps): JSX.Element => {
+export const Languages: FC<LanguagesProps> = ({ title, languages, onClick }) => {
   const list = Object.entries(languages)
 
   return (

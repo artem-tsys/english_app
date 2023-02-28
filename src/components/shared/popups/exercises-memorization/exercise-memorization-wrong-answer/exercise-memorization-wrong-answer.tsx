@@ -1,4 +1,5 @@
 import cn from 'classnames'
+import { FC } from 'react'
 import { SadEmoji } from 'src/components/shared/icons/sad.emoji'
 import style from 'src/components/shared/popups/exercises-memorization/exercise-memorization-wrong-answer/exercise-memorization-wrong-answer.module.scss'
 import { Substrate } from 'src/components/shared/popups/substrate'
@@ -7,7 +8,7 @@ import { activeTermForward } from 'src/redux/exercises/exercises.slice'
 import { modalDataSelector } from 'src/redux/general/common.selectors'
 import stylePopup from 'src/styles/popups.module.scss'
 
-export const SelectedWrongAnswer = () => {
+export const SelectedWrongAnswer: FC = () => {
   const dispatch = useAppDispatch()
   const { item, answer, questionLanguage, answerLanguage } = useAppSelector(modalDataSelector)
 

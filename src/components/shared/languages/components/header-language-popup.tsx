@@ -1,9 +1,10 @@
+import { FC, ReactNode } from 'react'
 import { ComebackButton } from 'src/components/shared/buttons/Comeback.button'
 import style from 'src/components/shared/languages/languages.module.scss'
 import { useAppDispatch } from 'src/hooks/redux'
 import { HIDE_MODAL } from 'src/redux/general/common.slice'
 
-export const HeaderLanguagePopup = ({ children }): JSX.Element => {
+export const HeaderLanguagePopup: FC<{ children: ReactNode }> = ({ children }) => {
   const dispatch = useAppDispatch()
   const onClick = () => {
     dispatch(HIDE_MODAL())

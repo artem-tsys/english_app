@@ -1,3 +1,1 @@
-type TypesExerciseAnswers = 'select'
-
-export const typesExerciseAnswers: TypesExerciseAnswers[] = ['select']
+export const typesExerciseAnswers: string[] = ['select']

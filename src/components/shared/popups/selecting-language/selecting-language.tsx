@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { FC, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { HeaderLanguagePopup } from 'src/components/shared/languages/components/header-language-popup'
 import { Languages } from 'src/components/shared/languages/languages'
@@ -9,7 +9,7 @@ import { updateLanguage } from 'src/redux/createModule/createModule.slice'
 import { modalDataSelector } from 'src/redux/general/common.selectors'
 import { HIDE_MODAL } from 'src/redux/general/common.slice'
 
-export const SelectingLanguage = (): JSX.Element => {
+export const SelectingLanguage: FC = () => {
   const dispatch = useAppDispatch()
   const data = useSelector(modalDataSelector)
 

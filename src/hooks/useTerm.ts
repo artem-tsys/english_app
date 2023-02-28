@@ -4,6 +4,7 @@ import { activeTermIndexSelector, roundTermsIdsSelector } from 'src/redux/exerci
 import { ITerm } from 'src/types/terms'
 
 type UseTerm = (id?: string) => ITerm
+
 export const useTerm: UseTerm = (id) => {
   const termsRound = useAppSelector(roundTermsIdsSelector)
   const { terms } = useModule()

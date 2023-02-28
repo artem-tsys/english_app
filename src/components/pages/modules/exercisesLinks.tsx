@@ -1,7 +1,8 @@
 import { ExerciseLink } from 'src/components/pages/modules/exercisesLink'
 import style from 'src/components/pages/modules/modules.module.scss'
 
-const generatePathExercises = (type: string) => (id: string | number) => `/module/${id}/${type}`
+export type GeneratePathExercises = (type: string) => (id: string | number) => string
+const generatePathExercises: GeneratePathExercises = (type) => (id) => `/module/${id}/${type}`
 
 const RoutesButtons = [
   {

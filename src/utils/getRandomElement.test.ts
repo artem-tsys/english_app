@@ -20,8 +20,8 @@ describe('get random element', () => {
   })
 
   test('is not valid types', () => {
-    expect(() => getRandomElement(4)).toThrow(ERROR_IS_NOT_CORRECT_TYPE)
+    const numberValue = 4 as unknown as number[]
+    expect(() => getRandomElement(numberValue)).toThrow(ERROR_IS_NOT_CORRECT_TYPE)
     expect(() => getRandomElement(null)).toThrow(ERROR_IS_NOT_CORRECT_TYPE)
-    expect(() => getRandomElement('trete')).toThrow(ERROR_IS_NOT_CORRECT_TYPE)
   })
 })

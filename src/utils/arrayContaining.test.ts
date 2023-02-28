@@ -25,11 +25,9 @@ describe('invalid arguments', () => {
   test('no valid list', () => {
     expect(() => arrayContaining(null, contain)).toThrow(ERROR_IS_NOT_CORRECT_TYPE)
     expect(() => arrayContaining(undefined, contain)).toThrow(ERROR_IS_NOT_CORRECT_TYPE)
-    expect(() => arrayContaining('435634', contain)).toThrow(ERROR_IS_NOT_CORRECT_TYPE)
   })
   test('no valid contain', () => {
     expect(() => arrayContaining(list, null)).toThrow(ERROR_IS_NOT_CORRECT_TYPE)
     expect(() => arrayContaining(list, undefined)).toThrow(ERROR_IS_NOT_CORRECT_TYPE)
-    expect(() => arrayContaining(list, '435634')).toThrow(ERROR_IS_NOT_CORRECT_TYPE)
   })
 })

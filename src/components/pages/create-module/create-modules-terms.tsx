@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Term } from 'src/components/pages/create-module/components/term-field'
 import { LanguageButton } from 'src/components/shared/buttons/Language.button'
 import { INITIAL_LANGUAGES } from 'src/constants/exercises.constants'
@@ -9,7 +9,7 @@ import { SHOW_MODAL } from 'src/redux/general/common.slice'
 import { ITerm } from 'src/types/terms'
 import style from './create-module.module.scss'
 
-type ICreateModulesTerms = ({ term, fieldName }: { term: ITerm; fieldName: string }) => JSX.Element
+type ICreateModulesTerms = FC<{ term: ITerm; fieldName: string }>
 
 export const CreateModulesTerms: ICreateModulesTerms = ({ term, fieldName }) => {
   const dispatch = useAppDispatch()

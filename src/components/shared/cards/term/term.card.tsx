@@ -1,13 +1,16 @@
-import { useContext, useState } from 'react'
+import { FC, useContext, useState } from 'react'
 import { CardBackface } from 'src/components/shared/cards/term/term-backface.card'
 import { CardFace } from 'src/components/shared/cards/term/term-face.card'
 import style from 'src/components/shared/cards/term/term.module.scss'
 import { sliderSlickContext } from 'src/context'
-import { CardComponent } from 'src/types/modules'
 import { ITerm } from 'src/types/terms'
 import ReactCardFlip from 'src/utils/react-card-flip/react-card-flip'
 
-export const TermCard: CardComponent<ITerm> = ({ card }) => {
+export type ModulesCardProps = {
+  card: ITerm
+}
+
+export const TermCard: FC<ModulesCardProps> = ({ card }) => {
   const [isFlipped, setFlipped] = useState(false)
   const { checkSwiping } = useContext(sliderSlickContext)
 

@@ -1,6 +1,13 @@
-export const ErrorBoundary = ({ children }): JSX.Element => {
+import { FC, ReactNode } from 'react'
+
+type ErrorBoundaryProps = {
+  children: ReactNode
+}
+
+export const ErrorBoundary: FC<ErrorBoundaryProps> = ({ children }) => {
   try {
-    return children
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    return <>{children}</>
   } catch (e) {
     return <div>error components</div>
   }

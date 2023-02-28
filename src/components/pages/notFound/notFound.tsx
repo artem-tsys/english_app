@@ -1,6 +1,7 @@
+import { FC } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-export const NotFound = () => {
+export const NotFound: FC = () => {
   const navigate = useNavigate()
   const handleBack = () => {
     navigate(-1)

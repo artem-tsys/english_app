@@ -1,3 +1,4 @@
+import { FC } from 'react'
 import { CloseButton } from 'src/components/shared/buttons/Close.button'
 import { ButtonFullWidth } from 'src/components/shared/popups/exercises-memorization/components/button-full-width/button-full-width'
 import ConditionExercise from 'src/components/shared/popups/exercises-memorization/components/condition-exercise'
@@ -8,7 +9,7 @@ import { roundNumberSelector } from 'src/redux/exercises/exercises.selectors'
 import { roundForward } from 'src/redux/exercises/exercises.slice'
 import { HIDE_MODAL } from 'src/redux/general/common.slice'
 
-export const ExerciseMemorizationFinishRound = (): JSX.Element => {
+export const ExerciseMemorizationFinishRound: FC = () => {
   const round = useAppSelector(roundNumberSelector)
   const dispatch = useAppDispatch()
 

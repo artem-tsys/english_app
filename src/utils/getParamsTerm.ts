@@ -1,5 +1,5 @@
 import { findIndex } from 'lodash'
-import { LanguagesKeys } from 'src/constants/languages.constants'
+import { LanguagesKeys } from 'src/types/languages'
 import { IParamsTerm } from 'src/types/terms'
 import { arrayContaining } from 'src/utils/arrayContaining'
 

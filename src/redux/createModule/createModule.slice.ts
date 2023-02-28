@@ -1,24 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { INITIAL_LANGUAGES } from 'src/constants/exercises.constants'
 import { RESET_LANGUAGE, UPDATE_LANGUAGE } from 'src/redux/createModule/createModule.constants'
-import { LanguagesInitial } from 'src/types/terms'
+import { LanguagesInitial, LanguagesKeys } from 'src/types/languages'
 
 /* eslint-disable no-param-reassign */
-
-interface InitialState {
-  languages: [LanguagesInitial, LanguagesInitial]
+export interface InitialState {
+  languages: LanguagesInitial
 }
 
-const initialState = {
-  languages: [INITIAL_LANGUAGES[0], INITIAL_LANGUAGES[1]],
-} as InitialState
+const initialState: InitialState = {
+  languages: INITIAL_LANGUAGES,
+}
 
 export const createModuleSlice = createSlice({
   name: 'createModule',
   initialState,
   reducers: {
     [UPDATE_LANGUAGE]: (state, { payload: { languageKey, value } }) => {
-      state.languages[languageKey] = value
+      state.languages[languageKey] = value as LanguagesKeys
     },
     [RESET_LANGUAGE]: (state) => ({ ...state, languages: initialState.languages }),
   },

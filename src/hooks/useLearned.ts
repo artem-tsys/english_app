@@ -3,9 +3,14 @@ import { useAppSelector } from 'src/hooks/redux'
 import { useModule } from 'src/hooks/useModule'
 import { useTerm } from 'src/hooks/useTerm'
 import { learnedTermsSelector } from 'src/redux/exercises/exercises.selectors'
+import { IParamsTerm, ITerm } from 'src/types/terms'
 import { getParamsTerm } from 'src/utils/getParamsTerm'
 
-export const useLearned = () => {
+type IUseLearned = () => {
+  term: ITerm
+} & IParamsTerm
+
+export const useLearned: IUseLearned = () => {
   const { languages } = useModule()
   const learnedIds = useAppSelector(learnedTermsSelector)
   const term = useTerm()
