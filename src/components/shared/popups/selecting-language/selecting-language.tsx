@@ -20,6 +20,7 @@ export const SelectingLanguage: FC = () => {
       }
 
       const language = event.target.dataset.value
+
       dispatch(
         updateLanguage({
           languageKey: data.languageKey,
