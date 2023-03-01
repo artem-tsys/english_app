@@ -56,9 +56,7 @@ export const exercisesMiddleware = (store) => (next) => async (action) => {
         dispatch(endMemorizationMode())
       }
       await dispatch(submitLearned())
-      setTimeout(() => {
-        dispatch(SHOW_MODAL({ name: POPUPS.EXERCISE_MEMORIZATION_FINISH_ROUND }))
-      }, 1000)
+      dispatch(SHOW_MODAL({ name: POPUPS.EXERCISE_MEMORIZATION_FINISH_ROUND }))
       break
     }
     case ACTIVE_TERM_FORWARD.type: {
