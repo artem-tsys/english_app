@@ -14,7 +14,7 @@ export const Home: FC = () => {
   const dispatch = useAppDispatch()
 
   const handlerCreate = useCallback(() => {
-    navigate('createModule')
+    navigate('create-module')
   }, [navigate])
 
   const handleClick = useCallback(

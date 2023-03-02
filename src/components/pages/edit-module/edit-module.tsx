@@ -1,8 +1,8 @@
 import { Formik, FormikHelpers } from 'formik'
-import React, { FC, useCallback, useMemo, useState } from 'react'
+import React, { FC, useCallback, useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { addModule } from 'src/api/modules.api'
-import style from 'src/components/pages/create-module/create-module.module.scss'
+import { updateModule } from 'src/api/modules.api'
+import style from 'src/components/pages/edit-module/edit-module.module.scss'
 import ButtonCreate from 'src/components/shared/modules/components/button-create'
 import ModuleHeader from 'src/components/shared/modules/components/header'
 import { ModulesForm } from 'src/components/shared/modules/module-form/module-form'
@@ -11,48 +11,52 @@ import { POPUPS } from 'src/constants/popups.constans'
 import { createTerm } from 'src/helpers/create-term'
 import { validateSchema } from 'src/helpers/module-validate-schema'
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux'
+import { useModule } from 'src/hooks/useModule'
 import { AppDispatch } from 'src/redux/app'
 import { createModuleLanguage } from 'src/redux/createModule/createModule.selectors'
 import { resetLanguage } from 'src/redux/createModule/createModule.slice'
 import { SHOW_MODAL } from 'src/redux/general/common.slice'
-import { LanguagesInitial } from 'src/types/languages'
-import { IModuleInitial } from 'src/types/modules'
-import { ITermInitial } from 'src/types/terms'
+import { Languages, LanguagesInitial } from 'src/types/languages'
+import { IModule } from 'src/types/modules'
+import { ITerm } from 'src/types/terms'
 import { arrayContaining } from 'src/utils/arrayContaining'
 import { updateKeyInObjects } from 'src/utils/changeNameKeyInObjects'
 
-const initialTerm: ITermInitial[] = [createTerm(...INITIAL_LANGUAGES), createTerm(...INITIAL_LANGUAGES)]
-
-const defaultParams = {
-  exercises: {
-    memorization: {
-      round: 0,
-      learnedIds: [],
-    },
-  },
-}
-
-type CreateNewModule = (values: IModuleInitial, languages: LanguagesInitial) => IModuleInitial
-const createNewModule: CreateNewModule = (values, languages) => {
-  const preparedTerms: ITermInitial[] = updateKeyInObjects<ITermInitial>(
-    updateKeyInObjects<ITermInitial>(values.terms, INITIAL_LANGUAGES[0], languages[0]),
+type PrepareModule = (moduleId: string, values: IModule, languages: Languages) => IModule
+const prepareModule: PrepareModule = (moduleId, values, languages) => {
+  const preparedTerms: ITerm[] = updateKeyInObjects<ITerm>(
+    updateKeyInObjects<ITerm>(values.terms, INITIAL_LANGUAGES[0], languages[0]),
     INITIAL_LANGUAGES[1],
     languages[1],
   )
+  const module: IModule = Object.assign(values, { terms: preparedTerms })
 
-  return Object.assign(values, { terms: preparedTerms }, defaultParams)
+  const preparedModule: IModule = {
+    ...module,
+    languages,
+    exercises: {
+      memorization: {
+        round: 1,
+        isLearned: false,
+        learnedIds: [],
+      },
+    },
+  }
+
+  return preparedModule
 }
 
 type HandleSubmit = (
   dispatch: AppDispatch,
   languages: LanguagesInitial,
+  module: IModule,
   callback: () => void,
-) => (values: IModuleInitial, { setSubmitting }: FormikHelpers<IModuleInitial>) => void
+) => (values: IModule, { setSubmitting }: FormikHelpers<IModule>) => void
 
 const handleSubmit: HandleSubmit =
-  (dispatch, languages, callback) =>
-  async (values: IModuleInitial, { setSubmitting }) => {
-    if (arrayContaining(Object.keys(languages), INITIAL_LANGUAGES)) {
+  (dispatch, languages, module, callback) =>
+  async (values: IModule, { setSubmitting }) => {
+    if (arrayContaining(languages, INITIAL_LANGUAGES)) {
       setSubmitting(false)
       dispatch(
         SHOW_MODAL({
@@ -60,8 +64,9 @@ const handleSubmit: HandleSubmit =
         }),
       )
     } else {
-      const newModule = createNewModule(values, languages)
-      addModule(newModule)
+      const preparedModule = prepareModule(module.id, values, languages as Languages)
+
+      updateModule(module.id, preparedModule)
         .then(() => {
           setSubmitting(false)
           dispatch(resetLanguage)
@@ -74,11 +79,12 @@ const handleSubmit: HandleSubmit =
     }
   }
 
-export const CreateModule: FC = () => {
+export const EditModule: FC = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const [terms, setTerms] = useState<ITermInitial[]>(initialTerm)
   const languages = useAppSelector(createModuleLanguage)
+  const module = useModule()
+  const [terms, setTerms] = useState<ITerm[]>(module.terms)
 
   const handleAddTerm = useCallback(
     (values) => {
@@ -86,11 +92,13 @@ export const CreateModule: FC = () => {
     },
     [setTerms],
   )
-  const initialValues: IModuleInitial = {
-    title: '',
+
+  const initialValues: IModule = {
+    ...module,
     terms,
-    languages,
+    languages: languages as Languages,
   }
+
   const formikConfig = useMemo(
     () => ({
       enableReinitialize: true,
@@ -98,16 +106,24 @@ export const CreateModule: FC = () => {
       validateOnMount: false,
       validateOnChange: false,
       initialValues,
-      onSubmit: handleSubmit(dispatch, languages, () => navigate('/')),
+      onSubmit: handleSubmit(dispatch, languages, module, () => navigate('/')),
     }),
     [dispatch, terms, languages],
   )
+
+  useEffect(() => {
+    // eslint-disable-next-line no-console
+    console.log('initialValues', initialValues)
+    if (!module) {
+      navigate('/')
+    }
+  }, [])
 
   return (
     <div className={style.container}>
       <Formik {...formikConfig}>
         <>
-          <ModuleHeader title="Создать модуль" />
+          <ModuleHeader title="Редактировать модуль" />
           <ModulesForm terms={terms} />
           <div className={style.footer}>
             <ButtonCreate handleAddTerm={handleAddTerm} />

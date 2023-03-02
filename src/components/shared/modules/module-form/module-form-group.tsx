@@ -1,17 +1,16 @@
 import React, { FC } from 'react'
-import { Term } from 'src/components/pages/create-module/components/term-field'
 import { LanguageButton } from 'src/components/shared/buttons/Language.button'
-import { INITIAL_LANGUAGES } from 'src/constants/exercises.constants'
+import { Term } from 'src/components/shared/modules/components/term/term'
+import style from 'src/components/shared/modules/module-form/module-form.module.scss'
 import { POPUPS } from 'src/constants/popups.constans'
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux'
 import { createModuleLanguage } from 'src/redux/createModule/createModule.selectors'
 import { SHOW_MODAL } from 'src/redux/general/common.slice'
 import { ITerm } from 'src/types/terms'
-import style from './create-module.module.scss'
 
-type ICreateModulesTerms = FC<{ term: ITerm; fieldName: string }>
+type IModulesGroup = FC<{ term: ITerm; fieldName: string }>
 
-export const CreateModulesTerms: ICreateModulesTerms = ({ term, fieldName }) => {
+export const ModulesGroup: IModulesGroup = ({ term, fieldName }) => {
   const dispatch = useAppDispatch()
   const languages = useAppSelector(createModuleLanguage)
   const handleSelectLang = (node) => {
@@ -26,12 +25,15 @@ export const CreateModulesTerms: ICreateModulesTerms = ({ term, fieldName }) => 
     )
   }
 
+  // eslint-disable-next-line no-console
+  console.log('languages', languages)
+
   return (
-    <div className={style.card} data-testid="term-group" key={term.id}>
-      <Term title="термин" nameField={`${fieldName}.${INITIAL_LANGUAGES[0]}`}>
+    <div className={style.form__group} data-testid="term-group" key={term.id}>
+      <Term title="термин" nameField={`${fieldName}.${languages[0]}`}>
         <LanguageButton onClick={handleSelectLang} text={languages[0]} langKey={0} />
       </Term>
-      <Term title="определение" nameField={`${fieldName}.${INITIAL_LANGUAGES[1]}`}>
+      <Term title="определение" nameField={`${fieldName}.${languages[1]}`}>
         <LanguageButton onClick={handleSelectLang} text={languages[1]} langKey={1} />
       </Term>
     </div>

@@ -9,6 +9,7 @@ describe('valid arguments', () => {
     expect(arrayContaining(list, ["{name: 'a'}"])).toBeFalsy()
     expect(arrayContaining(list, ['test'])).toBeTruthy()
     expect(arrayContaining(list, [{ name: 'a' }, { name: '4' }])).toBeTruthy()
+    expect(arrayContaining(list, [{ name: 'a' }, { name: '5' }])).toBeFalsy()
     expect(arrayContaining(list, [{ name: 'a' }, 'no valid'])).toBeFalsy()
   })
 

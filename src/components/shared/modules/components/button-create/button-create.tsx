@@ -1,6 +1,6 @@
 import { useFormikContext } from 'formik'
 import { FC } from 'react'
-import style from 'src/components/pages/create-module/create-module.module.scss'
+import style from './button-create.module.scss'
 
 type ButtonCreateProps = {
   handleAddTerm: <T>(values: T) => void
@@ -11,7 +11,7 @@ export const ButtonCreate: FC<ButtonCreateProps> = ({ handleAddTerm }) => {
 
   return (
     <button
-      className={style.buttonAdd}
+      className={style.button}
       onClick={() => handleAddTerm<typeof formik.values>(formik.values)}
       data-testid="btn-add"
       aria-label="button add"

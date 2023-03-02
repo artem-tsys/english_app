@@ -1,0 +1,21 @@
+@import 'src/styles/mixins.scss';
+
+.header {
+  @include header;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.buttonClose {
+  position: absolute;
+  left: 10px;
+}

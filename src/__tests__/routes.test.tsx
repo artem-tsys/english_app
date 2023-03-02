@@ -34,7 +34,7 @@ describe('test routes', () => {
     const title = await screen.findByText(/страница не создана/i)
     expect(title).toBeInTheDocument()
   })
-  test('redirect to notFound page', async () => {
+  test('redirect to not-found page', async () => {
     render(<RenderTestApp path="/wrongUrl" />)
     const title = await screen.findByText(/страница не найдена/i)
     expect(title).toBeInTheDocument()

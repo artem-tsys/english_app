@@ -12,4 +12,5 @@ export type LanguagesInitialTerm = {
 
 export type InitialType = LanguagesKeys | keyof LanguagesInitialTerm
 
+export type Languages = [LanguagesKeys, LanguagesKeys]
 export type LanguagesInitial = [InitialType, InitialType]

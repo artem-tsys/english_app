@@ -1,12 +1,16 @@
 import cn from 'classnames'
 import { FC } from 'react'
+import { useNavigate } from 'react-router-dom'
 import style from 'src/components/shared/buttons/buttons.module.scss'
 
 type ButtonProp = { styleName?: string }
 
 export const MoreButton: FC<ButtonProp> = ({ styleName }) => {
+  const navigate = useNavigate()
+
   const clickHandle = () => {
-    alert('more')
+    // :todo change handler to call popup
+    navigate('edit-module')
   }
 
   return (

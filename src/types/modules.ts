@@ -1,11 +1,11 @@
-import { LanguagesInitial, LanguagesKeys } from 'src/types/languages'
+import { Languages, LanguagesInitial } from 'src/types/languages'
 import { ITerm, ITermInitial } from './terms'
 
 export interface IModule {
   title: string
   terms: ITerm[]
   id: string
-  languages: [LanguagesKeys, LanguagesKeys]
+  languages: Languages
   exercises: {
     memorization: {
       round: number
