@@ -10,13 +10,13 @@ import stylePopup from 'src/styles/popups.module.scss'
 
 export const SelectedRightAnswer: FC = () => {
   const dispatch = useAppDispatch()
-  const { answer, questionLanguage, termId } = useAppSelector(modalDataSelector)
+  const { answer, questionLanguageKey, termId } = useAppSelector(modalDataSelector)
 
   useEffect(() => {
     setTimeout(() => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      dispatch(activeTermForward({ id: termId, value: questionLanguage }))
+      dispatch(activeTermForward({ id: termId, value: questionLanguageKey }))
     }, 1300)
   }, [])
 

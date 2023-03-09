@@ -16,7 +16,8 @@ export const useLearned: IUseLearned = () => {
   const term = useTerm()
 
   return useMemo(() => {
-    const params = getParamsTerm(languages, learnedIds[term.id] ?? [])
+    const params = getParamsTerm(languages, learnedIds[term.id])
+
     return {
       ...params,
       term,

@@ -1,0 +1,25 @@
+.button {
+  position: relative;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border: 2px solid #479cf5;
+  overflow: hidden;
+  cursor: pointer;
+
+  &::after, &::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    content: "";
+    width: 70%;
+    height: 2px;
+    background: #479cf5;
+    z-index: 2;
+  }
+
+  &::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+}

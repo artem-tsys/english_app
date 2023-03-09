@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { CreateModule } from 'src/components/pages/create-module/create-module'
+import { EditModule } from 'src/components/pages/edit-module/edit-module'
 import { HomePage } from 'src/pages/home'
 import { MemorizationPage } from 'src/pages/memorization'
 import { ModulesPage } from 'src/pages/modules'
@@ -31,8 +32,12 @@ const routesList: IRoutes[] = [
     component: MemorizationPage,
   },
   {
-    path: '/createModule',
+    path: '/create-module',
     component: CreateModule,
+  },
+  {
+    path: '/module/:moduleId/edit-module',
+    component: EditModule,
   },
   {
     path: '/notCreated',
