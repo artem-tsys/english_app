@@ -5,6 +5,7 @@ import { apiUrl } from 'src/config'
 import { MEMORIZATION_NUMBER_ANSWERS } from 'src/constants/exercises.constants'
 import { getAnswer } from 'src/helpers/get-answer'
 import { RenderTestApp } from 'src/helpers/render-test-app'
+import { IModule } from 'src/types/modules'
 import { ITerm } from 'src/types/terms'
 
 function nockModules(data, code = 200) {
@@ -12,51 +13,48 @@ function nockModules(data, code = 200) {
 }
 
 describe('test view', () => {
-  const modules = [
+  const moduleId = '1'
+  const modules: IModule[] = [
     {
-      id: '1',
+      id: moduleId,
       title: 'Прилагательные',
-      languages: ['ua', 'en'],
+      languages: { lang1: 'ua', lang2: 'en' },
       terms: [
         {
           id: '1',
-          ua: 'эффективный',
-          en: 'efficient',
+          lang1: 'эффективный',
+          lang2: 'efficient',
         },
         {
           id: '2',
-          ua: 'дорогой',
-          en: 'expensive',
+          lang1: 'дорогой',
+          lang2: 'expensive',
         },
         {
           id: '3',
-          ua: 'яблоко',
-          en: 'apple',
+          lang1: 'яблоко',
+          lang2: 'apple',
         },
         {
           id: '4',
-          ua: 'банан',
-          en: 'banana',
+          lang1: 'банан',
+          lang2: 'banana',
         },
         {
           id: '5',
-          ua: 'что?',
-          en: 'what?',
+          lang1: 'что?',
+          lang2: 'what?',
         },
       ],
       exercises: {
         memorization: {
-          round: 0,
+          round: 1,
+          isLearned: false,
           learnedIds: [],
-        },
-        cards: {
-          learned: [],
-          unlearned: [],
         },
       },
     },
   ]
-  const moduleId = modules[0].id
 
   test('title round 1', async () => {
     nockModules(modules)
@@ -83,7 +81,7 @@ describe('test view', () => {
 
     const question = await screen.findByTestId('question')
     const questionText = question.textContent
-    const answerText = getAnswer(modules[0].terms as ITerm[], questionText)
+    const answerText = getAnswer(modules[0].terms, questionText)
     const answer = screen.getByText(answerText)
 
     expect(answer).toBeInTheDocument()
@@ -112,51 +110,48 @@ describe('test view', () => {
 })
 
 describe('select answers', () => {
-  const modules = [
+  const moduleId = '1'
+  const modules: IModule[] = [
     {
-      id: '1',
+      id: moduleId,
       title: 'Прилагательные',
-      languages: ['ua', 'en'],
+      languages: { lang1: 'ua', lang2: 'en' },
       terms: [
         {
           id: '1',
-          ua: 'эффективный',
-          en: 'efficient',
+          lang1: 'эффективный',
+          lang2: 'efficient',
         },
         {
           id: '2',
-          ua: 'дорогой',
-          en: 'expensive',
+          lang1: 'дорогой',
+          lang2: 'expensive',
         },
         {
           id: '3',
-          ua: 'яблоко',
-          en: 'apple',
+          lang1: 'яблоко',
+          lang2: 'apple',
         },
         {
           id: '4',
-          ua: 'банан',
-          en: 'banana',
+          lang1: 'банан',
+          lang2: 'banana',
         },
         {
           id: '5',
-          ua: 'что?',
-          en: 'what?',
+          lang1: 'что?',
+          lang2: 'what?',
         },
       ],
       exercises: {
         memorization: {
           round: 3,
-          learnedIds: [1, 2, 4, 5],
-        },
-        cards: {
-          learned: [],
-          unlearned: [],
+          isLearned: false,
+          learnedIds: ['1', '2', '4', '5'],
         },
       },
     },
   ]
-  const moduleId = modules[0].id
 
   test('round three', async () => {
     nockModules(modules)

@@ -2,32 +2,32 @@
 	{
 		"id": "1",
 		"title": "Прилагательные",
-		"languages": ["ua", "en"],
+		"languages": {"lang1": "ua", "lang2": "en"},
 		"terms": [
 			{
 				"id": "1",
-				"ua": "эффективный",
-				"en": "efficient"
+				"lang1": "эффективный",
+				"lang2": "efficient"
 			},
 			{
 				"id": "2",
-				"ua": "дорогой",
-				"en": "expensive"
+				"lang1": "дорогой",
+				"lang2": "expensive"
 			},
 			{
 				"id": "3",
-				"ua": "яблоко",
-				"en": "apple"
+				"lang1": "яблоко",
+				"lang2": "apple"
 			},
 			{
 				"id": "4",
-				"ua": "банан",
-				"en": "banana"
+				"lang1": "банан",
+				"lang2": "banana"
 			},
 			{
 				"id": "5",
-				"ua": "что?",
-				"en": "what?"
+				"lang1": "что?",
+				"lang2": "what?"
 			}
 		],
 		"exercises": {

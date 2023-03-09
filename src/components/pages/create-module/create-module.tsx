@@ -6,7 +6,7 @@ import style from 'src/components/pages/create-module/create-module.module.scss'
 import ButtonCreate from 'src/components/shared/modules/components/button-create'
 import ModuleHeader from 'src/components/shared/modules/components/header'
 import { ModulesForm } from 'src/components/shared/modules/module-form/module-form'
-import { INITIAL_LANGUAGES } from 'src/constants/exercises.constants'
+import { EXERCISES_DEFAULT_PARAMS, INITIAL_LANGUAGES } from 'src/constants/exercises.constants'
 import { POPUPS } from 'src/constants/popups.constans'
 import { createTerm } from 'src/helpers/create-term'
 import { validateSchema } from 'src/helpers/module-validate-schema'
@@ -15,44 +15,35 @@ import { AppDispatch } from 'src/redux/app'
 import { createModuleLanguage } from 'src/redux/createModule/createModule.selectors'
 import { resetLanguage } from 'src/redux/createModule/createModule.slice'
 import { SHOW_MODAL } from 'src/redux/general/common.slice'
-import { LanguagesInitial } from 'src/types/languages'
+import { Languages } from 'src/types/languages'
 import { IModuleInitial } from 'src/types/modules'
-import { ITermInitial } from 'src/types/terms'
+import { ITerm } from 'src/types/terms'
 import { arrayContaining } from 'src/utils/arrayContaining'
 import { updateKeyInObjects } from 'src/utils/changeNameKeyInObjects'
 
-const initialTerm: ITermInitial[] = [createTerm(...INITIAL_LANGUAGES), createTerm(...INITIAL_LANGUAGES)]
+const initialTerm: ITerm[] = [createTerm(INITIAL_LANGUAGES), createTerm(INITIAL_LANGUAGES)]
 
-const defaultParams = {
-  exercises: {
-    memorization: {
-      round: 0,
-      learnedIds: [],
-    },
-  },
-}
-
-type CreateNewModule = (values: IModuleInitial, languages: LanguagesInitial) => IModuleInitial
+type CreateNewModule = (values: IModuleInitial, languages: Languages) => IModuleInitial
 const createNewModule: CreateNewModule = (values, languages) => {
-  const preparedTerms: ITermInitial[] = updateKeyInObjects<ITermInitial>(
-    updateKeyInObjects<ITermInitial>(values.terms, INITIAL_LANGUAGES[0], languages[0]),
+  const preparedTerms: ITerm[] = updateKeyInObjects<ITerm>(
+    updateKeyInObjects<ITerm>(values.terms, INITIAL_LANGUAGES[0], languages[0]),
     INITIAL_LANGUAGES[1],
     languages[1],
   )
 
-  return Object.assign(values, { terms: preparedTerms }, defaultParams)
+  return Object.assign(values, { terms: preparedTerms }, EXERCISES_DEFAULT_PARAMS)
 }
 
 type HandleSubmit = (
   dispatch: AppDispatch,
-  languages: LanguagesInitial,
+  languages: Languages,
   callback: () => void,
 ) => (values: IModuleInitial, { setSubmitting }: FormikHelpers<IModuleInitial>) => void
 
 const handleSubmit: HandleSubmit =
   (dispatch, languages, callback) =>
   async (values: IModuleInitial, { setSubmitting }) => {
-    if (arrayContaining(Object.keys(languages), INITIAL_LANGUAGES)) {
+    if (arrayContaining(Object.keys(languages), Object.values(INITIAL_LANGUAGES))) {
       setSubmitting(false)
       dispatch(
         SHOW_MODAL({
@@ -77,12 +68,12 @@ const handleSubmit: HandleSubmit =
 export const CreateModule: FC = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const [terms, setTerms] = useState<ITermInitial[]>(initialTerm)
+  const [terms, setTerms] = useState<ITerm[]>(initialTerm)
   const languages = useAppSelector(createModuleLanguage)
 
   const handleAddTerm = useCallback(
     (values) => {
-      setTerms([...values.terms, createTerm(...INITIAL_LANGUAGES)])
+      setTerms([...values.terms, createTerm(INITIAL_LANGUAGES)])
     },
     [setTerms],
   )
@@ -91,9 +82,9 @@ export const CreateModule: FC = () => {
     terms,
     languages,
   }
+
   const formikConfig = useMemo(
     () => ({
-      enableReinitialize: true,
       validationSchema: validateSchema,
       validateOnMount: false,
       validateOnChange: false,

@@ -62,28 +62,6 @@ describe('valid params', () => {
 
   test('random order with', () => {
     const config = { collection, amount, isRandomOrder: true }
-    const result = [
-      {
-        name: 'object 2',
-        id: '2',
-      },
-      {
-        name: 'object 3',
-        id: '3',
-      },
-      {
-        name: 'object 5',
-        id: '5',
-      },
-      {
-        name: 'object 6',
-        id: '6',
-      },
-      {
-        name: 'object 7',
-        id: '7',
-      },
-    ]
     const isNotToBe = [
       {
         name: 'object 2',
@@ -100,7 +78,7 @@ describe('valid params', () => {
     ]
 
     expect(getObjectsById<IObject>(config)).toHaveLength(amount)
-    expect(getObjectsById<IObject>(config)).ArrayContain(result)
+    expect(getObjectsById<IObject>(config)).ArrayContain(collection)
     expect(getObjectsById<IObject>(config)).not.ArrayContain(isNotToBe)
   })
 
@@ -167,16 +145,8 @@ describe('is not valid params', () => {
     expect(() => getObjectsById<IObject>(config)).toThrow(ERROR_INCORRECT_VALUE)
   })
 
-  test('amount like undefined', () => {
-    const config = { collection, amount: undefined }
-    expect(() => getObjectsById<IObject>(config)).toThrow(ERROR_IS_NOT_CORRECT_TYPE)
-  })
-
-  test('ignoreIds like boolean', () => {
-    const config = {
-      collection,
-      amount: 3,
-    } as ConfigUnknown as IGetObjectsByIdProps<IObject>
+  test('amount like null', () => {
+    const config = { collection, amount: null }
     expect(() => getObjectsById<IObject>(config)).toThrow(ERROR_IS_NOT_CORRECT_TYPE)
   })
 })

@@ -1,19 +1,15 @@
-import { LanguagesInitial, LanguagesKeys, LanguagesTypes } from 'src/types/languages'
+import { LanguagesKeys } from 'src/types/languages'
 
-export type ITerm = LanguagesTypes & {
+export type ITerm = {
   id: string
-}
-
-export type ITermInitial = {
-  [key in keyof LanguagesInitial]: string
-} & {
-  id: string
+  lang1: string
+  lang2: string
 }
 
 export interface IParamsTerm {
   isLearned: boolean
-  questionLanguage: LanguagesKeys
-  answerLanguage: LanguagesKeys
+  questionLanguageKey: string
+  answerLanguageKey: string
 }
 
 export interface IMemorizationIds {

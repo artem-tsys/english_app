@@ -1,112 +1,112 @@
 [
 	{
 		"id": "1",
-		"ua": "яблоко",
-		"en": "apple"
+		"lang1": "яблоко",
+		"lang2": "apple"
 	},
 	{
 		"id": "2",
-		"ua": "банан",
-		"en": "banana"
+		"lang1": "банан",
+		"lang2": "banana"
 	},
 	{
 		"id": "3",
-		"ua": "груша",
-		"en": "pear"
+		"lang1": "груша",
+		"lang2": "pear"
 	},
 	{
 		"id": "4",
-		"ua": "персик",
-		"en": "peach"
+		"lang1": "персик",
+		"lang2": "peach"
 	},
 	{
 		"id": "5",
-		"ua": "ананас",
-		"en": "pineapple"
+		"lang1": "ананас",
+		"lang2": "pineapple"
 	},
 	{
 		"id": "6",
-		"ua": "виноград",
-		"en": "grape"
+		"lang1": "виноград",
+		"lang2": "grape"
 	},
 	{
 		"id": "7",
-		"ua": "картошка",
-		"en": "potatoes"
+		"lang1": "картошка",
+		"lang2": "potatoes"
 	},
 	{
 		"id": "8",
-		"ua": "горох",
-		"en": "peas"
+		"lang1": "горох",
+		"lang2": "peas"
 	},
 	{
 		"id": "9",
-		"ua": "огурец",
-		"en": "cucumber"
+		"lang1": "огурец",
+		"lang2": "cucumber"
 	},
 	{
 		"id": "10",
-		"ua": "помидор",
-		"en": "tomato"
+		"lang1": "помидор",
+		"lang2": "tomato"
 	},
 	{
 		"id": "11",
-		"ua": "капуста",
-		"en": "cabbage"
+		"lang1": "капуста",
+		"lang2": "cabbage"
 	},
 	{
 		"id": "12",
-		"ua": "молоко",
-		"en": "milk"
+		"lang1": "молоко",
+		"lang2": "milk"
 	},
 	{
 		"id": "13",
-		"ua": "сок",
-		"en": "juice"
+		"lang1": "сок",
+		"lang2": "juice"
 	},
 	{
 		"id": "14",
-		"ua": "красный",
-		"en": "red"
+		"lang1": "красный",
+		"lang2": "red"
 	},
 	{
 		"id": "15",
-		"ua": "синий",
-		"en": "blue"
+		"lang1": "синий",
+		"lang2": "blue"
 	},
 	{
 		"id": "16",
-		"ua": "белый",
-		"en": "white"
+		"lang1": "белый",
+		"lang2": "white"
 	},
 	{
 		"id": "17",
-		"ua": "черный",
-		"en": "black"
+		"lang1": "черный",
+		"lang2": "black"
 	},
 	{
 		"id": "18",
-		"ua": "желтый",
-		"en": "yellow"
+		"lang1": "желтый",
+		"lang2": "yellow"
 	},
 	{
 		"id": "19",
-		"ua": "зеленый",
-		"en": "green"
+		"lang1": "зеленый",
+		"lang2": "green"
 	},
 	{
 		"id": "20",
-		"ua": "коричневый",
-		"en": "brown"
+		"lang1": "коричневый",
+		"lang2": "brown"
 	},
 	{
 		"id": "21",
-		"ua": "фиолетовый",
-		"en": "purple"
+		"lang1": "фиолетовый",
+		"lang2": "purple"
 	},
 	{
 		"id": "22",
-		"ua": "разноцветный",
-		"en": "colorful"
+		"lang1": "разноцветный",
+		"lang2": "colorful"
 	}
 ]

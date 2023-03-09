@@ -7,7 +7,6 @@ import { POPUPS } from 'src/constants/popups.constans'
 import { useAppDispatch } from 'src/hooks/redux'
 import { useTerms } from 'src/hooks/useTerms'
 import { SHOW_MODAL } from 'src/redux/general/common.slice'
-import { LanguagesKeys } from 'src/types/languages'
 import { IAnswer, ITerm } from 'src/types/terms'
 import { generateAnswersById } from 'src/utils/generateAnswersById'
 import { getElById } from 'src/utils/getElById'
@@ -15,17 +14,17 @@ import style from './memorization.module.scss'
 
 type SelectAnswersProps = {
   term: ITerm
-  questionLanguage: LanguagesKeys
-  answerLanguage: LanguagesKeys
+  questionLanguageKey: string
+  answerLanguageKey: string
 }
 
-export const SelectAnswers: FC<SelectAnswersProps> = ({ term, questionLanguage, answerLanguage }) => {
+export const SelectAnswers: FC<SelectAnswersProps> = ({ term, questionLanguageKey, answerLanguageKey }) => {
   const terms = useTerms()
   const dispatch = useAppDispatch()
 
   const answers = useMemo(
-    () => shuffle<IAnswer>(generateAnswersById<ITerm>(terms, term.id, answerLanguage, MEMORIZATION_NUMBER_ANSWERS)),
-    [term, answerLanguage],
+    () => shuffle<IAnswer>(generateAnswersById<ITerm>(terms, term.id, answerLanguageKey, MEMORIZATION_NUMBER_ANSWERS)),
+    [term, answerLanguageKey],
   )
 
   const onSelected = (idAnswer: string) => {
@@ -36,7 +35,7 @@ export const SelectAnswers: FC<SelectAnswersProps> = ({ term, questionLanguage, 
             name: POPUPS.EXERCISE_MEMORIZATION_SELECTED_SUCCESS,
             data: {
               answer,
-              questionLanguage,
+              questionLanguageKey,
               termId: term.id,
             },
           }
@@ -44,8 +43,8 @@ export const SelectAnswers: FC<SelectAnswersProps> = ({ term, questionLanguage, 
             name: POPUPS.EXERCISE_MEMORIZATION_SELECTED_FAILED,
             data: {
               item: term,
-              questionLanguage,
-              answerLanguage,
+              questionLanguageKey,
+              answerLanguageKey,
               answer,
             },
           }
@@ -57,7 +56,7 @@ export const SelectAnswers: FC<SelectAnswersProps> = ({ term, questionLanguage, 
     <div className={style.exercises}>
       <div className={style.question}>
         <span className={style.questionTitle} data-testid="question">
-          {term[questionLanguage]}
+          {term[questionLanguageKey]}
         </span>
       </div>
       <ul className={cn(style.container, style.answers)} data-testid="answers">

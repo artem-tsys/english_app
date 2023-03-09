@@ -1,9 +1,10 @@
 import { findIndex } from 'lodash'
-import { LanguagesKeys } from 'src/types/languages'
+import { ERROR_IS_NOT_CORRECT_TYPE } from 'src/constants/errors.constants'
+import { Languages, LanguagesKeys } from 'src/types/languages'
 import { IParamsTerm } from 'src/types/terms'
 import { arrayContaining } from 'src/utils/arrayContaining'
 
-type GetParamsProps = (languages: LanguagesKeys[], learnedLanguages: LanguagesKeys[]) => IParamsTerm
+type GetParamsProps = (lang: Languages, learnedLanguages: LanguagesKeys[]) => IParamsTerm
 
 const findIndexQuestionLang = (languages, learnedTermLanguages) => {
   if (!learnedTermLanguages || !learnedTermLanguages.length) {
@@ -13,23 +14,30 @@ const findIndexQuestionLang = (languages, learnedTermLanguages) => {
   return findIndex(languages, (lang) => !learnedTermLanguages.includes(lang))
 }
 
-export const getParamsTerm: GetParamsProps = (languages, learnedTermLanguages) => {
-  const isLearned = arrayContaining(learnedTermLanguages, languages)
-  const questionIndex = findIndexQuestionLang(languages, learnedTermLanguages)
-  const questionLanguage = languages[questionIndex] ?? null
-  const answerLanguage = languages[questionIndex === 0 ? 1 : 0] ?? null
+export const getParamsTerm: GetParamsProps = (lang, learnedTermLanguages = []) => {
+  if (typeof lang !== 'object' || lang === null || !Array.isArray(learnedTermLanguages)) {
+    throw new Error(ERROR_IS_NOT_CORRECT_TYPE)
+  }
 
-  if (isLearned || !questionLanguage || !answerLanguage) {
+  const langKeys = Object.keys(lang)
+  const langValues = Object.values(lang)
+  const isLearned = arrayContaining(learnedTermLanguages, langValues)
+
+  const questionIndex = findIndexQuestionLang(langValues, learnedTermLanguages)
+  const questionLanguageKey = langKeys[questionIndex]
+  const answerLanguageKey = langKeys[questionIndex === 0 ? 1 : 0]
+
+  if (isLearned || !questionLanguageKey || !answerLanguageKey) {
     return {
       isLearned,
-      questionLanguage: null,
-      answerLanguage: null,
+      questionLanguageKey: null,
+      answerLanguageKey: null,
     }
   }
 
   return {
     isLearned,
-    questionLanguage,
-    answerLanguage,
+    questionLanguageKey,
+    answerLanguageKey,
   }
 }

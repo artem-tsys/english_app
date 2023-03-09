@@ -6,6 +6,6 @@ type CardFaceProps = { data: ITerm }
 
 export const CardFace: FC<CardFaceProps> = ({ data }) => (
   <div className={style.card}>
-    <span>{data.ua}</span>
+    <span>{data.lang1}</span>
   </div>
 )
