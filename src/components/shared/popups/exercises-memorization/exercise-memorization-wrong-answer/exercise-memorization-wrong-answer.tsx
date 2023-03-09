@@ -10,7 +10,7 @@ import stylePopup from 'src/styles/popups.module.scss'
 
 export const SelectedWrongAnswer: FC = () => {
   const dispatch = useAppDispatch()
-  const { item, answer, questionLanguage, answerLanguage } = useAppSelector(modalDataSelector)
+  const { item, answer, questionLanguageKey, answerLanguageKey } = useAppSelector(modalDataSelector)
 
   const nextStep = () => {
     dispatch(activeTermForward())
@@ -25,11 +25,11 @@ export const SelectedWrongAnswer: FC = () => {
         </div>
         <div className={cn(stylePopup.popupContent, style.content)}>
           <div className={cn(style.section, style.offsetBottom)}>
-            <p className={style.desc}>{item[questionLanguage]}</p>
+            <p className={style.desc}>{item[questionLanguageKey]}</p>
           </div>
           <div className={style.section}>
             <span className={cn(style.helperTitle, style.helperColorSuccess)}>правильный ответ:</span>
-            <p className={style.desc}>{item[answerLanguage]}</p>
+            <p className={style.desc}>{item[answerLanguageKey]}</p>
           </div>
           <span className={stylePopup.divider} />
           <div className={style.section}>

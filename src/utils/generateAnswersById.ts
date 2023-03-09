@@ -1,6 +1,6 @@
 import { reject } from 'lodash'
 import { ERROR_ID_IS_NOT_FOUND, ERROR_INCORRECT_VALUE, ERROR_IS_NOT_CORRECT_TYPE } from 'src/constants/errors.constants'
-import { LanguagesKeys } from 'src/types/languages'
+import { IAnswer } from 'src/types/terms'
 import { getElById } from 'src/utils/getElById'
 import { getObjectsById } from 'src/utils/getObjectsById'
 
@@ -13,9 +13,9 @@ const prepareAnswers = (list, language) =>
 export function generateAnswersById<T extends { id: string }>(
   list: T[],
   rightAnswerId: string,
-  language: LanguagesKeys,
+  language: string,
   amount: number,
-) {
+): IAnswer[] {
   if (!Array.isArray(list)) {
     throw new Error(ERROR_IS_NOT_CORRECT_TYPE)
   }
@@ -26,6 +26,7 @@ export function generateAnswersById<T extends { id: string }>(
   if (typeof rightAnswerId !== 'string') {
     throw new Error(ERROR_IS_NOT_CORRECT_TYPE)
   }
+
   const hasLanguageField = list[0][language]
   if (!hasLanguageField) {
     throw new Error(ERROR_INCORRECT_VALUE)

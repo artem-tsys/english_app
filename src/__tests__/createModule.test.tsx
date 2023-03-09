@@ -38,7 +38,7 @@ describe('create module integration tests', () => {
 
     fireEvent.click(screen.getByTestId('btn-add'))
 
-    const fields = screen.getAllByTestId('term-name-field')
+    const fields = within(screen.getByTestId('form-group-terms')).getAllByTestId('term-name-field')
     expect(fields).toHaveLength(6)
     expect(fields[0]).not.toHaveValue('')
     expect(fields[2]).toHaveValue('term-2 field-1')

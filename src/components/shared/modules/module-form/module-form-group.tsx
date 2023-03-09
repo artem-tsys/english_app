@@ -1,7 +1,9 @@
-import React, { FC } from 'react'
+import { useFormikContext } from 'formik'
+import React, { FC, useEffect } from 'react'
 import { LanguageButton } from 'src/components/shared/buttons/Language.button'
-import { Term } from 'src/components/shared/modules/components/term/term'
+import Term from 'src/components/shared/modules/components/term'
 import style from 'src/components/shared/modules/module-form/module-form.module.scss'
+import { LANGUAGES } from 'src/constants/languages.constants'
 import { POPUPS } from 'src/constants/popups.constans'
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux'
 import { createModuleLanguage } from 'src/redux/createModule/createModule.selectors'
@@ -12,6 +14,7 @@ type IModulesGroup = FC<{ term: ITerm; fieldName: string }>
 
 export const ModulesGroup: IModulesGroup = ({ term, fieldName }) => {
   const dispatch = useAppDispatch()
+  const formik = useFormikContext()
   const languages = useAppSelector(createModuleLanguage)
   const handleSelectLang = (node) => {
     dispatch(
@@ -25,16 +28,25 @@ export const ModulesGroup: IModulesGroup = ({ term, fieldName }) => {
     )
   }
 
-  // eslint-disable-next-line no-console
-  console.log('languages', languages)
+  useEffect(() => {
+    formik.setFieldValue('languages', languages)
+  }, [languages])
 
   return (
     <div className={style.form__group} data-testid="term-group" key={term.id}>
-      <Term title="термин" nameField={`${fieldName}.${languages[0]}`}>
-        <LanguageButton onClick={handleSelectLang} text={languages[0]} langKey={0} />
+      <Term title="термин" nameField={`${fieldName}.lang1`}>
+        <LanguageButton
+          onClick={handleSelectLang}
+          text={LANGUAGES[languages.lang1] ?? 'select language'}
+          langKey="lang1"
+        />
       </Term>
-      <Term title="определение" nameField={`${fieldName}.${languages[1]}`}>
-        <LanguageButton onClick={handleSelectLang} text={languages[1]} langKey={1} />
+      <Term title="определение" nameField={`${fieldName}.lang2`}>
+        <LanguageButton
+          onClick={handleSelectLang}
+          text={LANGUAGES[languages.lang2] ?? 'select language'}
+          langKey="lang2"
+        />
       </Term>
     </div>
   )

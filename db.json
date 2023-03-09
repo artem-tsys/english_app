@@ -3,35 +3,35 @@
     {
       "id": "1",
       "title": "Прилагательные",
-      "languages": [
-        "ua",
-        "en"
-      ],
+      "languages": {
+        "lang1": "ua",
+        "lang2": "en"
+      },
       "terms": [
         {
           "id": "1",
           "ua": "эффективный",
-          "en": "efficient"
+          "lang1": "efficient"
         },
         {
           "id": "2",
           "ua": "дорогой",
-          "en": "expensive"
+          "lang1": "expensive"
         },
         {
           "id": "3",
           "ua": "яблоко",
-          "en": "apple"
+          "lang1": "apple"
         },
         {
           "id": "4",
           "ua": "банан",
-          "en": "banana"
+          "lang1": "banana"
         },
         {
           "id": "5",
           "ua": "что?",
-          "en": "what?"
+          "lang1": "what?"
         }
       ],
       "exercises": {
@@ -51,320 +51,302 @@
     {
       "id": "2",
       "title": "Существительные",
-      "languages": [
-        "ua",
-        "en"
-      ],
+      "languages": {
+        "lang1": "ua",
+        "lang2": "en"
+      },
       "terms": [
         {
           "id": "1",
           "ua": "яблоко",
-          "en": "apple"
+          "lang1": "apple"
         },
         {
           "id": "2",
           "ua": "банан",
-          "en": "banana"
+          "lang1": "banana"
         },
         {
           "id": "3",
           "ua": "груша",
-          "en": "pear"
+          "lang1": "pear"
         },
         {
           "id": "4",
           "ua": "персик",
-          "en": "peach"
+          "lang1": "peach"
         },
         {
           "id": "5",
           "ua": "ананас",
-          "en": "pineapple"
+          "lang1": "pineapple"
         },
         {
           "id": "6",
           "ua": "виноград",
-          "en": "grape"
+          "lang1": "grape"
         },
         {
           "id": "7",
           "ua": "картошка",
-          "en": "potatoes"
+          "lang1": "potatoes"
         },
         {
           "id": "8",
           "ua": "горох",
-          "en": "peas"
+          "lang1": "peas"
         },
         {
           "id": "9",
           "ua": "огурец",
-          "en": "cucumber"
+          "lang1": "cucumber"
         },
         {
           "id": "10",
           "ua": "помидор",
-          "en": "tomato"
+          "lang1": "tomato"
         },
         {
           "id": "11",
           "ua": "капуста",
-          "en": "cabbage"
+          "lang1": "cabbage"
         },
         {
           "id": "12",
           "ua": "молоко",
-          "en": "milk"
+          "lang1": "milk"
         },
         {
           "id": "13",
           "ua": "сок",
-          "en": "juice"
+          "lang1": "juice"
         },
         {
           "id": "14",
           "ua": "красный",
-          "en": "red"
+          "lang1": "red"
         },
         {
           "id": "15",
           "ua": "синий",
-          "en": "blue"
+          "lang1": "blue"
         },
         {
           "id": "16",
           "ua": "белый",
-          "en": "white"
+          "lang1": "white"
         },
         {
           "id": "17",
           "ua": "черный",
-          "en": "black"
+          "lang1": "black"
         },
         {
           "id": "18",
           "ua": "желтый",
-          "en": "yellow"
+          "lang1": "yellow"
         },
         {
           "id": "19",
           "ua": "зеленый",
-          "en": "green"
+          "lang1": "green"
         },
         {
           "id": "20",
           "ua": "коричневый",
-          "en": "brown"
+          "lang1": "brown"
         },
         {
           "id": "21",
           "ua": "фиолетовый",
-          "en": "purple"
+          "lang1": "purple"
         },
         {
           "id": "22",
           "ua": "разноцветный",
-          "en": "colorful"
+          "lang1": "colorful"
         }
       ],
       "exercises": {
         "memorization": {
-          "round": 10,
+          "round": 1,
           "is_learned": true,
-          "learned_ids": [
-            "3",
-            "10",
-            "1",
-            "8",
-            "9",
-            "12",
-            "22",
-            "7",
-            "20",
-            "6",
-            "17",
-            "4",
-            "5",
-            "2",
-            "19",
-            "13",
-            "16"
-          ]
+          "learned_ids": []
         }
       }
     },
     {
       "id": "3",
       "title": "Programmer",
-      "languages": [
-        "ua",
-        "en"
-      ],
+      "languages": {
+        "lang1": "ua",
+        "lang2": "en"
+      },
       "terms": [
         {
           "id": "1",
-          "en": "variable",
-          "ru": "переменная"
+          "lang1": "variable",
+          "lang2": "переменная"
         },
         {
           "id": "2",
-          "en": "function",
-          "ru": "функция"
+          "lang1": "function",
+          "lang2": "функция"
         },
         {
           "id": "3",
-          "en": "object",
-          "ru": "объект"
+          "lang1": "object",
+          "lang2": "объект"
         },
         {
           "id": "4",
-          "en": "class",
-          "ru": "класс"
+          "lang1": "class",
+          "lang2": "класс"
         },
         {
           "id": "5",
-          "en": "array",
-          "ru": "массив"
+          "lang1": "array",
+          "lang2": "массив"
         },
         {
           "id": "6",
-          "en": "string",
-          "ru": "строка"
+          "lang1": "string",
+          "lang2": "строка"
         },
         {
           "id": "7",
-          "en": "boolean",
-          "ru": "булев тип"
+          "lang1": "boolean",
+          "lang2": "булев тип"
         },
         {
           "id": "8",
-          "en": "integer",
-          "ru": "целое число"
+          "lang1": "integer",
+          "lang2": "целое число"
         },
         {
           "id": "9",
-          "en": "floating point",
-          "ru": "число с плавающей точкой"
+          "lang1": "floating point",
+          "lang2": "число с плавающей точкой"
         },
         {
           "id": "10",
-          "en": "method",
-          "ru": "метод"
+          "lang1": "method",
+          "lang2": "метод"
         },
         {
           "id": "11",
-          "en": "argument",
-          "ru": "аргумент"
+          "lang1": "argument",
+          "lang2": "аргумент"
         },
         {
           "id": "12",
-          "en": "parameter",
-          "ru": "параметр"
+          "lang1": "parameter",
+          "lang2": "параметр"
         },
         {
           "id": "13",
-          "en": "interface",
-          "ru": "интерфейс"
+          "lang1": "interface",
+          "lang2": "интерфейс"
         },
         {
           "id": "14",
-          "en": "library",
-          "ru": "библиотека"
+          "lang1": "library",
+          "lang2": "библиотека"
         },
         {
           "id": "15",
-          "en": "package",
-          "ru": "пакет"
+          "lang1": "package",
+          "lang2": "пакет"
         },
         {
           "id": "16",
-          "en": "module",
-          "ru": "модуль"
+          "lang1": "module",
+          "lang2": "модуль"
         },
         {
           "id": "17",
-          "en": "syntax",
-          "ru": "синтаксис"
+          "lang1": "syntax",
+          "lang2": "синтаксис"
         },
         {
           "id": "18",
-          "en": "algorithm",
-          "ru": "алгоритм"
+          "lang1": "algorithm",
+          "lang2": "алгоритм"
         },
         {
           "id": "19",
-          "en": "debugging",
-          "ru": "отладка"
+          "lang1": "debugging",
+          "lang2": "отладка"
         },
         {
           "id": "20",
-          "en": "code",
-          "ru": "код"
+          "lang1": "code",
+          "lang2": "код"
         },
         {
           "id": "21",
-          "en": "bug",
-          "ru": "ошибка"
+          "lang1": "bug",
+          "lang2": "ошибка"
         },
         {
           "id": "22",
-          "en": "compile",
-          "ru": "компилировать"
+          "lang1": "compile",
+          "lang2": "компилировать"
         },
         {
           "id": "23",
-          "en": "source code",
-          "ru": "исходный код"
+          "lang1": "source code",
+          "lang2": "исходный код"
         },
         {
           "id": "24",
-          "en": "comment",
-          "ru": "комментарий"
+          "lang1": "comment",
+          "lang2": "комментарий"
         },
         {
           "id": "25",
-          "en": "syntax error",
-          "ru": "синтаксическая ошибка"
+          "lang1": "syntax error",
+          "lang2": "синтаксическая ошибка"
         },
         {
           "id": "26",
-          "en": "logic error",
-          "ru": "логическая ошибка"
+          "lang1": "logic error",
+          "lang2": "логическая ошибка"
         },
         {
           "id": "27",
-          "en": "breakpoint",
-          "ru": "точка останова"
+          "lang1": "breakpoint",
+          "lang2": "точка останова"
         },
         {
           "id": "28",
-          "en": "iteration",
-          "ru": "итерация"
+          "lang1": "iteration",
+          "lang2": "итерация"
         },
         {
           "id": "29",
-          "en": "recursion",
-          "ru": "рекурсия"
+          "lang1": "recursion",
+          "lang2": "рекурсия"
         },
         {
           "id": "30",
-          "en": "inheritance",
-          "ru": "наследование"
+          "lang1": "inheritance",
+          "lang2": "наследование"
         },
         {
           "id": "31",
-          "en": "polymorphism",
-          "ru": "полиморфизм"
+          "lang1": "polymorphism",
+          "lang2": "полиморфизм"
         },
         {
           "id": "32",
-          "en": "encapsulation",
-          "ru": "инкапсуляция"
+          "lang1": "encapsulation",
+          "lang2": "инкапсуляция"
         },
         {
           "id": "33",
-          "en": "abstraction",
-          "ru": "абстракция"
+          "lang1": "abstraction",
+          "lang2": "абстракция"
         }
       ],
       "exercises": {
@@ -378,310 +360,310 @@
     {
       "id": "4",
       "title": "GitHub",
-      "languages": [
-        "ua",
-        "en"
-      ],
+      "languages": {
+        "lang1": "ua",
+        "lang2": "en"
+      },
       "terms": [
         {
           "id": "1",
-          "en": "repository",
-          "ru": "репозиторий"
+          "lang1": "repository",
+          "lang2": "репозиторий"
         },
         {
           "id": "2",
-          "en": "branch",
-          "ru": "ветка"
+          "lang1": "branch",
+          "lang2": "ветка"
         },
         {
           "id": "3",
-          "en": "commit",
-          "ru": "коммит"
+          "lang1": "commit",
+          "lang2": "коммит"
         },
         {
           "id": "4",
-          "en": "pull request",
-          "ru": "запрос на слияние"
+          "lang1": "pull request",
+          "lang2": "запрос на слияние"
         },
         {
           "id": "5",
-          "en": "merge",
-          "ru": "слияние"
+          "lang1": "merge",
+          "lang2": "слияние"
         },
         {
           "id": "6",
-          "en": "fork",
-          "ru": "форк"
+          "lang1": "fork",
+          "lang2": "форк"
         },
         {
           "id": "7",
-          "en": "clone",
-          "ru": "клонирование"
+          "lang1": "clone",
+          "lang2": "клонирование"
         },
         {
           "id": "8",
-          "en": "push",
-          "ru": "отправка изменений"
+          "lang1": "push",
+          "lang2": "отправка изменений"
         },
         {
           "id": "9",
-          "en": "pull",
-          "ru": "получение изменений"
+          "lang1": "pull",
+          "lang2": "получение изменений"
         },
         {
           "id": "10",
-          "en": "conflict",
-          "ru": "конфликт"
+          "lang1": "conflict",
+          "lang2": "конфликт"
         },
         {
           "id": "11",
-          "en": "remote",
-          "ru": "удаленный репозиторий"
+          "lang1": "remote",
+          "lang2": "удаленный репозиторий"
         },
         {
           "id": "12",
-          "en": "origin",
-          "ru": "оригинальный репозиторий"
+          "lang1": "origin",
+          "lang2": "оригинальный репозиторий"
         },
         {
           "id": "13",
-          "en": "upstream",
-          "ru": "восходящий поток"
+          "lang1": "upstream",
+          "lang2": "восходящий поток"
         },
         {
           "id": "14",
-          "en": "downstream",
-          "ru": "нисходящий поток"
+          "lang1": "downstream",
+          "lang2": "нисходящий поток"
         },
         {
           "id": "15",
-          "en": "tag",
-          "ru": "тег"
+          "lang1": "tag",
+          "lang2": "тег"
         },
         {
           "id": "16",
-          "en": "release",
-          "ru": "релиз"
+          "lang1": "release",
+          "lang2": "релиз"
         },
         {
           "id": "17",
-          "en": "master",
-          "ru": "мастер"
+          "lang1": "master",
+          "lang2": "мастер"
         },
         {
           "id": "18",
-          "en": "issue",
-          "ru": "задача"
+          "lang1": "issue",
+          "lang2": "задача"
         },
         {
           "id": "19",
-          "en": "label",
-          "ru": "метка"
+          "lang1": "label",
+          "lang2": "метка"
         },
         {
           "id": "20",
-          "en": "milestone",
-          "ru": "веха"
+          "lang1": "milestone",
+          "lang2": "веха"
         },
         {
           "id": "21",
-          "en": "review",
-          "ru": "рецензирование"
+          "lang1": "review",
+          "lang2": "рецензирование"
         },
         {
           "id": "22",
-          "en": "comment",
-          "ru": "комментарий"
+          "lang1": "comment",
+          "lang2": "комментарий"
         },
         {
           "id": "23",
-          "en": "status",
-          "ru": "статус"
+          "lang1": "status",
+          "lang2": "статус"
         },
         {
           "id": "24",
-          "en": "merge conflict",
-          "ru": "конфликт при слиянии"
+          "lang1": "merge conflict",
+          "lang2": "конфликт при слиянии"
         },
         {
           "id": "25",
-          "en": "resolve",
-          "ru": "разрешение"
+          "lang1": "resolve",
+          "lang2": "разрешение"
         },
         {
           "id": "26",
-          "en": "blame",
-          "ru": "виновность"
+          "lang1": "blame",
+          "lang2": "виновность"
         },
         {
           "id": "27",
-          "en": "diff",
-          "ru": "различия"
+          "lang1": "diff",
+          "lang2": "различия"
         },
         {
           "id": "28",
-          "en": "history",
-          "ru": "история"
+          "lang1": "history",
+          "lang2": "история"
         },
         {
           "id": "29",
-          "en": "contributors",
-          "ru": "участники"
+          "lang1": "contributors",
+          "lang2": "участники"
         },
         {
           "id": "30",
-          "en": "license",
-          "ru": "лицензия"
+          "lang1": "license",
+          "lang2": "лицензия"
         },
         {
           "id": "31",
-          "en": "README",
-          "ru": "описание"
+          "lang1": "README",
+          "lang2": "описание"
         },
         {
           "id": "32",
-          "en": "wiki",
-          "ru": "вики"
+          "lang1": "wiki",
+          "lang2": "вики"
         },
         {
           "id": "33",
-          "en": "project board",
-          "ru": "доска задач"
+          "lang1": "project board",
+          "lang2": "доска задач"
         },
         {
           "id": "34",
-          "en": "release notes",
-          "ru": "заметки о выпуске"
+          "lang1": "release notes",
+          "lang2": "заметки о выпуске"
         },
         {
           "id": "35",
-          "en": "dependency",
-          "ru": "зависимость"
+          "lang1": "dependency",
+          "lang2": "зависимость"
         },
         {
           "id": "36",
-          "en": "package manager",
-          "ru": "менеджер пакетов"
+          "lang1": "package manager",
+          "lang2": "менеджер пакетов"
         },
         {
           "id": "37",
-          "en": "repository owner",
-          "ru": "владелец репозитория"
+          "lang1": "repository owner",
+          "lang2": "владелец репозитория"
         },
         {
           "id": "38",
-          "en": "README.md",
-          "ru": "описание в формате Markdown"
+          "lang1": "README.md",
+          "lang2": "описание в формате Markdown"
         },
         {
           "id": "39",
-          "en": "pull request review",
-          "ru": "рецензирование запроса на слияние"
+          "lang1": "pull request review",
+          "lang2": "рецензирование запроса на слияние"
         },
         {
           "id": "40",
-          "en": "pull request merge",
-          "ru": "слияние запроса на слияние"
+          "lang1": "pull request merge",
+          "lang2": "слияние запроса на слияние"
         },
         {
           "id": "41",
-          "en": "continuous integration",
-          "ru": "непрерывная интеграция"
+          "lang1": "continuous integration",
+          "lang2": "непрерывная интеграция"
         },
         {
           "id": "42",
-          "en": "build",
-          "ru": "сборка"
+          "lang1": "build",
+          "lang2": "сборка"
         },
         {
           "id": "43",
-          "en": "artifact",
-          "ru": "артефакт"
+          "lang1": "artifact",
+          "lang2": "артефакт"
         },
         {
           "id": "44",
-          "en": "workflow",
-          "ru": "рабочий процесс"
+          "lang1": "workflow",
+          "lang2": "рабочий процесс"
         },
         {
           "id": "45",
-          "en": "action",
-          "ru": "действие"
+          "lang1": "action",
+          "lang2": "действие"
         },
         {
           "id": "46",
-          "en": "event",
-          "ru": "событие"
+          "lang1": "event",
+          "lang2": "событие"
         },
         {
           "id": "47",
-          "en": "secret",
-          "ru": "секрет"
+          "lang1": "secret",
+          "lang2": "секрет"
         },
         {
           "id": "48",
-          "en": "deploy",
-          "ru": "развертывание"
+          "lang1": "deploy",
+          "lang2": "развертывание"
         },
         {
           "id": "49",
-          "en": "pull request template",
-          "ru": "шаблон запроса на слияние"
+          "lang1": "pull request template",
+          "lang2": "шаблон запроса на слияние"
         },
         {
           "id": "50",
-          "en": "issue template",
-          "ru": "шаблон задачи"
+          "lang1": "issue template",
+          "lang2": "шаблон задачи"
         },
         {
           "id": "51",
-          "en": "project",
-          "ru": "проект"
+          "lang1": "project",
+          "lang2": "проект"
         },
         {
           "id": "52",
-          "en": "issue tracker",
-          "ru": "трекер задач"
+          "lang1": "issue tracker",
+          "lang2": "трекер задач"
         },
         {
           "id": "53",
-          "en": "bug",
-          "ru": "ошибка"
+          "lang1": "bug",
+          "lang2": "ошибка"
         },
         {
           "id": "54",
-          "en": "feature",
-          "ru": "функциональность"
+          "lang1": "feature",
+          "lang2": "функциональность"
         },
         {
           "id": "55",
-          "en": "enhancement",
-          "ru": "улучшение"
+          "lang1": "enhancement",
+          "lang2": "улучшение"
         },
         {
           "id": "56",
-          "en": "documentation",
-          "ru": "документация"
+          "lang1": "documentation",
+          "lang2": "документация"
         },
         {
           "id": "57",
-          "en": "test",
-          "ru": "тест"
+          "lang1": "test",
+          "lang2": "тест"
         },
         {
           "id": "58",
-          "en": "lint",
-          "ru": "линтинг"
+          "lang1": "lint",
+          "lang2": "линтинг"
         },
         {
           "id": "59",
-          "en": "coverage",
-          "ru": "покрытие тестами"
+          "lang1": "coverage",
+          "lang2": "покрытие тестами"
         },
         {
           "id": "60",
-          "en": "version control",
-          "ru": "контроль версий"
+          "lang1": "version control",
+          "lang2": "контроль версий"
         }
       ],
       "exercises": {
@@ -691,6 +673,32 @@
           "learned_ids": []
         }
       }
+    },
+    {
+      "title": "test remove",
+      "terms": [
+        {
+          "id": "0a4cfefd-f67f-4385-a3fb-aaec9c6b2eae",
+          "lang1": "one",
+          "lang2": "первый"
+        },
+        {
+          "id": "2cd9549c-cfe5-476d-b608-9b834d80d458",
+          "lang1": "second",
+          "lang2": "второй"
+        }
+      ],
+      "languages": {
+        "lang1": null,
+        "lang2": null
+      },
+      "exercises": {
+        "memorization": {
+          "round": 1,
+          "learned_ids": []
+        }
+      },
+      "id": "d6c098b7-f055-4f3c-99fe-c72962a2718d"
     }
   ]
 }

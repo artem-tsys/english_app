@@ -46,7 +46,7 @@ export const exercisesSlice = createSlice({
     [ADD_LEANED_TERM]: (state) => {
       const { learnedTermsRound } = state.memorization
       Object.entries(learnedTermsRound).forEach(([id, value]) => {
-        if (value.length === INITIAL_LANGUAGES.length) {
+        if (value.includes(INITIAL_LANGUAGES.lang1) && value.includes(INITIAL_LANGUAGES.lang2)) {
           state.memorization.learnedIds.push(id)
         }
       })

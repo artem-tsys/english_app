@@ -16,10 +16,9 @@ import { AppDispatch } from 'src/redux/app'
 import { createModuleLanguage } from 'src/redux/createModule/createModule.selectors'
 import { resetLanguage } from 'src/redux/createModule/createModule.slice'
 import { SHOW_MODAL } from 'src/redux/general/common.slice'
-import { Languages, LanguagesInitial } from 'src/types/languages'
+import { Languages } from 'src/types/languages'
 import { IModule } from 'src/types/modules'
 import { ITerm } from 'src/types/terms'
-import { arrayContaining } from 'src/utils/arrayContaining'
 import { updateKeyInObjects } from 'src/utils/changeNameKeyInObjects'
 
 type PrepareModule = (moduleId: string, values: IModule, languages: Languages) => IModule
@@ -48,7 +47,7 @@ const prepareModule: PrepareModule = (moduleId, values, languages) => {
 
 type HandleSubmit = (
   dispatch: AppDispatch,
-  languages: LanguagesInitial,
+  languages: Languages,
   module: IModule,
   callback: () => void,
 ) => (values: IModule, { setSubmitting }: FormikHelpers<IModule>) => void
@@ -56,15 +55,8 @@ type HandleSubmit = (
 const handleSubmit: HandleSubmit =
   (dispatch, languages, module, callback) =>
   async (values: IModule, { setSubmitting }) => {
-    if (arrayContaining(languages, INITIAL_LANGUAGES)) {
-      setSubmitting(false)
-      dispatch(
-        SHOW_MODAL({
-          name: POPUPS.REMINDER_SELECT_LANGUAGE,
-        }),
-      )
-    } else {
-      const preparedModule = prepareModule(module.id, values, languages as Languages)
+    if (languages.lang1 && languages.lang2) {
+      const preparedModule = prepareModule(module.id, values, languages)
 
       updateModule(module.id, preparedModule)
         .then(() => {
@@ -76,6 +68,13 @@ const handleSubmit: HandleSubmit =
           setSubmitting(false)
           console.error(error.message)
         })
+    } else {
+      setSubmitting(false)
+      dispatch(
+        SHOW_MODAL({
+          name: POPUPS.REMINDER_SELECT_LANGUAGE,
+        }),
+      )
     }
   }
 
@@ -88,7 +87,7 @@ export const EditModule: FC = () => {
 
   const handleAddTerm = useCallback(
     (values) => {
-      setTerms([...values.terms, createTerm(...INITIAL_LANGUAGES)])
+      setTerms([...values.terms, createTerm(INITIAL_LANGUAGES)])
     },
     [setTerms],
   )
@@ -96,7 +95,7 @@ export const EditModule: FC = () => {
   const initialValues: IModule = {
     ...module,
     terms,
-    languages: languages as Languages,
+    languages,
   }
 
   const formikConfig = useMemo(
@@ -112,8 +111,6 @@ export const EditModule: FC = () => {
   )
 
   useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log('initialValues', initialValues)
     if (!module) {
       navigate('/')
     }

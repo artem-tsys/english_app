@@ -5,11 +5,11 @@ import { useLearned } from 'src/hooks/useLearned'
 import { getRandomElement } from 'src/utils/getRandomElement'
 
 export const Round: FC = () => {
-  const { isLearned, term, questionLanguage, answerLanguage } = useLearned()
+  const { isLearned, term, questionLanguageKey, answerLanguageKey } = useLearned()
 
   if (isLearned) return null
 
   const typesAnswers = getRandomElement<string>(typesExerciseAnswers)
   const Component = exercises(typesAnswers)
-  return <Component term={term} questionLanguage={questionLanguage} answerLanguage={answerLanguage} />
+  return <Component term={term} questionLanguageKey={questionLanguageKey} answerLanguageKey={answerLanguageKey} />
 }

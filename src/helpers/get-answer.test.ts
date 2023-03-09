@@ -4,8 +4,8 @@ import { ITerm } from 'src/types/terms'
 
 describe('test getAnswer fn', () => {
   const list = [
-    { ua: 'курча', en: 'chicken', id: '1' },
-    { ua: 'картопля', en: 'potatoes', id: '2' },
+    { lang1: 'курча', lang2: 'chicken', id: '1' },
+    { lang1: 'картопля', lang2: 'potatoes', id: '2' },
   ] as ITerm[]
   test('check valid value', () => {
     expect(getAnswer(list, 'курча')).not.toBe('курча')

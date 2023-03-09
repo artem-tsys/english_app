@@ -1,10 +1,10 @@
 import { ERROR_IS_NOT_CORRECT_TYPE } from 'src/constants/errors.constants'
 import ArrayContain from 'src/matchers/ArrayContain'
-import { LanguagesKeys } from 'src/types/languages'
+import { Languages, LanguagesKeys } from 'src/types/languages'
 import { IParamsTerm } from 'src/types/terms'
 import { getParamsTerm } from 'src/utils/getParamsTerm'
 
-const languages = ['ua', 'en'] as LanguagesKeys[]
+const languages = { lang1: 'ua', lang2: 'en' } as Languages
 const learnedTermEnglishRU = ['ua'] as LanguagesKeys[]
 const learnedTermEnglishEN = ['en'] as LanguagesKeys[]
 const learnedTermEnglishALL = ['ua', 'en'] as LanguagesKeys[]
@@ -17,13 +17,13 @@ expect.extend({
 const possibleResults: IParamsTerm[] = [
   {
     isLearned: false,
-    questionLanguage: 'ua',
-    answerLanguage: 'en',
+    questionLanguageKey: 'lang1',
+    answerLanguageKey: 'lang2',
   },
   {
     isLearned: false,
-    questionLanguage: 'en',
-    answerLanguage: 'ua',
+    questionLanguageKey: 'lang2',
+    answerLanguageKey: 'lang1',
   },
 ]
 
@@ -31,24 +31,24 @@ describe('valid params', () => {
   test('learned ua languages', () => {
     expect(getParamsTerm(languages, learnedTermEnglishRU)).toEqual({
       isLearned: false,
-      questionLanguage: 'en',
-      answerLanguage: 'ua',
+      questionLanguageKey: 'lang2',
+      answerLanguageKey: 'lang1',
     })
   })
 
   test('learned en languages', () => {
     expect(getParamsTerm(languages, learnedTermEnglishEN)).toEqual({
       isLearned: false,
-      questionLanguage: 'ua',
-      answerLanguage: 'en',
+      questionLanguageKey: 'lang1',
+      answerLanguageKey: 'lang2',
     })
   })
 
   test('learned all languages', () => {
     expect(getParamsTerm(languages, learnedTermEnglishALL)).toEqual({
       isLearned: true,
-      questionLanguage: null,
-      answerLanguage: null,
+      questionLanguageKey: null,
+      answerLanguageKey: null,
     })
   })
 
@@ -59,8 +59,8 @@ describe('valid params', () => {
   test('question & answer do not have the same meaning', () => {
     expect(getParamsTerm(languages, learnedTermEnglishEmpty)).not.toEqual({
       isLearned: false,
-      questionLanguage: 'ua',
-      answerLanguage: 'ua',
+      questionLanguageKey: 'lang1',
+      answerLanguageKey: 'lang1',
     })
   })
 })
@@ -70,7 +70,7 @@ describe('is not valid params', () => {
   const anotherLearnedTermLanguage = ['fr', 'dt'] as unknown as LanguagesKeys[]
 
   test('not valid learned term languages', () => {
-    expect(() => getParamsTerm(languages, undefined)).toThrow(ERROR_IS_NOT_CORRECT_TYPE)
+    expect(getParamsTerm(languages, undefined)).ArrayContain(possibleResults)
 
     expect(getParamsTerm(languages, anotherLearnedTermLanguage)).ArrayContain(possibleResults)
 
@@ -81,7 +81,5 @@ describe('is not valid params', () => {
     expect(() => getParamsTerm(undefined, learnedTermEnglishALL)).toThrow(ERROR_IS_NOT_CORRECT_TYPE)
 
     expect(() => getParamsTerm(null, learnedTermEnglishALL)).toThrow(ERROR_IS_NOT_CORRECT_TYPE)
-
-    expect(() => getParamsTerm({} as LanguagesKeys[], learnedTermEnglishALL)).toThrow(ERROR_IS_NOT_CORRECT_TYPE)
   })
 })

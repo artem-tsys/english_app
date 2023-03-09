@@ -11,8 +11,7 @@ interface ITermProps {
 
 export const Term: FC<ITermProps> = ({ title, nameField, children }) => {
   const formik = useFormikContext()
-  // eslint-disable-next-line no-console
-  console.log('formik.values[nameField]', formik.values[nameField], nameField)
+
   return (
     <div className={style.term} data-testid="term">
       <label className={style.label} data-testid="term-name">

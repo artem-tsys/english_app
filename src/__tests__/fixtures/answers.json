@@ -41,7 +41,7 @@
 	"settings1": {
 		"amount": 3,
 		"rightAnswerId": "4",
-		"language": "ua",
+		"language": "lang1",
 		"rightAnswer": {
 			"id": "4",
 			"value": "персик"
@@ -50,7 +50,7 @@
 	"settings2": {
 		"amount": 2,
 		"rightAnswerId": "5",
-		"language": "en",
+		"language": "lang2",
 		"rightAnswer": {
 			"id": "5",
 			"value": "pineapple"

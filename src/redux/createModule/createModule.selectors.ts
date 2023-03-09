@@ -1,5 +1,5 @@
 import { RootState } from 'src/redux/app'
-import { LanguagesInitial } from 'src/types/languages'
+import { Languages } from 'src/types/languages'
 
-type CreateModuleLanguage = (state: RootState) => LanguagesInitial
+type CreateModuleLanguage = (state: RootState) => Languages
 export const createModuleLanguage: CreateModuleLanguage = (state) => state.createModule.languages
