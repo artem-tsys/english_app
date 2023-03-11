@@ -44,7 +44,7 @@ export const exercisesSlice = createSlice({
   reducers: {
     [ADD_LEANED_TERM]: (state, { payload }) => {
       if (payload) {
-        state.memorization.learnedIds = payload
+        state.memorization.learnedIds = [...state.memorization.learnedIds, ...payload]
       }
     },
     [ADD_LEANED_TERM_ROUND]: (state, { payload }) => {

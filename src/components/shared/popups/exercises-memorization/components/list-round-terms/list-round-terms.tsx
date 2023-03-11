@@ -3,14 +3,13 @@ import { uniq } from 'lodash'
 import { FC } from 'react'
 import { useAppSelector } from 'src/hooks/redux'
 import { useTerm } from 'src/hooks/useTerm'
-import { roundTermsIdsSelector } from 'src/redux/exercises/exercises.selectors'
+import { modalDataSelector } from 'src/redux/general/common.selectors'
 import style from './list-round-terms.module.scss'
 
 const RoundTerm: FC<{ id: string }> = ({ id }) => {
   const term = useTerm(id)
 
   if (!term) return null
-
   return (
     <li className={cn(style.terms__element, style.term)}>
       <p className={style.term__word}>{term.lang1}</p>
@@ -20,8 +19,8 @@ const RoundTerm: FC<{ id: string }> = ({ id }) => {
 }
 
 export const ListRoundTerms: FC = () => {
-  const termsIds = useAppSelector(roundTermsIdsSelector)
-  const uniqTerms = uniq(termsIds)
+  const { roundTerms } = useAppSelector(modalDataSelector)
+  const uniqTerms = uniq<string>(roundTerms)
 
   return (
     <div className={style.terms}>

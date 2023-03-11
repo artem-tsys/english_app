@@ -19,10 +19,10 @@ export const commonSlice = createSlice({
     SHOW_MODAL: (state, action) => {
       const { name, data, animate } = action.payload
       if (state.modal.name) {
-        state.reserveModal.push(state.modal)
+        state.reserveModal = [...state.reserveModal, action.payload]
+      } else {
+        state.modal = { name, data, animate }
       }
-      state.modal = { name, data, animate }
-      state.animationModal = false
     },
     HIDE_MODAL: (state) => {
       if (state.modal.animate && !state.animationModal) {
