@@ -351,9 +351,12 @@
       ],
       "exercises": {
         "memorization": {
-          "round": 1,
-          "is_learned": false,
-          "learned_ids": []
+          "round": 5,
+          "is_learned": true,
+          "learned_ids": [
+            "3",
+            "4"
+          ]
         }
       }
     },

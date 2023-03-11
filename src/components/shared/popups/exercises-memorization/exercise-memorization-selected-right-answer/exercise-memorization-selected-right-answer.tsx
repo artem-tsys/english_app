@@ -4,6 +4,7 @@ import { SmilingEmoji } from 'src/components/shared/icons/smilling-emoji'
 import style from 'src/components/shared/popups/exercises-memorization/exercise-memorization-selected-right-answer/exercise-memorization-selected-right-answer.module.scss'
 import { Substrate } from 'src/components/shared/popups/substrate'
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux'
+import { useModule } from 'src/hooks/useModule'
 import { activeTermForward } from 'src/redux/exercises/exercises.slice'
 import { modalDataSelector } from 'src/redux/general/common.selectors'
 import stylePopup from 'src/styles/popups.module.scss'
@@ -11,12 +12,13 @@ import stylePopup from 'src/styles/popups.module.scss'
 export const SelectedRightAnswer: FC = () => {
   const dispatch = useAppDispatch()
   const { answer, questionLanguageKey, termId } = useAppSelector(modalDataSelector)
+  const { languages } = useModule()
 
   useEffect(() => {
     setTimeout(() => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      dispatch(activeTermForward({ id: termId, value: questionLanguageKey }))
+      dispatch(activeTermForward({ id: termId, value: languages[questionLanguageKey] }))
     }, 1300)
   }, [])
 

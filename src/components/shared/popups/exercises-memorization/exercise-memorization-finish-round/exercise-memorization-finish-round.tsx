@@ -6,7 +6,7 @@ import { ListRoundTerms } from 'src/components/shared/popups/exercises-memorizat
 import style from 'src/components/shared/popups/exercises-memorization/exercise-memorization-finish-round/exercise-memorization-finish-round.module.scss'
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux'
 import { roundNumberSelector } from 'src/redux/exercises/exercises.selectors'
-import { roundForward } from 'src/redux/exercises/exercises.slice'
+import { activeTermForward } from 'src/redux/exercises/exercises.slice'
 import { HIDE_MODAL } from 'src/redux/general/common.slice'
 
 export const ExerciseMemorizationFinishRound: FC = () => {
@@ -14,7 +14,7 @@ export const ExerciseMemorizationFinishRound: FC = () => {
   const dispatch = useAppDispatch()
 
   const nextRound = () => {
-    dispatch(roundForward())
+    dispatch(activeTermForward())
   }
 
   const hidePopup = () => {

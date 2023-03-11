@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { INITIAL_LANGUAGES } from 'src/constants/exercises.constants'
 import {
   ACTIVE_TERM_FORWARD,
   ADD_LEANED_TERM,
@@ -43,13 +42,10 @@ export const exercisesSlice = createSlice({
   name: 'exercises',
   initialState,
   reducers: {
-    [ADD_LEANED_TERM]: (state) => {
-      const { learnedTermsRound } = state.memorization
-      Object.entries(learnedTermsRound).forEach(([id, value]) => {
-        if (value.includes(INITIAL_LANGUAGES.lang1) && value.includes(INITIAL_LANGUAGES.lang2)) {
-          state.memorization.learnedIds.push(id)
-        }
-      })
+    [ADD_LEANED_TERM]: (state, { payload }) => {
+      if (payload) {
+        state.memorization.learnedIds = payload
+      }
     },
     [ADD_LEANED_TERM_ROUND]: (state, { payload }) => {
       const prevValue = state.memorization.learnedTermsRound[payload.id] ?? []
