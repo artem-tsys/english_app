@@ -40,6 +40,8 @@ jobs:
         run: npm install
       - name: build project
         run: npm run build
+      - name: Check directory existence
+        run: ls
       - name: run linter
         run: npm run lint
       - name: run test
