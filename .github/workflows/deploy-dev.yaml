@@ -36,7 +36,7 @@ jobs:
           name: params-${{ github.run_number }}
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: action/setup-node@v3
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
 
