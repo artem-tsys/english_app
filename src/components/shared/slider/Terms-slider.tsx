@@ -1,7 +1,8 @@
 import { FC } from 'react'
 import { TermCard } from 'src/components/shared/cards/term/term.card'
 import { CreateSlider } from 'src/components/shared/slider/Slider-creator'
-import { useTerms } from 'src/hooks/useTerms'
+import { useAppSelector } from 'src/hooks/redux'
+import { currentModuleSelector } from 'src/redux/modules/modules.selectors'
 import { ITerm } from 'src/types/terms'
 
 const Slider = CreateSlider<ITerm>({
@@ -14,7 +15,7 @@ const Slider = CreateSlider<ITerm>({
 })
 
 const TermsSlider: FC = () => {
-  const terms = useTerms()
+  const { terms } = useAppSelector(currentModuleSelector)
 
   if (!terms) return null
 

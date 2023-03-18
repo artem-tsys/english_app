@@ -1,10 +1,15 @@
 import { RootState } from 'src/redux/app'
 import { modulesAdapter } from 'src/redux/modules/modules.slice'
+import { IModule } from 'src/types/modules'
 
 export const modulesSelectors = modulesAdapter.getSelectors<RootState>((state) => state.modules)
 
-export const modulesSelectById = (id: string) => (state: RootState) => modulesSelectors.selectById(state, id)
-export const termsLengthSelector = (id: string) => (state: RootState) => {
-  const module = modulesSelectors.selectById(state, id)
-  return module.terms.length ?? null
+export const currentModuleSelector = (state: RootState) => modulesSelectors.selectById(state, state.common.moduleId)
+export const currentTermsSelector = (state: RootState) => {
+  const module: IModule = currentModuleSelector(state)
+  return module?.terms ?? []
+}
+export const termsLengthSelector = (state: RootState) => {
+  const terms = currentTermsSelector(state)
+  return terms.length
 }

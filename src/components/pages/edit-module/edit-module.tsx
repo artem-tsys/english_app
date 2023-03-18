@@ -11,11 +11,11 @@ import { POPUPS } from 'src/constants/popups.constans'
 import { createTerm } from 'src/helpers/create-term'
 import { validateSchema } from 'src/helpers/module-validate-schema'
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux'
-import { useModule } from 'src/hooks/useModule'
 import { AppDispatch } from 'src/redux/app'
 import { createModuleLanguage } from 'src/redux/createModule/createModule.selectors'
 import { resetLanguage } from 'src/redux/createModule/createModule.slice'
 import { SHOW_MODAL } from 'src/redux/general/common.slice'
+import { currentModuleSelector } from 'src/redux/modules/modules.selectors'
 import { Languages } from 'src/types/languages'
 import { IModule } from 'src/types/modules'
 import { ITerm } from 'src/types/terms'
@@ -82,7 +82,7 @@ export const EditModule: FC = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const languages = useAppSelector(createModuleLanguage)
-  const module = useModule()
+  const module = useAppSelector(currentModuleSelector)
   const [terms, setTerms] = useState<ITerm[]>(module.terms)
 
   const handleAddTerm = useCallback(
