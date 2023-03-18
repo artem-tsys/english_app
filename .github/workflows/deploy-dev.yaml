@@ -7,7 +7,7 @@ concurrency:
 
 on:
   pull_request:
-    types: [ opened, reopened, synchronize, labeled ]
+    types: [ opened, reopened, synchronize ]
 
 jobs:
   init:
@@ -18,7 +18,7 @@ jobs:
     #
     # Do not trigger when:
     # PR main/master->whatever
-    if: (github.head_ref == 'develop' && (github.base_ref == 'main' || github.base_ref == 'master')) || github.head_ref != 'main' && github.head_ref != 'master' && contains(github.event.pull_request.labels.*.name, 'deploy')
+    if: (github.head_ref == 'develop' && (github.base_ref == 'main' || github.base_ref == 'master')) || github.head_ref != 'main' && github.head_ref != 'master'
     steps:
       - uses: actions/checkout@v3
   build:
