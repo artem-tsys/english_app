@@ -1,0 +1,70 @@
+name: Deploy-dev
+
+# Override previous workflow run (skip all pending runs within one branch)
+concurrency:
+  group: "dev-build-${{ github.head_ref }}"
+  cancel-in-progress: true
+
+on:
+  pull_request:
+    types: [ opened, reopened, synchronize, labeled ]
+
+jobs:
+  init:
+    runs-on: ubuntu-20.04
+    # Trigger when:
+    # PR develop->main/master
+    # Any PR with 'deploy' label'
+    #
+    # Do not trigger when:
+    # PR main/master->whatever
+    if: (github.head_ref == 'develop' && (github.base_ref == 'main' || github.base_ref == 'master')) || github.head_ref != 'main' && github.head_ref != 'master' && contains(github.event.pull_request.labels.*.name, 'deploy')
+    steps:
+      - uses: actions/checkout@v3
+  build:
+    runs-on: ubuntu-20.04
+    needs: [ init ]
+    strategy:
+      matrix:
+        node-version: [ 14.x, 16.x, 18.x ]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/upload-artifact@v3.1.2
+        with:
+          name: params-${{ github.run_number }}
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: action/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: run linter
+        run: npm run lint
+
+      - name: run test
+        run: npm run test
+
+      - name: run build
+        run: npm run build
+  deploy:
+    runs-on: ubuntu-20.04
+    needs: [ build ]
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: params-${{ github.run_number }}
+      - uses: actions/checkout@v2
+
+      - name: rsync deploy
+        uses: burnett01/rsync-deployments@5.2
+        with:
+          switches: -avzr --delete
+          path: ./build
+          remote_host: ${{ secrets.REMOTE_HOST }}
+          remote_user: ${{ secrets.REMOTE_USER }}
+          remote_key: ${{ secrets.REMOTE_KEY }}
+          remote_path: ${{ secrets.REMOTE_PATH }}
