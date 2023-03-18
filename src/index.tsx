@@ -1,8 +1,8 @@
 import ReactDOM from 'react-dom/client'
-import { initApp } from 'src/initApp'
-import 'src/styles/index.css'
-import 'src/styles/reset.scss'
+import { initApp } from './initApp'
 import reportWebVitals from './reportWebVitals'
+import './styles/index.css'
+import './styles/reset.scss'
 
 function init() {
   const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
