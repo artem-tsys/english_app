@@ -5,6 +5,9 @@ concurrency:
   group: "dev-build-${{ github.head_ref }}"
   cancel-in-progress: true
 
+env:
+  CI: false
+
 on:
   pull_request:
     types: [ opened, reopened, synchronize, labeled ]
