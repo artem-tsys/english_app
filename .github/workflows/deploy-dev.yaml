@@ -40,8 +40,11 @@ jobs:
         run: npm install
       - name: build project
         run: npm run build
-      - name: Check directory existence
-        run: ls
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: build
+          path: build
       - name: run linter
         run: npm run lint
       - name: run test
@@ -51,13 +54,18 @@ jobs:
     needs: [ build ]
     steps:
       - uses: actions/checkout@v3
+      - name: Download build artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: build
+          path: dist
       - name: Check directory existence
         run: ls
       # ( Build to ./dist or other directory... )
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2.0
         with:
-          publish-dir: './build'
+          publish-dir: './dist'
           production-branch: master
           github-token: ${{ secrets.GITHUB_TOKEN }}
         env:
