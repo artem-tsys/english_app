@@ -2,14 +2,12 @@ import { FC } from 'react'
 import style from 'src/components/shared/popups/exercises-memorization/components/condition-exercise/condition-exercise.module.scss'
 import { useAppSelector } from 'src/hooks/redux'
 import { memorizationLearnedSelector } from 'src/redux/exercises/exercises.selectors'
-import { moduleIdSelector } from 'src/redux/general/common.selectors'
 import { termsLengthSelector } from 'src/redux/modules/modules.selectors'
 
 type IProps = { round: number }
 
 export const ConditionExercise: FC<IProps> = ({ round }) => {
-  const moduleId = useAppSelector(moduleIdSelector)
-  const termsLength = useAppSelector(termsLengthSelector(moduleId))
+  const termsLength = useAppSelector(termsLengthSelector)
   const learnedTerms = useAppSelector(memorizationLearnedSelector)
 
   return (
