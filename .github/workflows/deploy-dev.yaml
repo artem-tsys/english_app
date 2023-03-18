@@ -59,8 +59,6 @@ jobs:
         with:
           name: build
           path: dist
-      - name: Check directory existence
-        run: ls
       # ( Build to ./dist or other directory... )
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2.0
