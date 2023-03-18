@@ -1,0 +1,6 @@
+- name: deploy
+  description: Use to deploy dev env on a PR (all commits will lead to a redeploy)
+  color: 4ee00c
+- name: test
+  description: Use to run api tests on a PR (heavy step)
+  color: d93f0b
