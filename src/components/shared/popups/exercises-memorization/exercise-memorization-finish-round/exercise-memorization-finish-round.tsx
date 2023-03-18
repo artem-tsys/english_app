@@ -5,12 +5,17 @@ import ConditionExercise from 'src/components/shared/popups/exercises-memorizati
 import { ListRoundTerms } from 'src/components/shared/popups/exercises-memorization/components/list-round-terms/list-round-terms'
 import style from 'src/components/shared/popups/exercises-memorization/exercise-memorization-finish-round/exercise-memorization-finish-round.module.scss'
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux'
-import { modalDataSelector } from 'src/redux/general/common.selectors'
+import { roundNumberSelector } from 'src/redux/exercises/exercises.selectors'
+import { roundForward } from 'src/redux/exercises/exercises.slice'
 import { HIDE_MODAL } from 'src/redux/general/common.slice'
 
 export const ExerciseMemorizationFinishRound: FC = () => {
-  const { round } = useAppSelector(modalDataSelector)
+  const round = useAppSelector(roundNumberSelector)
   const dispatch = useAppDispatch()
+
+  const nextRound = () => {
+    dispatch(roundForward())
+  }
 
   const hidePopup = () => {
     dispatch(HIDE_MODAL())
@@ -26,7 +31,7 @@ export const ExerciseMemorizationFinishRound: FC = () => {
           <ListRoundTerms />
         </div>
       </div>
-      <ButtonFullWidth onClick={hidePopup}>перейти к раунду {round}</ButtonFullWidth>
+      <ButtonFullWidth onClick={nextRound}>перейти к раунду {round}</ButtonFullWidth>
     </div>
   )
 }

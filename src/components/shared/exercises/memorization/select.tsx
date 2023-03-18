@@ -4,9 +4,9 @@ import { FC, useMemo } from 'react'
 import { Answer } from 'src/components/shared/exercises/memorization/components/answer'
 import { MEMORIZATION_NUMBER_ANSWERS } from 'src/constants/exercises.constants'
 import { POPUPS } from 'src/constants/popups.constans'
-import { useAppDispatch, useAppSelector } from 'src/hooks/redux'
+import { useAppDispatch } from 'src/hooks/redux'
+import { useTerms } from 'src/hooks/useTerms'
 import { SHOW_MODAL } from 'src/redux/general/common.slice'
-import { currentModuleSelector } from 'src/redux/modules/modules.selectors'
 import { IAnswer, ITerm } from 'src/types/terms'
 import { generateAnswersById } from 'src/utils/generateAnswersById'
 import { getElById } from 'src/utils/getElById'
@@ -19,7 +19,7 @@ type SelectAnswersProps = {
 }
 
 export const SelectAnswers: FC<SelectAnswersProps> = ({ term, questionLanguageKey, answerLanguageKey }) => {
-  const { terms } = useAppSelector(currentModuleSelector)
+  const terms = useTerms()
   const dispatch = useAppDispatch()
 
   const answers = useMemo(

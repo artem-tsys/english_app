@@ -5,7 +5,7 @@ import { SUBMIT_LEARNED } from 'src/redux/exercises/exercises.constans'
 import {
   activeTermIndexSelector,
   isLearnedMemorizationSelector,
-  learnedTermsSelector,
+  memorizationLastRoundSelector,
   memorizationLearnedSelector,
   roundNumberSelector,
   roundTermsIdsSelector,
@@ -19,9 +19,8 @@ import {
 } from 'src/redux/exercises/exercises.slice'
 import { moduleIdSelector } from 'src/redux/general/common.selectors'
 import { HIDE_MODAL, SHOW_MODAL } from 'src/redux/general/common.slice'
-import { currentModuleSelector, termsLengthSelector } from 'src/redux/modules/modules.selectors'
 
-const { ROUND_FORWARD, ACTIVE_TERM_FORWARD, ADD_LEANED_TERM } = exercisesSlice.actions
+const { ROUND_FORWARD, ACTIVE_TERM_FORWARD } = exercisesSlice.actions
 
 export const exercisesMiddleware = (store) => (next) => async (action) => {
   const { dispatch, getState } = store
@@ -42,7 +41,7 @@ export const exercisesMiddleware = (store) => (next) => async (action) => {
       }
 
       try {
-        updateModule(moduleId, moduleUpdate)
+        await updateModule(moduleId, moduleUpdate)
       } catch (err) {
         console.error(err.message)
       }
@@ -50,61 +49,31 @@ export const exercisesMiddleware = (store) => (next) => async (action) => {
     }
     case ROUND_FORWARD.type: {
       const state = getState()
-      const termsLength = termsLengthSelector(state)
-      const learnedTerms = memorizationLearnedSelector(state)
-      const roundTerms = roundTermsIdsSelector(state)
-      const round = roundNumberSelector(state)
-      // const lastRound = memorizationLastRoundSelector(state)
-      // const roundNumber = roundNumberSelector(state)
+      const lastRound = memorizationLastRoundSelector(state)
+      const roundNumber = roundNumberSelector(state)
 
-      await dispatch(SHOW_MODAL({ name: POPUPS.EXERCISE_MEMORIZATION_FINISH_ROUND, data: { roundTerms, round } }))
-      if (termsLength === learnedTerms.length) {
+      if (lastRound === roundNumber) {
         dispatch(endMemorizationMode())
       }
-      dispatch(submitLearned())
+      await dispatch(submitLearned())
+      dispatch(SHOW_MODAL({ name: POPUPS.EXERCISE_MEMORIZATION_FINISH_ROUND }))
       break
     }
-
     case ACTIVE_TERM_FORWARD.type: {
       const state = getState()
       const activeTerm = activeTermIndexSelector(state)
       const termsRound = roundTermsIdsSelector(state)
-      const learnedIds = memorizationLearnedSelector(state)
+
+      dispatch(HIDE_MODAL())
 
       if (action.payload) {
         dispatch(addLearnedTermRound(action.payload))
       }
       if (activeTerm === termsRound.length) {
-        dispatch(addLearnedTerm(learnedIds))
+        dispatch(addLearnedTerm())
         dispatch(roundForward())
       }
-
-      dispatch(HIDE_MODAL())
       break
     }
   }
-}
-
-export const exercisesAddLearnedMiddleware = (store) => (next) => async (action) => {
-  const { getState } = store
-
-  switch (action.type) {
-    case ADD_LEANED_TERM.type: {
-      const state = getState()
-
-      const languagesRound = learnedTermsSelector(state)
-      const { languages } = currentModuleSelector(state)
-
-      const preparedLearnedIds = []
-      Object.entries(languagesRound).forEach(([id, value]) => {
-        if (value.includes(languages.lang1) && value.includes(languages.lang2)) {
-          preparedLearnedIds.push(id)
-        }
-      })
-
-      next({ ...action, payload: preparedLearnedIds })
-      return
-    }
-  }
-  next(action)
 }

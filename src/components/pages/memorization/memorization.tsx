@@ -10,6 +10,7 @@ import { POPUPS } from 'src/constants/popups.constans'
 import { filterElements } from 'src/helpers/filter-elements'
 import { getIds } from 'src/helpers/get-ids'
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux'
+import { useModule } from 'src/hooks/useModule'
 import {
   memorizationLearnedSelector,
   roundNumberSelector,
@@ -18,13 +19,12 @@ import {
 import { updateTermsRound } from 'src/redux/exercises/exercises.slice'
 import { moduleIdSelector } from 'src/redux/general/common.selectors'
 import { SHOW_MODAL, UPDATE_MODULE_ID } from 'src/redux/general/common.slice'
-import { currentTermsSelector } from 'src/redux/modules/modules.selectors'
 import styleMain from 'src/styles/main.module.scss'
 import { ITerm } from 'src/types/terms'
 import { getObjectsById } from 'src/utils/getObjectsById'
 
 const isFinishedModule = (terms: ITerm[], learnedTerms: string[]): boolean => {
-  if (terms.length === 0) return false
+  if (terms.length === 0) return true
   return learnedTerms.length >= terms.length
 }
 
@@ -34,7 +34,7 @@ export const Memorization: FC = () => {
   const query = useParams()
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const terms = useAppSelector(currentTermsSelector)
+  const { terms } = useModule()
   const roundNumber = useAppSelector(roundNumberSelector)
   const learnedIds = useAppSelector(memorizationLearnedSelector)
   const roundTerms = useAppSelector(roundTermsIdsSelector)
@@ -48,9 +48,7 @@ export const Memorization: FC = () => {
 
   useEffect(() => {
     if (isFinishedModule(terms, learnedIds)) {
-      dispatch(
-        SHOW_MODAL({ name: POPUPS.EXERCISE_MEMORIZATION_FINISH_MODULE, data: { roundTerms, round: roundNumber } }),
-      )
+      dispatch(SHOW_MODAL({ name: POPUPS.EXERCISE_MEMORIZATION_FINISH_MODULE }))
     }
   }, [terms, learnedIds])
 
@@ -61,7 +59,7 @@ export const Memorization: FC = () => {
     const nextRoundTerms = shuffle(flatten(shuffle(times(termsNumberCopies, () => roundIds))))
 
     dispatch(updateTermsRound(nextRoundTerms))
-  }, [terms, roundNumber])
+  }, [roundNumber])
 
   const finishRoundHandler = () => {
     navigate(-1)
